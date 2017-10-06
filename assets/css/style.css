@@ -1,0 +1,1168 @@
+/*
+    General Style
+*/
+
+body{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+}
+
+.btn.btn-default{
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    border-bottom: 3px solid #df405a;
+    background: #e85a71;
+    border-radius: 0;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0;
+    color: #fafafa;
+    width: 142px;
+    height: 61px;
+    cursor: pointer;
+}
+.btn.btn-default:hover,
+.btn.btn-default:focus{
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    border-bottom: 3px solid #fd999a;
+    background: #e85a71;
+    color: #fafafa;
+}
+.btn.btn-default.action{
+    height: 41px;
+    font-size: 18px;
+    background: #e85a71;
+    color: #fafafa;
+    border-radius: 0;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    border-bottom: 3px solid #df405a;
+    padding: 0;
+    font-weight: 400;
+}
+.btn.btn-default.action:hover,
+.btn.btn-default.action:focus{
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    background: #e85a71;
+    color: #fafafa;
+    border-bottom: 3px solid #fd999a;
+}
+
+@-ms-viewport{
+  width: device-width;
+}
+
+a:focus {
+    outline: none;
+}
+
+/*
+    Header
+*/
+
+textarea.form-control,
+select.form-control,
+select.form-control option,
+input[type=password].form-control,
+input[type=text].form-control{
+    border: 1px solid #c0c0c0;
+}
+
+/* 
+    Navbar 
+*/
+
+.navbar-default .navbar-brand{
+    text-transform: uppercase;
+    color: #fff;
+}
+.navigation{
+    background-color: #4ea1d3;
+}
+.navbar{
+    margin-bottom: 0px;
+}
+.navbar-default{
+    background-color: #4ea1d3;
+    border: none;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 300;
+    letter-spacing: 0;
+}
+.navbar-default .navbar-toggle .icon-bar{
+    background: #fff;
+}
+.navbar-default .navbar-toggle:hover, 
+.navbar-default .navbar-toggle:focus{
+    background-color: #5ca8ff;
+}
+.navbar-default .navbar-nav > .active > a, 
+.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .open > a, 
+.navbar-default .navbar-nav > .open > a:hover, 
+.navbar-default .navbar-nav > .open > a:focus{
+    background-color: #5ca8ff;
+    border-top: 5px solid #e9e9e9;
+    border-bottom: 1px solid #e9e9e9;
+    padding-top: 10px;
+    color: #fff;
+}
+.navbar-default .navbar-nav > li > a:hover, 
+.navbar-default .navbar-nav > li > a:focus{
+    background-color: #5ca8ff;
+    color: #fff;
+}
+.navbar-default .navbar-nav > li.active span{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    height: 22px;
+    width: 22px;
+    background-size: 22px 22px;
+    background-position: center right;
+}
+.navbar-default .navbar-nav > li.active span.caret{
+    width: 0;
+    height: 0;
+    top: 17px;
+}
+.navbar-default .navbar-nav > li.active span.home{
+    background: url(../images/navbar/Icon-Home.png) no-repeat;
+}
+.navbar-default .navbar-nav > li.active span.daftar{
+    background: url(../images/navbar/Icon-Daftar.png) no-repeat;
+}
+.navbar-default .navbar-nav > li.active span.masuk{
+    background: url(../images/navbar/Icon-Login.png) no-repeat;
+}
+.navbar-default .navbar-nav > li.active span.komp{
+    background: url(../images/navbar/Icon-Komp.png) no-repeat;
+    width: 35px;
+}
+.navbar-default .navbar-nav > li.active span.materi{
+    background: url(../images/navbar/Icon-Materi.png) no-repeat;
+}
+.navbar-default .navbar-nav > li.active span.profile{
+    background: url(../epsettings/siswa/images/icons/Icon-Profil.png) no-repeat;
+}
+.navbar-default .navbar-nav > li.active span.clue{
+    background: url(../epsettings/guru/images/icons/Icon-Petunjuk.png) no-repeat;
+}
+.navbar-default .navbar-nav > li > a{
+    color: #fff;
+}
+.nav > li > a{
+    padding: 15px 15px;
+}
+.navbar-collapse{
+    border: none;
+    border-top: none;
+}
+.navbar-nav{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.navbar-nav .open .dropdown-menu{
+    background-color: #5ca8ff;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > li > a{
+    color: #fff;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > li > a.active,
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, 
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:focus{
+    text-decoration: underline;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > li > a{
+    padding-left: 20px; 
+}
+.dropdown-menu .divider {
+    background-color: transparent;
+}
+
+/*
+    Konten Atas
+*/
+.bg-slider{
+    background: url(../images/basket-fik.jpg) no-repeat;
+    background-size: cover;
+    background-position: top center;
+    background-attachment: fixed;
+}
+.konten-atas{
+    padding-top: 70px;
+    padding-bottom: 70px;
+    background: rgba(255, 255, 255, 0.88);
+}
+.konten-atas h1{
+    font-size: 30px;
+    line-height: inherit;
+    font-weight: 300;
+    letter-spacing: 0;
+    text-align: center;
+}
+
+.konten-atas p{
+    font-size: 16px;
+    line-height: 32px;
+    text-align: justify;
+    margin-top: 20px;
+}
+
+.konten-atas .student{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel-caption{
+    color: #333;
+    text-align: left;
+    text-shadow: none;
+    height: 100%;
+    position: relative;
+    width: 100%;
+    right: auto;
+    left: auto;
+}
+
+.carousel-inner img{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel-indicators{
+    left: 52%;
+}
+
+.carousel-indicators li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 1px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #333;
+    border-radius: 10px;
+}
+
+@media screen and (min-width: 768px){
+    .carousel-indicators {
+      bottom: -30px;
+    }
+}
+
+@media screen and (min-width: 992px){
+    .carousel-caption{
+        padding-top: 0;
+    }
+    
+}
+
+@media screen and (min-width: 768px){
+    .carousel-caption {
+        right: 0;
+        top: 0;
+        left: auto;
+        padding-bottom: 0;
+    }
+}
+
+@media screen and (min-width: 1200px){
+    .carousel-indicators {
+        bottom: 0;
+        left: 53%;
+    }
+}
+
+/*
+    Konten Tengah
+*/
+
+.konten-tengah{
+    background: #4ea1d3;
+    border-top: 3px solid #e5e5e5;
+    padding-top: 45px;
+    padding-bottom: 45px;
+    color: #fafafa;
+    text-align: center;
+}
+
+.konten-tengah .img-circle{
+    background: #fff;
+    width: 72px;
+    height: 72px;
+    border: 3px solid #ecf0f1;
+    margin: 10px auto 30px;
+}
+
+.konten-tengah .img-circle img{
+    margin: 15px auto;
+}
+
+.konten-tengah h2{
+    font-size: 30px;
+    line-height: inherit;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.konten-tengah p{
+    font-size: 16px;
+    line-height: 32px;
+}
+
+.item-tengah{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.item-tengah:not(:last-child){
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/*
+    Konten Bawah
+*/
+.konten-bawah .container .row{
+    padding: 70px 15px;
+    position: relative;
+}
+.profil{
+    border-radius: 100%;
+    width: 100px;
+    height: auto;
+    float: right;
+    position: absolute;
+    right: 15px;
+    top: 70px;
+}
+.konten-bawah h2{
+    font-weight: 300;
+    font-size: 26px;
+    line-height: inherit;
+    letter-spacing: 0;
+    margin-bottom: 40px;
+    font-weight: 300;
+    width: 70%;
+}
+
+.konten-bawah p{
+    font-size: 16px;
+    line-height: 32px;
+    letter-spacing: 0;
+    text-align: justify;
+}
+
+/*
+    Form Registrasi Siswa
+*/
+.reg-heading{
+    padding-left: 0;
+    text-align: center; 
+    font-size: 30px;
+}
+.form-reg{
+    margin-top: 45px;
+    margin-bottom: 45px;
+}
+.item-reg{
+    margin-bottom: 20px;
+}
+.item-reg label{
+    font-size: 18px;
+    line-height: 30px;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+.item-reg .form-control {
+    margin-bottom: 0;
+}
+.item-reg label.clues{
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 20px;
+    line-height: normal;
+    font-style: italic;
+    color: #141241;
+    margin-top: 5px;
+}
+.materi-siswa .btn.btn-default.action,
+.form-reg .btn.btn-default.action{
+    font-size: 24px;
+    font-weight: 600;
+    height: 61px;
+}
+
+/*
+    Form Login
+*/
+
+.form-log{
+    margin-top: 75px;
+    margin-bottom: 65px;
+}
+
+.form-login{
+    width: auto;
+    height: auto;
+    background: #4ea1d3;
+    padding: 40px 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.form-login label,
+.form-login p{
+    font-size: 18px;
+    line-height: 32px;
+    letter-spacing: 0;
+    font-weight: 300;
+    color: #fff;
+}
+.form-login p.label{
+    display: block;
+    white-space: normal;
+    line-height: normal;
+    width: 100%;
+    clear: left;
+}
+.form-login p a,
+.form-login p a:hover{
+    text-decoration: underline;
+    color: #fff;
+} 
+.form-login .btn.btn-default{
+    margin-bottom: 20px;
+    width: 100px;
+}
+.form-control{
+    margin-bottom: 22px;
+    border-radius: 0;
+    border: 1px solid #ecf0f1;
+    box-shadow: none;
+}
+
+select.form-control:focus option,
+select.form-control:active option,
+.form-control:focus {
+    border-color: #c0c0c0;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.btn {
+    padding: 6px 25px;
+}
+
+
+/*
+    Kompetensi
+*/
+.komp-inti{
+    padding-top: 45px;
+    padding-bottom: 10px;
+}
+.panel-group .panel{
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 20px;
+}
+.panel-title{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: inherit;
+    letter-spacing: 0;
+}
+.panel-body{
+    font-size: 16px;
+    line-height: 32px;
+    color: #4c4c4c;
+}
+.panel-body ol{
+    font-size: 14px;
+    line-height: 28px;
+    letter-spacing: 0;
+    -webkit-padding-start: 20px;
+}
+.panel-body label{
+    margin-top: 10px;
+}
+.panel-default {
+    border-color: #4ea1d3;
+}
+.panel-default > .panel-heading{
+    color: #fafafa;
+    background-color: #4ea1d3;
+}
+.panel-title a:hover,
+.panel-title a:focus{
+    text-decoration: none;
+}
+.collapse.in{
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+	-o-transition: all 300ms ease-out;
+	-ms-transition: all 300ms ease-out;	
+		transition: all 300ms ease-out;
+}
+.peta{
+    padding-bottom: 60px;
+}
+.peta .container .row{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.peta h2{
+    margin-top: 0;
+    font-size: 30px;
+    line-height: 60px;
+    font-weight: 300;
+    color: #95a5a6;
+}
+.peta img{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: auto;
+}
+.peta p{
+    font-size: 16px;
+    line-height: 32px;
+    text-align: center;
+}
+
+
+/*
+    Materi
+*/
+.detail-materi{
+    margin-top: 45px;
+    margin-bottom: -25px;
+}
+.detail-materi .container .row{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.konten-materi{
+    background: #4ea1d3;
+    color: #fff;
+    padding: 20px;
+    margin-bottom: 60px;
+}
+.konten-materi h5{
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 36px;
+    letter-spacing: 0;
+    color: inherit;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.konten-materi p,
+.konten-materi ol li{
+    font-size: 16px;
+    line-height: 32px;
+    letter-spacing: 0;
+    color: inherit;
+}
+
+/* Image Box Style */
+.box {
+	height: auto;
+	float: none;
+    margin-bottom: 10px;
+	position: relative;
+    display: block;
+	width: 100%;
+}
+.box > .konten-materi{
+    width: 100%;
+    height: auto;
+	position: relative;
+    display: block;
+		-webkit-transition: all 300ms ease-out;
+		-moz-transition: all 300ms ease-out;
+		-o-transition: all 300ms ease-out;
+		-ms-transition: all 300ms ease-out;	
+	transition: all 300ms ease-out;
+}
+
+/* Caption Common Style */
+.box .caption {
+	border: 1px solid #4ea1d3;
+	position: absolute;
+	z-index: 100;
+		-webkit-transition: all 300ms ease-out;
+		-moz-transition: all 300ms ease-out;
+		-o-transition: all 300ms ease-out;
+		-ms-transition: all 300ms ease-out;	
+		transition: all 300ms ease-out;
+    top: -30px;
+    right: 43%;
+    opacity: 1;
+    display: block;
+	text-align: center;
+	padding: 11px 15px;
+}
+
+.box .scale-caption{
+    background: #fff;
+	position: absolute;
+	z-index: 100;
+		-webkit-transition: all 300ms ease-out;
+		-moz-transition: all 300ms ease-out;
+		-o-transition: all 300ms ease-out;
+		-ms-transition: all 300ms ease-out;	
+		transition: all 300ms ease-out;
+    top: -30px;
+    right: 43%;
+    opacity: 1;
+    display: block;
+	text-align: center;
+	padding: 11px 15px;
+}
+
+/** Fade Caption :hover Behaviour **/
+.box:hover .konten-materi h5,
+.box:hover .konten-materi p{
+    color: #fff;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+	-o-transition: all 300ms ease-out;
+	-ms-transition: all 300ms ease-out;	
+		transition: all 300ms ease-out;
+}
+.box:hover .caption{
+    opacity: 0;
+}
+.box:hover .scale-caption  {
+	opacity: 1;
+}
+.icon-zoom{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: auto;
+    padding: 3px 5px;
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 0;
+    color: #95a5a6;
+}
+
+.peta-materi{
+    margin-bottom: 45px;
+}
+.peta-materi h2{
+    margin-top: 0;
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 60px;
+    letter-spacing: 0;
+    color: #95a5a6;
+}
+.peta-materi p{
+    font-size: 16px;
+    line-height: 32px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+/*
+    Materi Siswa
+*/
+.materi-siswa{
+    margin-top: 45px;
+    margin-bottom: 45px;
+}
+.materi-siswa .form-reg{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.materi-siswa .container .row{
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #95a5a6;
+    letter-spacing: 0;
+    font-size: 18px;
+    line-height: 36px;
+}
+.materi-siswa h2{
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 60px;
+    margin: 0;
+}
+.materi-siswa h3{
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 48px;
+    margin: 0;
+}
+.materi-siswa .judul-materi{
+    font-weight: 600;
+}
+.form-comment{
+    width: 80%;
+    height: auto;
+    padding: 15px 30px 30px;
+    border: 1px solid #4ea1d3;
+    border-radius: 3px;
+}
+.materi-siswa .form-reg .btn.btn-default{
+    height: 40px;
+    font-weight: 600;
+    font-size: 18px;
+    width: auto;
+    margin-left: 0;
+}
+.form-comment label{
+    font-weight: 400;
+}
+.form-comment textarea.form-control{
+    min-height: 100px;
+}
+
+/*
+    Upload Button Modul Siswa
+*/
+.foto-profil .custom-file-input {
+    color: transparent;
+    display: block;
+}
+.foto-profil .custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.foto-profil .custom-file-input::before {
+    content: 'Upload Foto';
+    display: inline-block;
+    background: #e85a71;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    border-bottom: 3px solid #df405a;
+    padding: 6px 25px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: none;
+    border-radius: 0;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0;
+    width: auto;
+    height: 40px;
+    color: #fafafa;
+}
+.foto-profil .custom-file-input:hover::before {
+    border-bottom: 3px solid #fd999a;
+}
+.foto-profil .custom-file-input:active {
+    outline: 0;
+}
+.foto-profil .custom-file-input:active::before {
+    background: #e85a71; 
+    outline: 0;
+    border-bottom: 3px solid #fd999a;
+}
+input[type="file"]:focus{
+    outline: inherit;
+}
+
+/*
+    Footer
+*/
+footer{
+    font-size: 16px;
+    background: #454552;
+    padding: 70px 25px;
+    line-height: 28px;
+    color: #fafafa;
+    font-weight: 400;
+}
+footer p{
+    text-align: center;
+}
+footer .partner{
+    display: block;
+    text-align: center;
+}
+footer .partner p{
+    display: inline;
+    margin-right: 10px;
+}
+footer img.img-responsive{
+    width: 70%;
+    height: auto;
+    display: inline;
+}
+
+/*
+    Media Query
+*/
+
+@media (max-width: 480px){
+    .mobile-hide{
+        display: none;
+    }
+    .panel-group .panel{
+        margin-bottom: 15px;
+    }
+    .form-comment{
+        width: 100%;
+    }
+}
+
+@media (min-width: 400px){
+    .konten-bawah h2{
+        width: 35%;
+    }
+}
+
+@media (min-width: 768px){
+    header .container:nth-child(2){
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+    }
+    .navbar {
+        border-radius: 0; 
+    }
+    .navbar-nav{
+        float: none;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .navbar-nav > li{
+        float: none;
+    }
+    .nav > li{
+        display: inline-block;
+        text-align: center;
+    }
+    .navbar-default{
+        background-color: transparent;
+    }
+    .navbar-default .navbar-nav > li > a{
+        border-bottom: 5px solid transparent;
+    }
+    .navbar-default .navbar-nav > .active > a, 
+    .navbar-default .navbar-nav > .active > a:hover, 
+    .navbar-default .navbar-nav > .active > a:focus, 
+    .navbar-default .navbar-nav > .open > a, 
+    .navbar-default .navbar-nav > .open > a:hover, 
+    .navbar-default .navbar-nav > .open > a:focus,
+    .navbar-default .navbar-nav > li > a:hover, 
+    .navbar-default .navbar-nav > li > a:focus,
+    .navbar-default .navbar-nav > li > a{
+        border-bottom: 5px solid transparent;
+        padding-top: 15px;
+    }
+    .navbar-default .navbar-nav > .active > a, 
+    .navbar-default .navbar-nav > .open > a{
+        background-color: transparent;
+        border-top: none;
+    } 
+    .navbar-default .navbar-nav > .active > a:hover, 
+    .navbar-default .navbar-nav > .active > a:focus, 
+    .navbar-default .navbar-nav > .open > a:hover, 
+    .navbar-default .navbar-nav > .open > a:focus{
+        border-top: none;
+        background-color: transparent;
+        border-bottom: 5px solid #e9e9e9;
+    }
+    .navbar-default .navbar-nav > .active > a,
+    .navbar-default .navbar-nav > li.active > a{
+        border-color: #e9e9e9;
+    }
+    .navbar-default .navbar-nav > li > a:hover,
+    .navbar-default .navbar-nav > li > a:focus{
+        background-color: transparent;
+        border-bottom: 5px solid #e9e9e9;
+    }
+    .navbar-default .navbar-nav > li.active a{
+        padding-left: 45px;
+    }
+    .navbar-default .navbar-nav > li.komp.active a{
+        padding-left: 60px;
+    }
+    .navbar-default .navbar-nav > li.dropdown.active a{
+        padding-right: 40px;
+    }
+    .navbar-default .navbar-nav > li.active .home,
+    .navbar-default .navbar-nav > li.active .daftar,
+    .navbar-default .navbar-nav > li.active .komp,
+    .navbar-default .navbar-nav > li.active .materi,
+    .navbar-default .navbar-nav > li.active .masuk,
+    .navbar-default .navbar-nav > li.active .clue,
+    .navbar-default .navbar-nav > li.active .profile{
+        background-position: center left;
+        right: auto;
+        left: 15px;
+    }
+    .navbar-nav .open .dropdown-menu {
+        background-color: #4ea1d3;
+    }
+    .navbar-default .navbar-nav > .open > a,
+    .navbar-default .navbar-nav > .open > a.dropdown-toggle,
+    .navbar-default .navbar-nav > .open > a:hover{
+        border-bottom: none;    
+    }
+    .navbar-default .navbar-nav > li.active span.caret{
+        top: 24px;
+    }
+    .container-fluid > .navbar-collapse {
+        margin-right: -15px; 
+        margin-left: -15px; 
+    }
+    .dropdown-menu{
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
+        background: transparent;
+    }
+    
+    .konten-atas {
+        padding-top: 10%;
+        padding-bottom: 10%;
+        height: 500px;
+    }
+    .konten-tengah .container{
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+    }
+    .konten-tengah .container .row .item-tengah p{
+        width: 750px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .konten-tengah p,
+    .konten-bawah p,
+    footer,
+    .panel-body,
+    .peta p,
+    .peta-materi p,
+    .konten-materi ol li{
+        font-size: 16px;
+        line-height: 28px;
+    }
+    
+    /* Form Registrasi Siswa */
+    .form-reg form{
+        padding-left: 15px;
+    }
+    
+    /* Form Login */
+    .form-log{
+        margin-top: 55px;
+        margin-bottom: 45px;
+    }
+    .form-login{
+        width: 585px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .form-login label{
+        width: 25%;
+        float: left;
+    }
+    .form-login input[type=password],
+    .form-login input[type=text]{
+        width: 75%;
+    }
+    
+    /* Materi */
+    .detail-materi{
+        margin-bottom: 25px;
+    }
+    .detail-materi .container .row{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .box .caption,
+    .box .scale-caption{
+        top: 7%;
+        right: 50px;
+    }
+    .konten-materi{
+        margin-bottom: 30px;
+    }
+    .peta-materi img{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .icon-zoom{
+        width: 130px;
+        height: auto;
+    }
+    .box .caption img,
+    .box .scale-caption img{
+        width: 70%;
+        height: auto;
+        margin: 20px auto;
+    }
+    .box .konten-materi li{
+        width: 72%;
+    }
+    
+    /* Form Registrasi */
+    .bg-reg{
+        padding-top: 15px;
+        padding-bottom: 15px;
+        margin-top: 45px;
+    }
+    .reg-heading{
+        color: #333;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    
+    /* Footer */
+    footer{
+        text-align: center;
+        padding-top: 50px;
+        padding-bottom: 40px;
+    }
+    footer .copyright, footer span, footer .partner{
+        display: inline;
+    }
+    footer span{
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    footer img.img-responsive{
+        width: 30%;
+        height: auto;
+    }
+}
+
+@media (min-width: 992px){
+    header{
+        background-position: center -262px;
+    }
+    .bg-slider{
+        height: 500px;
+    }
+    .navbar-nav{
+        float: left;
+        display: block;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .navbar-nav > li{
+        float: left;
+    }
+    .nav > li{
+        display: block;
+        text-align: inherit;
+    }
+    .konten-atas {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+    .container-fluid > .navbar-collapse {
+        margin-right: 0; 
+        margin-left: 0; 
+    }
+    .konten-atas h1{
+        margin-top: -10px;
+        text-align: left;
+    }
+    header .container-fluid{
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .konten-tengah{
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .konten-tengah .container{
+        width: 970px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .konten-tengah .container .row .item-tengah p{
+        width: auto;
+    }
+    .item-tengah:not(:last-child) {
+        border-bottom: none;
+        border-right: 1px solid #e5e5e5;
+    }
+    .konten-tengah h2 {
+        font-size: 25px;
+    }
+    .item-tengah{
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .konten-tengah .item-tengah .img-circle{
+        margin-top: 65px;
+    }
+    .konten-tengah .item-tengah p{
+        margin-bottom: 65px;
+    }
+    .konten-bawah h2{
+        margin-bottom: 20px;
+    }
+    .profil{
+        width: auto;
+        margin-left: 20px;
+        position: relative;
+        top: auto;
+        right: auto;
+    }
+    /* Form Login */
+    .form-log{
+        margin-top: 7%;
+        margin-bottom: 7%;
+    }
+    /* Form Registrasi Siswa */
+    .form-reg form{
+        padding-left: 10px;
+    }
+    .form-reg .btn.btn-default{
+        margin-left: 7px;
+    }
+    .reg-heading{
+        padding-left: 25px;
+        text-align: left;
+        font-size: 36px;
+    }
+    
+    /* Footer */
+    footer img.img-responsive{
+        width: 18%;
+        height: auto;
+    }
+}
+
+@media (min-width: 1200px){
+    .item-tengah{
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}
