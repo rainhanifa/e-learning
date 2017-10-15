@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 15, 2017 at 08:50 PM
+-- Generation Time: Oct 15, 2017 at 10:59 PM
 -- Server version: 5.7.19-0ubuntu0.16.04.1
 -- PHP Version: 5.6.31-2+ubuntu16.04.1+deb.sury.org+1
 
@@ -33,6 +33,17 @@ CREATE TABLE `activity_log` (
   `username` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `activity_log`
+--
+
+INSERT INTO `activity_log` (`id`, `time`, `description`, `username`) VALUES
+(1, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
+(2, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
+(3, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
+(4, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
+(5, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh');
+
 -- --------------------------------------------------------
 
 --
@@ -46,6 +57,13 @@ CREATE TABLE `data_guru` (
   `email` varchar(50) NOT NULL,
   `foto` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `data_guru`
+--
+
+INSERT INTO `data_guru` (`id`, `nama`, `nip`, `email`, `foto`) VALUES
+(1, 'Ibnu Shodiqin', '19650819970110038', 'ibnuspeedster@gmail.com', 'ibnu1993-dosen-pa.png');
 
 -- --------------------------------------------------------
 
@@ -81,6 +99,13 @@ CREATE TABLE `data_siswa` (
   `foto` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `data_siswa`
+--
+
+INSERT INTO `data_siswa` (`id`, `nama`, `nim`, `email`, `foto`) VALUES
+(1, 'Luqman Hakim', '1105335430633', 'luqmanppmh@gmail.com', 'luqmanppmh-siswa.png');
+
 -- --------------------------------------------------------
 
 --
@@ -99,7 +124,8 @@ CREATE TABLE `detail_kelas` (
 
 INSERT INTO `detail_kelas` (`id`, `kelas_id`, `siswa_id`) VALUES
 (1, 1, 4),
-(2, 1, 1);
+(2, 1, 1),
+(3, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -160,7 +186,9 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`username`, `password`, `user_id`, `level`) VALUES
-('superadmin', 'b0e818d9d46ef26177190ef128130e026484bd28', 0, 9);
+('superadmin', 'b0e818d9d46ef26177190ef128130e026484bd28', 0, 9),
+('ibnu1993', '28222eb36cbc5290d83d03b80569e3e6b6cefc48', 1, 1),
+('luqmanppmh', '28222eb36cbc5290d83d03b80569e3e6b6cefc48', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -373,12 +401,12 @@ ALTER TABLE `t_mapel`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `data_guru`
 --
 ALTER TABLE `data_guru`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `data_kelas`
 --
@@ -388,12 +416,12 @@ ALTER TABLE `data_kelas`
 -- AUTO_INCREMENT for table `data_siswa`
 --
 ALTER TABLE `data_siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `detail_kelas`
 --
 ALTER TABLE `detail_kelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `detail_mapel`
 --

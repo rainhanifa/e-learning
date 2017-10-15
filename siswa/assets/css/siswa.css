@@ -1,0 +1,331 @@
+/*
+    Student Home
+*/
+.materi-siswa .container .row{
+    font-size: 18px;
+}
+.student-home{
+    margin-top: 45px;
+    margin-bottom: 45px;
+}
+.student-home .left-content{
+    font-size: 15px;
+    line-height: 36px;
+    font-weight: 300;
+    letter-spacing: 0;
+}
+.student-home .left-content h6{
+    font-weight: 800;
+    font-size: 18px;
+}
+.left-content .progress{
+    height: 40px;
+    display: block;
+}
+.left-content .progress .progress-bar{
+    font-size: 20px;
+    line-height: 40px;
+}
+.profil-siswa .form-reg .btn.btn-default,
+.left-content .form-reg .btn.btn-default{
+    font-size: 18px;
+    line-height: 36px;
+    height: 55px;
+}
+.student-home .right-content .header-listmateri{
+    width: 100%;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: #eff1ef;
+}
+.header-listmateri h6{
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 36px;
+    color: #95a5a6;
+    letter-spacing: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.student-home .right-content .body-listmateri{
+    width: 100%;
+    height: auto;
+    padding: 20px 22px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: 0;
+    background: #2ecc71;
+}
+.body-listmateri ul.detail-listmateri{
+    list-style: none;
+    -webkit-padding-start: 0;
+    -moz-padding-start: 0;
+}
+.body-listmateri ul.detail-listmateri li{
+    padding: 7px 10px 2px;
+    position: relative;
+}
+.body-listmateri .detail-listmateri .active{
+    background: #d15620;
+}
+.body-listmateri .detail-listmateri p{
+    width: 80%;
+}
+.body-listmateri .detail-listmateri p a{
+    color: #fff;
+}
+.body-listmateri .detail-listmateri span{
+    position: absolute;
+    top: 12px;
+    right: 5px;
+    display: block;
+    height: 22px;
+    width: 22px;
+}
+.body-listmateri .detail-listmateri .check{
+    background: url(../images/icons/check.png) no-repeat;
+    background-size: contain;
+}
+.body-listmateri .detail-listmateri .time{
+    background: url(../images/icons/time.png) no-repeat;
+    background-size: contain;
+}
+.comment-list{
+    margin: 0 30px 30px;
+    padding-bottom: 10px;
+}
+.comment-list p{
+    margin-bottom: 0;
+    line-height: 30px;
+}
+.comment-list:not(:last-child){
+    border-bottom: 1px solid #ededed;
+}
+
+@-ms-viewport{
+  width: device-width;
+}
+
+/*
+    Profil Siswa
+*/
+.profil-siswa{
+    margin-top: 45px;
+    margin-bottom: 45px;
+}
+.profil-siswa .img-profile{
+    height: 215px;
+    width: 150px;
+    overflow: hidden;
+    margin: 10px auto 10px;
+    -moz-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
+}
+.profil-siswa img{
+    height: auto;
+    width: 100%;
+    -moz-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
+}
+.profil-siswa .container .row{
+    padding-left: 15px;
+    padding-right: 15px; 
+}
+.profil-siswa span,
+.profil-siswa label{
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 36px;
+    color: #95a5a6;
+}
+.profil-siswa span{
+    margin-right: 10px;
+}
+.profil-siswa .profil-head{
+    font-weight: 800;
+}
+.profil-siswa hr{
+    border: 1px solid #99cbed;
+    width: auto;
+    margin-left: 15px;
+    margin-right: 15px; 
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+}
+.profil-siswa .form-reg{
+    padding-left: 15px;
+}
+.pp-edit{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+.pp-edit img{
+    width: 100px;
+    height: auto;
+}
+.head2{
+    font-size: inherit;
+    text-align: left;
+    padding-left: 10px;
+}
+
+/*
+    Upload Button Modul Siswa Lab Activity
+*/
+.modul-siswa .btn.btn-default{
+    margin-right: 15px;
+    margin-bottom: 20px;
+}
+.modul-siswa .custom-file-input {
+    color: transparent;
+    display: inline-block;
+    vertical-align: top;
+}
+.modul-siswa .custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.modul-siswa .custom-file-input::before {
+    content: 'Upload Program';
+    display: inline-block;
+    background: #e85a71;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    border-bottom: 3px solid #df405a;
+    padding: 6px 25px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: none;
+    border-radius: 0;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0;
+    width: auto;
+    height: 40px;
+    color: #fafafa;
+}
+.modul-siswa .custom-file-input:hover::before {
+    border-bottom: 3px solid #fd999a;
+}
+.modul-siswa .custom-file-input:active {
+    outline: 0;
+}
+.modul-siswa .custom-file-input:active::before {
+    background: #e85a71; 
+    outline: 0;
+    border-bottom: 3px solid #fd999a;
+}
+
+/*
+    Upload Button Modul Siswa Class Activity
+*/
+.form-reg.finish{
+    margin: 0;
+    display: inline-block;
+    vertical-align: top;
+}
+.class label{
+    font-size: 15px;
+    line-height: 25px;
+}
+.class .btn.btn-default{
+    margin-right: 15px;
+}
+.class .custom-file-input {
+    color: transparent;
+    display: inline-block;
+}
+.class .custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.class .custom-file-input::before {
+    content: 'Upload File Jawaban Latihan';
+    display: inline-block;
+    background: #e85a71;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    border-bottom: 3px solid #df405a;
+    padding: 6px 15px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: none;
+    border-radius: 0;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0;
+    width: auto;
+    height: 40px;
+    color: #fafafa;
+}
+.class .custom-file-input:hover::before {
+    border-bottom: 3px solid #fd999a;
+}
+.class .custom-file-input:active {
+    outline: 0;
+}
+.class .custom-file-input:active::before {
+    background: #e85a71; 
+    outline: 0;
+    border-bottom: 3px solid #fd999a;
+}
+input[type="file"]:focus{
+    outline: inherit;
+}
+
+/*
+    Media Queries
+*/
+
+@media(max-width: 767px){
+    .profil-siswa{
+        margin-top: 15px;
+    }
+    .profil-siswa img{
+        margin: auto auto 15px;
+    }
+    .rapor{
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+}
+
+@media(max-width: 991px){
+    .profil-siswa span{
+        display: none;
+    }
+}
+
+@media (min-width: 992px){
+    .embed-responsive.embed-responsive-16by9 {
+        padding-bottom: 35%;
+        width: auto;
+        height: 1200px;
+    }
+    .video-konten.embed-responsive.embed-responsive-16by9 {
+        height: auto;
+    }
+    .left-content .form-reg .btn.btn-default,
+    .profil-siswa .form-reg .btn.btn-default{
+        margin-left: 0;
+    }
+    .head2{
+        font-size: inherit;
+        text-align: left;
+        padding-left: 25px;
+    }
+}

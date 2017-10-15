@@ -58,25 +58,40 @@
                                                     <a href="<?php echo base_url('home') ?>">Halaman Utama</a>
                                                     <span class="<?php echo ($halaman == 'index') ? 'home' : '' ?>"></span>
                                                 </li>
-                                                <li class="<?php echo ($halaman == 'masuk') ? 'active' : '' ?>">
-                                                    <a href="<?php echo base_url('auth/masuk') ?>">Masuk</a>
-                                                    <span class="<?php echo ($halaman == 'masuk') ? 'masuk' : '' ?>"></span>
-                                                </li>
-                                                <li class="dropdown <?php echo ($halaman == 'registrasiguru') ? 'active' : '' ?>">
-                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Daftar <span class="caret"></span></a>
-                                                    <span class="<?php echo ($halaman == 'registrasiguru') || ($halaman == 'registrasiguru') ? 'daftar' : '' ?>"></span>
-                                                    <ul class="dropdown-menu" role="menu">
-                                                        <li><a href="<?php echo base_url('auth/registrasiguru') ?>">Guru</a></li>
-                                                        <li class="divider"></li>
-                                                        <li><a href="<?php echo base_url('auth/registrasisiswa') ?>">Siswa</a></li>
-                                                    </ul>
-                                                </li>
+
+                                                <?php
+                                                    if($this->session->userdata('username')){
+                                                ?>
+                                                    <li>
+                                                        <a href="<?php echo base_url('auth/keluar') ?>">Keluar</a>
+                                                    </li>
+                                                <?php
+                                                    }
+                                                    else{
+                                                ?>
+                                                    <li class="<?php echo ($halaman == 'masuk') ? 'active' : '' ?>">
+                                                        <a href="<?php echo base_url('auth/masuk') ?>">Masuk</a>
+                                                        <span class="<?php echo ($halaman == 'masuk') ? 'masuk' : '' ?>"></span>
+                                                    </li>
+                                                    <li class="dropdown <?php echo ($halaman == 'registrasiguru') ? 'active' : '' ?>">
+                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Daftar <span class="caret"></span></a>
+                                                        <span class="<?php echo ($halaman == 'registrasiguru') || ($halaman == 'registrasiguru') ? 'daftar' : '' ?>"></span>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a href="<?php echo base_url('auth/registrasiguru') ?>">Guru</a></li>
+                                                            <li class="divider"></li>
+                                                            <li><a href="<?php echo base_url('auth/registrasisiswa') ?>">Siswa</a></li>
+                                                        </ul>
+                                                    </li>
+                                                <?php
+                                                    }
+                                                ?>
+                                               
                                             </ul>
                                             <?php
-                                                if(isset($_SESSION['user'])){
+                                                if($this->session->userdata('username')){
                                             ?>
                                             <ul class="nav navbar-nav navbar-right">
-                                                <li><a href="epsettings"><label class="label label-warning"><?php echo $_SESSION['user']; ?></label></a></li>
+                                                <li><a href="<?php echo base_url().($this->session->userdata('level') == 1 ? 'guru' : 'siswa')?>"><label class="label label-warning"><?php echo$this->session->userdata('username') ?></label></a></li>
                                             </ul>
                                             <?php
                                                 }
