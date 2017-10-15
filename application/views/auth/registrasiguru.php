@@ -8,15 +8,12 @@
 
 <section class="form-reg">
     <div class="container">
-        <form name="registrasi" id="registrasi" method="post" action="index.php?p=daftarguru" enctype="multipart/form-data" class="form-group" role="form">
+        <form name="registrasi" id="registrasi" method="post" action="<?php echo base_url('auth/doregistrasiguru')?>" enctype="multipart/form-data" class="form-group" role="form">
             <div class="row item-reg">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <?php
-                        if(isset($_GET['error'])){
-                            $error_msg = $_GET['error'];
-                            if($error_msg == 'double'){
-                                echo "<label class='label label-danger' style='color:white;'>Username sudah ada</label>";
-                            }
+                        if($this->session->flashdata("error") != ""){
+                             echo "<label class='label label-danger' style='color:white;'>".$this->session->flashdata("error")."</label>";
                         }
                     ?>
                 </div>
@@ -46,9 +43,9 @@
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
                     <select name="gurukelas" id="guru_kelas" class="form-control">
-                        <option value="xirpla">A</option>
-                        <option value="xirplb">B</option>
-                        <option value="xirplc">C</option>
+                        <?php foreach($kelas as $kelas) { ?>
+                        <option value="<?php echo $kelas['id']?>"><?php echo $kelas['nama']." (".$kelas['tahun']."/".($kelas['tahun']+1).")"; ?></option>
+                        <?php } ?>
                     </select>
                     <label class="clues">Pilih sesuai dengan kelas tempat anda mengajar</label>
                 </div>

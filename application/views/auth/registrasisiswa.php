@@ -8,26 +8,19 @@
         
         <section class="form-reg">
             <div class="container">
-                <form name="registrasi" id="registrasi" method="post" action="index.php?p=daftarsiswa" enctype="multipart/form-data" class="form-group" role="form">
+                <form name="registrasi" id="registrasi" method="post" action="<?php echo base_url('auth/doregistrasisiswa')?>" enctype="multipart/form-data" class="form-group" role="form">
                     <div class="row item-reg">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <?php
-                                if(isset($_GET['error'])){
-                                    $error_msg = $_GET['error'];
-                                    if($error_msg == 'double'){
-                                        echo "<label class='label label-danger' style='color:white;'>Username sudah ada</label>";
-                                    } else if($error_msg == 'dabsen'){
-                                        echo "<label class='label label-danger' style='color:white;'>No absen sudah ada</label>";
-                                    } else if($error_msg == 'errd'){
-                                        echo "<label class='label label-danger' style='color:white;'>Error Data</label>";
-                                    }
+                                if($this->session->flashdata("error") != ""){
+                                     echo "<label class='label label-danger' style='color:white;'>".$this->session->flashdata("error")."</label>";
                                 }
                             ?>
                         </div>
                     </div>
                     <div class="row item-reg">
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <label for="pengguna" class="control-label">Nama Pengguna (digunakan untuk login)</label>
+                            <label for="pengguna" class="control-label">Nama Pengguna (username untuk login)</label>
                         </div>
                         <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
                             <input type="text" name="pengguna" class="form-control" id="pengguna" value="">

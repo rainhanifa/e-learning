@@ -33,31 +33,14 @@
             <div class="row">
                 
                 <form name="login" id="login" class="form-group form-login" role="form" action="index.php?p=login" method="post">
-                    <?php
-                        if(isset($_GET['error'])){
-                            $error_msg = $_GET['error'];
-                            if($error_msg == 'datanf'){
-                                echo "<p class='label label-danger text-center'>Data tidak ditemukan, periksa username & password anda.</p>";
-                            } else if($error_msg == 'passmm'){
-                                echo "<p class='label label-danger text-center'>Password tidak sesuai, periksa password anda.</p>";
-                            } else if($error_msg == 'idnf'){
-                                echo "<p class='label label-danger text-center'>Data tidak ditemukan, periksa username & password anda.</p>";
-                            } else if($error_msg == 'errusr'){
-                                echo "<p class='label label-danger text-center'>Username anda tidak ditemukan, mohon ulangi pengisian data.</p>";
-                            } else if($error_msg == 'errsend'){
-                                echo "<p class='label label-danger text-center'>Admin tidak dapat mengirim pesan ke email anda, mohon ulangi pengisian data.</p>";
-                            }
-                        }
-
-                        if(isset($_GET['msg'])){
-                            $msg = $_GET['msg'];
-                            if($msg == 'scsdp'){
-                                echo "<p class='label label-warning text-center'>Kata kunci berhasil di atur ulang, silahkan login untuk masuk ke akun anda.</p>";
-                            } else if($msg == 'regscs'){
-                                echo "<p class='label label-warning text-center'>Anda berhasil mendaftar, silahkan login untuk masuk ke akun anda.</p>";
-                            }
-                        }
-                    ?>
+                            <?php
+                                if($this->session->flashdata("error") != ""){
+                                     echo "<label class='label label-danger' style='color:white;'>".$this->session->flashdata("error")."</label>";
+                                }
+                                if($this->session->flashdata("message") != ""){
+                                     echo "<p class='label label-warning text-center'>".$this->session->flashdata("message")."</p>";
+                                }
+                            ?>
                     <label for="namalogin" class="control-label"> Nama </label>
                     <input type="text" name="namalogin" class="form-control" id="namalogin" value="">
                     <label for="kuncilogin" class="control-label"> Kata Kunci </label>
