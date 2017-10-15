@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 15, 2017 at 06:55 PM
+-- Generation Time: Oct 15, 2017 at 08:50 PM
 -- Server version: 5.7.19-0ubuntu0.16.04.1
 -- PHP Version: 5.6.31-2+ubuntu16.04.1+deb.sury.org+1
 
@@ -23,6 +23,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `activity_log`
+--
+
+CREATE TABLE `activity_log` (
+  `id` int(11) NOT NULL,
+  `time` datetime NOT NULL,
+  `description` text NOT NULL,
+  `username` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `data_guru`
 --
 
@@ -33,13 +46,6 @@ CREATE TABLE `data_guru` (
   `email` varchar(50) NOT NULL,
   `foto` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `data_guru`
---
-
-INSERT INTO `data_guru` (`id`, `nama`, `nip`, `email`, `foto`) VALUES
-(1, 'Ibnu Shodiqin', '19650819970110038', 'ibnuspeedster@gmail.com', 'ibnu1993-dosen-pa.png');
 
 -- --------------------------------------------------------
 
@@ -86,6 +92,14 @@ CREATE TABLE `detail_kelas` (
   `kelas_id` int(11) DEFAULT NULL,
   `siswa_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `detail_kelas`
+--
+
+INSERT INTO `detail_kelas` (`id`, `kelas_id`, `siswa_id`) VALUES
+(1, 1, 4),
+(2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -136,7 +150,7 @@ CREATE TABLE `kontenmateri` (
 
 CREATE TABLE `login` (
   `username` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `password` varchar(50) NOT NULL,
   `user_id` int(11) NOT NULL,
   `level` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -146,7 +160,7 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`username`, `password`, `user_id`, `level`) VALUES
-('ibnu1993', '28222eb36cbc5290d83d03b80569e3', 1, 1);
+('superadmin', 'b0e818d9d46ef26177190ef128130e026484bd28', 0, 9);
 
 -- --------------------------------------------------------
 
@@ -268,6 +282,12 @@ CREATE TABLE `t_prioritas` (
 --
 
 --
+-- Indexes for table `activity_log`
+--
+ALTER TABLE `activity_log`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `data_guru`
 --
 ALTER TABLE `data_guru`
@@ -350,10 +370,15 @@ ALTER TABLE `t_mapel`
 --
 
 --
+-- AUTO_INCREMENT for table `activity_log`
+--
+ALTER TABLE `activity_log`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `data_guru`
 --
 ALTER TABLE `data_guru`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `data_kelas`
 --
@@ -368,7 +393,7 @@ ALTER TABLE `data_siswa`
 -- AUTO_INCREMENT for table `detail_kelas`
 --
 ALTER TABLE `detail_kelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `detail_mapel`
 --

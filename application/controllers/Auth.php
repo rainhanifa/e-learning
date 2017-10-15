@@ -5,6 +5,7 @@ class Auth extends CI_Controller {
 
 	var $folder_foto_guru   =   'upload/foto/guru/';
 	var $folder_foto_siswa  =   'upload/foto/siswa/';
+	var $folder_tugas  		=   'upload/tugas/';
 
 	public function __construct()
     {
@@ -49,17 +50,34 @@ class Auth extends CI_Controller {
 	}
 
 	public function domasuk(){
-		//	berhasil
-			// jika guru
-			redirect("guru");
-			// jika siswa
-			redirect("siswa");
-		//	gagal
-		$this->session->set_flashdata("error","Data tidak dapat ditemukan. Periksa kembali nama pengguna dan kata kunci.");
-		$this->session->set_flashdata("error","Nama pengguna tidak ditemukan. Mohon periksa kembali.");
-		$this->session->set_flashdata("error","Kata kunci tidak sesuai dengan nama pengguna tersebut. Mohon periksa kembali.");
-		$this->session->set_flashdata("error","Terjadi kesalahan sistem. Silakan coba beberapa saat lagi.");
-		redirect("auth/registrasiguru");
+        $user   = $_POST['namalogin'];
+        $pass   = $_POST['kuncilogin'];
+
+
+        // CHECK USERNAME
+        if($this->Front_model->check_username($user)){
+        	if($this->Front_model->login($user, $pass) === true){
+        		$user_detail	=	$this->Front_model->get_userdata($user, $pass);
+        		$user_data 		=	array("username" => $user_detail->username(),
+        									"level"  => $user_detail->level());
+	        	$this->session->set_userdata($user_data);
+
+	        	if($user_detail->level() == 1){
+	        		redirect("guru");
+	        	}
+	        	else
+	        	{
+	        		redirect("siswa");
+	        	}
+	        }
+	        else{
+	        	$this->session->set_flashdata("error", $this->Front_model->login($user, $pass));
+	        }
+        }
+        else{
+			$this->session->set_flashdata("error","Periksa nama pengguna");
+        }
+		redirect("auth/masuk");
 	}
 
 	public function doregistrasiguru(){
@@ -133,8 +151,7 @@ class Auth extends CI_Controller {
 
             $password       = $_POST['kunci'];
             $repassword     = $_POST['ulangikunci'];
-                
-
+            
 	        // CHECK USERNAME
 	        if(!$this->Front_model->check_username($pengguna)){
 
@@ -153,13 +170,20 @@ class Auth extends CI_Controller {
 
 					if($this->upload->do_upload('profilsiswa')) {
 		                // CHANGE MODE
-		                chmod($config['upload_path'].$foto, 0777); // note that it's usually changed to 0755
+		                chmod(FCPATH.$this->folder_foto_siswa.$foto, 0777); // note that it's usually changed to 0755
 
 
 			        	if($pengguna<>'' and $namalengkap<>'' and $siswa_kelas<>'' and $absen<>'' and $email<>'' and $password<>'' and $repassword<>''){
 		                    if($password == $repassword){
-		                        if($this->Front_model->insert_siswa($pengguna, $password, $namalengkap, $absen, $email, $foto)){
+		                        if($this->Front_model->insert_siswa($pengguna, $password, $namalengkap, $absen, $email, $foto, $siswa_kelas)){
 									//	berhasil
+
+		                        	// BUAT FOLDER TUGAS SISWA
+	                                $nama_folder_tugas_siswa = FCPATH.$this->folder_tugas.$pengguna;
+	                                $oldmask = umask(0); //temporarily set umask
+	                                mkdir($nama_folder_tugas_siswa, 0777, true);
+	                                umask($oldmask); // reset umask
+
 									$this->session->set_flashdata("message","Anda berhasil mendaftar. Silakan login untuk masuk ke akun Anda.");
 									redirect("auth/masuk");
 				                }
@@ -199,4 +223,14 @@ class Auth extends CI_Controller {
 		redirect("auth/registrasisiswa");
 	}
 
+	public function create_admin(){
+		$password = $this->Front_model->randompassword("superadmin123");
+		$admin_data = array("username" => "superadmin", "password" => $password, "level" => 9);
+		if($this->db->insert("login", $admin_data)){
+			echo "OK!";
+		}
+		else{
+			echo "Failed";
+		}
+	}
 }

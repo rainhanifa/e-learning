@@ -6,6 +6,13 @@
                 parent::__construct();
         }
 
+        public static function randompassword($password){
+            $random     = "x0e7q5t1k3g8s2n4lr9f";
+            $randompass = sha1(md5($random.md5($password).$random));
+
+            return $randompass;
+        }
+
         public static function check_username($username){
             $CI     =& get_instance();
             $exist  = $CI->db->get_where("login", "username = '".$username."'")->num_rows();
@@ -15,7 +22,6 @@
             return false;
         }
 
-
         public static function check_nim($nim){
             $CI     =& get_instance();
             $exist  = $CI->db->get_where("data_siswa", "nim = '".$nim."'")->num_rows();
@@ -24,7 +30,6 @@
             }
             return false;
         }
-
 
         public static function get_kelas(){
             $CI     =& get_instance();
@@ -42,9 +47,10 @@
             if($CI->db->insert("data_guru", $data_guru)){
                 // get last insert id
                 $user_id    = $CI->db->insert_id();
+
                 //Untuk random password
-                $random     = "x0e7q5t1k3g8s2n4lr9f";
-                $randompass = sha1(md5($random.md5($password).$random));
+                $CI->load->model('Front_model');
+                $randompass = $CI->Front_model->randompassword($password);
 
 
                 $data_login = array("username" => $username,
@@ -65,7 +71,7 @@
         }
 
 
-        public static function insert_siswa($username, $password, $namalengkap, $nim, $email, $foto){
+        public static function insert_siswa($username, $password, $namalengkap, $nim, $email, $foto, $kelas){
             $CI =& get_instance();
             
             $data_siswa  =   array("nama"    => $namalengkap,
@@ -77,8 +83,8 @@
                 // get last insert id
                 $user_id    = $CI->db->insert_id();
                 //Untuk random password
-                $random     = "x0e7q5t1k3g8s2n4lr9f";
-                $randompass = sha1(md5($random.md5($password).$random));
+                $CI->load->model('Front_model');
+                $randompass = $CI->Front_model->randompassword($password);
 
 
                 $data_login = array("username" => $username,
@@ -88,12 +94,68 @@
                                     );
 
                 if($CI->db->insert("login", $data_login)){
-                    return true;
+                    // MASUKKAN SISWA KE KELAS
+                    $data_detail_kelas  =   array("kelas_id" => $kelas, "siswa_id" =>$user_id);
+                    if($CI->db->insert("detail_kelas", $data_detail_kelas)){
+                        return true;
+                    }
+                    else{
+                        return false;
+                    }
                 }
                 else{
                     return false;
                 }
             }else{
+                return false;
+            }
+        }
+
+        public static function login($username, $password){
+            $CI =& get_instance();
+            $CI->load->model('Front_model');
+            $randompass = $CI->Front_model->randompassword($password);
+
+            echo $randompass;exit;
+
+            // CEK USERNAME
+            if($CI->Front_model->check_username($username)){
+                $data_login     = array("username" => $username, "password" => $randompass);
+                // CEK PASSWORD SESUAI
+                $match      = $CI->db->get_where("login", $data_login)->num_rows();
+                if($match > 0){
+                    return true;
+                }
+                else{
+                    return "Kata kunci tidak sesuai dengan nama pengguna tersebut. Mohon periksa kembali.";
+                }
+            }
+            else{
+                return "Nama pengguna tidak ditemukan. Mohon periksa kembali.";
+            }
+
+        }
+
+        public static function get_userdata($username, $password){
+            $CI =& get_instance();
+
+            //Untuk random password
+            $CI->load->model('Front_model');
+            $randompass = $CI->Front_model->randompassword($password);
+            $data_login     = array("username" => $username, "password" => $randompass);
+            $login          = $CI->db->get_where("login", $data_login)->result_array;
+            exit;
+        }
+
+        public static function write_log($username, $activity){
+            date_default_timezone_set("Asia/Jakarta");
+            $time           = date("Y-m-d H:i:s");
+            
+            $log_data       = array("username" => $username, "description" => $activity);
+            if($CI->db->insert("activity_log", $log_data)){
+                return true;
+            }
+            else{
                 return false;
             }
         }

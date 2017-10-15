@@ -32,7 +32,7 @@
         <div class="container">
             <div class="row">
                 
-                <form name="login" id="login" class="form-group form-login" role="form" action="index.php?p=login" method="post">
+                <form name="login" id="login" class="form-group form-login" role="form" action="<?php echo base_url("auth/domasuk")?>" method="post">
                             <?php
                                 if($this->session->flashdata("error") != ""){
                                      echo "<label class='label label-danger' style='color:white;'>".$this->session->flashdata("error")."</label>";
