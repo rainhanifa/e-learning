@@ -5,7 +5,7 @@
     <?php if (is_array($js)) {
                 foreach ($js as $js){
                     ?>
-                    <script type='text/javascript' src='<?php echo base_url("assets/js/").$js; ?>'></script>
+                    <script type='text/javascript' src='<?php echo base_url("../assets/js/").$js; ?>'></script>
                     <?php
                 }
             }?>

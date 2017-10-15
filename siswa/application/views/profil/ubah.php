@@ -26,8 +26,8 @@
 <section class="form-reg">
     <div class="container">
         <form class="form-group" role="form" name="formedprofil" id="formedprofil" action="<?php echo base_url('profil/doubah')?>" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="username" value="<?php echo $_SESSION['user']; ?>">
-            <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
+            <input type="hidden" name="username" value="<?php echo $this->session->userdata('username'); ?>">
+            <input type="hidden" name="id" value="<?php echo $data['id_siswa']; ?>">
             <div class="row item-reg">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <label for="nama" class="control-label">Nama Lengkap</label>
@@ -42,34 +42,23 @@
                     <label for="kelas" class="control-label">Kelas</label>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
-                    <?php
-                        $selecteda = "";
-                        $selectedb = "";
-                        $selectedc = "";
-                                          
-                        if($data['siswa_kelas']=='xirpla'){
-                            $selecteda = "selected";
-                        } else if($data['siswa_kelas']=='xirplb'){
-                            $selectedb = "selected";
-                        } else if($data['siswa_kelas']=='xirplc'){
-                           $selectedc = "selected";
-                        }
-                    ?>
                     <select name="kelas" class="form-control">
-                        <option value="xirpla" <?php echo $selecteda;?>>Offering A</option>
-                        <option value="xirplb" <?php echo $selectedb;?>>Offering B</option>
-                        <option value="xirplc" <?php echo $selectedc;?>>Offering C</option>
+                        <?php foreach($kelas as $kelas) { ?>
+                        <option value="<?php echo $kelas['id']?>" <?php echo $data['id_kelas'] == $kelas['id'] ? 'selected' : ''?>>
+                            <?php echo $kelas['nama']." (".$kelas['tahun']."/".($kelas['tahun']+1).")"; ?>
+                        </option>
+                        <?php } ?>
                     </select>
                     <label class="clues">Pilih sesuai dengan kelas anda</label>
                 </div>
             </div>
             <div class="row item-reg">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <label for="absen" class="control-label">Nomor Absen</label>
+                    <label for="absen" class="control-label">NIM</label>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
-                    <input type="number" name="absen" class="form-control" id="absen" value="<?php echo $data['no_absen']; ?>">
-                    <label class="clues">Contoh: 14</label>
+                    <input type="number" name="absen" class="form-control" id="absen" value="<?php echo $data['nim']; ?>">
+                    <label class="clues">Contoh: 1105335430633</label>
                 </div>
             </div>
             <div class="row item-reg">
@@ -87,7 +76,7 @@
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12 foto-profil">
                     <div class="pp-edit img-circle">
-                        <img src="<?php echo $data['url_foto']; ?>" alt="Foto Profil Siswa" class="img-responsive">
+                        <img src="<?php echo base_url('../upload/foto/siswa/').$data['foto']; ?>" alt="Foto Profil Siswa" class="img-responsive">
                     </div>
                     <input name="profil" type="file" class="custom-file-input">
                     <label class="clues">Foto setengah badan dan wajib menggunakan seragam dengan rapi</label>

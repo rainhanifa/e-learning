@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 15, 2017 at 10:59 PM
+-- Generation Time: Oct 16, 2017 at 02:22 AM
 -- Server version: 5.7.19-0ubuntu0.16.04.1
 -- PHP Version: 5.6.31-2+ubuntu16.04.1+deb.sury.org+1
 
@@ -42,7 +42,9 @@ INSERT INTO `activity_log` (`id`, `time`, `description`, `username`) VALUES
 (2, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
 (3, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
 (4, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(5, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh');
+(5, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
+(6, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
+(7, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh');
 
 -- --------------------------------------------------------
 
@@ -123,9 +125,7 @@ CREATE TABLE `detail_kelas` (
 --
 
 INSERT INTO `detail_kelas` (`id`, `kelas_id`, `siswa_id`) VALUES
-(1, 1, 4),
-(2, 1, 1),
-(3, 1, 1);
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -401,7 +401,7 @@ ALTER TABLE `t_mapel`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `data_guru`
 --
@@ -421,7 +421,7 @@ ALTER TABLE `data_siswa`
 -- AUTO_INCREMENT for table `detail_kelas`
 --
 ALTER TABLE `detail_kelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `detail_mapel`
 --

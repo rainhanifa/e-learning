@@ -1,6 +1,7 @@
 <html>
     <head>
-        <title> Beranda Siswa </title>
+        <?php $halaman = ucfirst($this->router->fetch_class()); ?>
+        <title> <?php echo $halaman ?> Siswa </title>
         
         <!-- Meta Tags -->
         <meta charset="UTF-8">
@@ -47,7 +48,7 @@
                                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                               
                                     <?php
-                                        $halaman        =   strtolower($this->router->fetch_class());
+                                        $halaman        =   strtolower($halaman);
                                         if($halaman == '')  $halaman    =   'beranda';
 
                                         $classbn        = "";
@@ -86,19 +87,19 @@
                                         </li>
                                         <li class="<?php echo $halaman == 'profil' ? 'active' : '' ?>">
                                             <a href="<?php echo base_url('profil');?>">Profil</a>
-                                            <span class="<?php echo $halaman == 'profile' ? 'active' : '' ?>"></span>
+                                            <span class="<?php echo $halaman == 'profil' ? 'profile' : '' ?>"></span>
                                         </li>
                                         <li class="<?php echo $halaman == 'materi' ? 'active' : '' ?>">
                                             <a href="<?php echo base_url('materi');?>">Materi</a>
-                                            <span class="<?php echo $halaman == 'materi' ? 'active' : '' ?>"></span>
+                                            <span class="<?php echo $halaman == 'materi' ? 'materi' : '' ?>"></span>
                                         </li>
                                         <li class="<?php echo $halaman == 'nilai' ? 'active' : '' ?>">
                                             <a href="<?php echo base_url('nilai'); ?>">Rapor</a>
-                                            <span class="<?php echo $halaman == 'clue' ? 'active' : '' ?>"></span>
+                                            <span class="<?php echo $halaman == 'nilai' ? 'clue' : '' ?>"></span>
                                         </li>
                                         <li class="<?php echo $halaman == 'catatan' ? 'active' : '' ?>">
                                             <a href="<?php echo base_url('catatan');?>">Catatan</a>
-                                            <span class="<?php echo $halaman == 'note' ? 'active' : '' ?>"></span>
+                                            <span class="<?php echo $halaman == 'catatan' ? 'note' : '' ?>"></span>
                                         </li>
                                         <li>
                                             <a href="<?php echo base_url('../auth/keluar')?>">Keluar</a>

@@ -37,9 +37,9 @@ class Profil extends CI_Controller {
 	public function ubah()
 	{
         // JS
-		$data['js'] = '';
-		$data['validasi'] = '';
-		
+		$data['js']			= array('form-validator/formValidation.js', 'form-validator/bootstrap.js');
+		$data['validasi']	= array($this->load->view('template/js/validasi_ubahprofil', NULL, TRUE));
+
 		//PROFIL SISWA
 		$data['profil'] = $this->Siswa_model->get_profil($this->username);
 		$data['kelas']	= $this->Siswa_model->get_kelas();

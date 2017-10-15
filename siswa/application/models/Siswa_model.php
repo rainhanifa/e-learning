@@ -14,8 +14,11 @@
         public static function get_profil($username){
         	$CI     =& get_instance();
 
-        	$profil =	$CI->db->select('username, data_siswa.nama as nama_siswa, nim, email, foto,
-        					data_kelas.nama as nama_kelas, data_kelas.tahun as tahun_kelas')
+        	$profil =	$CI->db->select('data_siswa.id as id_siswa, username,
+        					data_siswa.nama as nama_siswa,
+        					nim, email, foto,
+        					data_kelas.id as id_kelas, data_kelas.nama as nama_kelas,
+        					data_kelas.tahun as tahun_kelas')
         				->from('data_siswa')
         				->join('login', 'data_siswa.id = login.user_id')
         				->join('detail_kelas', 'data_siswa.id = detail_kelas.siswa_id')
