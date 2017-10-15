@@ -985,7 +985,7 @@ footer img.img-responsive{
         margin-right: auto;
     }
     .form-login label{
-        width: 25%;
+        width: 100%; /*previously 25%*/
         float: left;
     }
     .form-login input[type=password],

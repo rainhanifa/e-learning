@@ -113,18 +113,14 @@
 
         public static function login($username, $password){
             $CI =& get_instance();
-            $CI->load->model('Front_model');
-            $randompass = $CI->Front_model->randompassword($password);
-
-            echo $randompass;exit;
 
             // CEK USERNAME
             if($CI->Front_model->check_username($username)){
-                $data_login     = array("username" => $username, "password" => $randompass);
+                $data_login     = array("username" => $username, "password" => $password);
                 // CEK PASSWORD SESUAI
-                $match      = $CI->db->get_where("login", $data_login)->num_rows();
-                if($match > 0){
-                    return true;
+                $match      = $CI->db->get_where("login", $data_login);
+                if($match->num_rows() > 0){
+                    return $match->row();
                 }
                 else{
                     return "Kata kunci tidak sesuai dengan nama pengguna tersebut. Mohon periksa kembali.";
@@ -136,18 +132,9 @@
 
         }
 
-        public static function get_userdata($username, $password){
+        public static function write_log($username, $activity){
             $CI =& get_instance();
 
-            //Untuk random password
-            $CI->load->model('Front_model');
-            $randompass = $CI->Front_model->randompassword($password);
-            $data_login     = array("username" => $username, "password" => $randompass);
-            $login          = $CI->db->get_where("login", $data_login)->result_array;
-            exit;
-        }
-
-        public static function write_log($username, $activity){
             date_default_timezone_set("Asia/Jakarta");
             $time           = date("Y-m-d H:i:s");
             

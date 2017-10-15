@@ -41,6 +41,7 @@
                                      echo "<p class='label label-warning text-center'>".$this->session->flashdata("message")."</p>";
                                 }
                             ?>
+                            
                     <label for="namalogin" class="control-label"> Nama </label>
                     <input type="text" name="namalogin" class="form-control" id="namalogin" value="">
                     <label for="kuncilogin" class="control-label"> Kata Kunci </label>

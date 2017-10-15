@@ -53,16 +53,21 @@ class Auth extends CI_Controller {
         $user   = $_POST['namalogin'];
         $pass   = $_POST['kuncilogin'];
 
-
         // CHECK USERNAME
         if($this->Front_model->check_username($user)){
-        	if($this->Front_model->login($user, $pass) === true){
-        		$user_detail	=	$this->Front_model->get_userdata($user, $pass);
-        		$user_data 		=	array("username" => $user_detail->username(),
-        									"level"  => $user_detail->level());
+
+        	//RANDOM PASSWORD
+            $pass = $this->Front_model->randompassword($pass);
+
+            $login =  $this->Front_model->login($user, $pass);
+        	if(is_object($login)){
+        		$user_data 		=	array("username" => $login->username,
+        									"level"  => $login->level);
 	        	$this->session->set_userdata($user_data);
 
-	        	if($user_detail->level() == 1){
+	        	$this->Front_model->write_log($user, $user." login");
+
+	        	if($login->level == 1){
 	        		redirect("guru");
 	        	}
 	        	else
@@ -71,7 +76,7 @@ class Auth extends CI_Controller {
 	        	}
 	        }
 	        else{
-	        	$this->session->set_flashdata("error", $this->Front_model->login($user, $pass));
+	        	$this->session->set_flashdata("error", $login);
 	        }
         }
         else{
@@ -106,7 +111,7 @@ class Auth extends CI_Controller {
 				$this->upload->initialize($config);
 
 				if($this->upload->do_upload('profil')) {
-	                // CHANGE MODE
+	                // CHANGE MODE\
 	                chmod($config['upload_path'].$foto, 0777); // note that it's usually changed to 0755
 
 	                // VALIDASI INPUT
@@ -232,5 +237,15 @@ class Auth extends CI_Controller {
 		else{
 			echo "Failed";
 		}
+	}
+
+	public function keluar(){
+		$this->session->sess_destroy();
+		$user_data 	= array("username", "level");
+		$this->session->unset_userdata($user_data);
+
+		$this->session->set_flashdata("message","Anda telah keluar dari sistem.");
+		redirect("auth/masuk");
+
 	}
 }
