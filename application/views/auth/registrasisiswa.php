@@ -42,20 +42,21 @@
                         </div>
                         <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
                             <select name="siswakelas" class="form-control">
-                                <option value="xirpla">A</option>
-                                <option value="xirplb">B</option>
-                                <option value="xirplc">C</option>
+                                    <?php foreach($kelas as $kelas) { ?>
+                                    <option value="<?php echo $kelas['id']?>"><?php echo $kelas['nama']." (".$kelas['tahun']."/".($kelas['tahun']+1).")"; ?></option>
+                                    <?php } ?>
+                                </select>
                             </select>
                             <label class="clues">Pilih sesuai dengan kelas anda</label>
                         </div>
                     </div>
                     <div class="row item-reg">
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <label for="absen" class="control-label">Nomor Absen</label>
+                            <label for="absen" class="control-label">NIM</label>
                         </div>
                         <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
                             <input type="text" name="absen" class="form-control" id="absen" value="">
-                            <label class="clues">Contoh: 14</label>
+                            <label class="clues">Contoh: 1105335430633</label>
                         </div>
                     </div>
                     <div class="row item-reg">

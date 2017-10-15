@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Auth extends CI_Controller {
 
 	var $folder_foto_guru   =   'upload/foto/guru/';
+	var $folder_foto_siswa  =   'upload/foto/siswa/';
 
 	public function __construct()
     {
@@ -40,6 +41,8 @@ class Auth extends CI_Controller {
 	public function registrasisiswa(){
 		$data['js']	= array('form-validator/formValidation.js', 'form-validator/bootstrap.js');
 		$data['validasi'] 	= array($this->load->view('template/js/validasi_registrasi', NULL, TRUE));
+
+		$data['kelas']	=	$this->Front_model->get_kelas();
 		$this->load->view('template/header');
 		$this->load->view('auth/registrasisiswa', $data);
 		$this->load->view('template/footer');
@@ -86,7 +89,7 @@ class Auth extends CI_Controller {
 
 				if($this->upload->do_upload('profil')) {
 	                // CHANGE MODE
-	                chmod(FCPATH.$foto, 0777); // note that it's usually changed to 0755
+	                chmod($config['upload_path'].$foto, 0777); // note that it's usually changed to 0755
 
 	                // VALIDASI INPUT
 	                if($pengguna<>'' and $namalengkap<>'' and $guru_kelas<>'' and $nip<>'' and $email<>'' and $password<>'' and $repassword<>''){
@@ -121,14 +124,68 @@ class Auth extends CI_Controller {
 	}
 
 	public function doregistrasisiswa(){
-		//	berhasil
-		$this->session->set_flashdata("message","Anda berhasil mendaftar. Silakan login untuk masuk ke akun Anda.");
-		redirect("auth/masuk");
-		//	gagal
-		
-		$this->session->set_flashdata("error","Username sudah terdaftar");
-		$this->session->set_flashdata("error","NIM sudah terdaftar");
-		$this->session->set_flashdata("error","Terjadi kesalahan sistem. Silakan coba beberapa saat lagi.");
+		if($_POST){
+			$pengguna       = $_POST['pengguna'];
+            $namalengkap    = $_POST['namasiswa'];
+            $siswa_kelas    = $_POST['siswakelas'];
+            $absen          = $_POST['absen'];
+            $email          = $_POST['mailsiswa'];
+
+            $password       = $_POST['kunci'];
+            $repassword     = $_POST['ulangikunci'];
+                
+
+	        // CHECK USERNAME
+	        if(!$this->Front_model->check_username($pengguna)){
+
+		        // CHECK NIM
+		        if(!$this->Front_model->check_nim($absen)){
+		        	// UPLOAD FOTO PROFIL
+			        $config['upload_path']          = FCPATH.$this->folder_foto_siswa;
+		            $config['allowed_types']        = 'gif|jpg|png|jpeg|pdf|docx|zip';
+		            // RENAME
+		            $foto 							= $pengguna."-".$_FILES["profilsiswa"]['name'];
+		            $config['file_name']			= $foto;
+
+					$this->load->library('upload');
+					
+					$this->upload->initialize($config);
+
+					if($this->upload->do_upload('profilsiswa')) {
+		                // CHANGE MODE
+		                chmod($config['upload_path'].$foto, 0777); // note that it's usually changed to 0755
+
+
+			        	if($pengguna<>'' and $namalengkap<>'' and $siswa_kelas<>'' and $absen<>'' and $email<>'' and $password<>'' and $repassword<>''){
+		                    if($password == $repassword){
+		                        if($this->Front_model->insert_siswa($pengguna, $password, $namalengkap, $absen, $email, $foto)){
+									//	berhasil
+									$this->session->set_flashdata("message","Anda berhasil mendaftar. Silakan login untuk masuk ke akun Anda.");
+									redirect("auth/masuk");
+				                }
+				                else{
+				                	$this->session->set_flashdata("error","Terjadi kesalahan sistem. Silakan coba beberapa saat lagi.");
+				                }
+		                    } else {
+		                        $this->session->set_flashdata("error","Password dan konfirmasi password tidak sesuai");
+		                    }
+		                } else {
+		                    $this->session->set_flashdata("error","Harap isi seluruh kolom inputan");
+		                }
+		            }
+		            else{
+						$this->session->set_flashdata("error","Jenis file untuk foto profil tidak didukung");
+	            	}
+		        }
+		        else{
+		        	$this->session->set_flashdata("error","NIM sudah terdaftar");
+		        }
+	        }
+	        else{
+	        	$this->session->set_flashdata("error","Username sudah terdaftar");
+	        }
+                
+		}
 		redirect("auth/registrasisiswa");
 	}
 
@@ -141,4 +198,5 @@ class Auth extends CI_Controller {
 		$this->session->set_flashdata("error","Administrator tidak dapat mengirim pesan ke email Anda. Mohon ulangi pengisian data");
 		redirect("auth/registrasisiswa");
 	}
+
 }
