@@ -47,7 +47,9 @@
                                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                               
                                     <?php
-                                        $halaman        =   $this->router->fetch_class();
+                                        $halaman        =   strtolower($this->router->fetch_class());
+                                        if($halaman == '')  $halaman    =   'beranda';
+
                                         $classbn        = "";
                                         $spanclassbn    = "";
                                         $classprof      = "";

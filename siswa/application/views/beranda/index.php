@@ -12,7 +12,7 @@
                     <li>Setiap selesai mengerjakan tugas pada materi lab activity, <strong>upload</strong> program &amp; laporan dalam bentuk file .rar </li>
                     <li>Khusus untuk tugas lab activity bisa menggunakan live compiler yang tersedia pada materi.</li>
                     <li>Suatu submateri dianggap selesai jika siswa <strong>telah mendapatkan nilai</strong> class dan lab activity memenuhi Kriteria Ketuntasan Minimal (75).</li>
-                    <li>Progress akan bertambah apabila submateri yang telah dikerjakan (class dan lab) memenuhi KKM.</li>
+                    <li>Progress akan bertambah apabila submateri yang telah dikerjakan (class dan lab) memenuhi KKM. </li>
                 </ol>
                 <hr>
                 <h6>Progress</h6>
