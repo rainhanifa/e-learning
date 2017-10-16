@@ -61,5 +61,24 @@
                         ->where($where)->get()->result_array();
             return $data;
         }
+
+
+        public static function get_dosen(){
+            $CI     =& get_instance();
+            $dosen  = $CI->db->select("*")->from("data_guru")->join("login", "login.user_id = data_guru.id")
+                        ->where("level = 1")->get()->result_array();
+            return $dosen;
+        }
+
+
+
+        public static function get_detail_dosen($id){
+            $CI     =& get_instance();
+            $where  = array("level" => 1, "id" => $id);
+            $dosen  = $CI->db->select("*, data_guru.nama as nama_guru")->from("data_guru")->join("login", "login.user_id = data_guru.id")
+                        ->where($where)->get()->result_array();
+            return $dosen;
+        }
+
     }
 ?>

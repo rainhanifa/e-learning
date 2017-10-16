@@ -24,7 +24,7 @@
                     foreach($siswa as $data){
             ?>
                     <tr>
-                        <td><img src="<?php echo $folder_foto_siswa.$data['foto']; ?>" class="img-circle" width="25px"/></td>
+                        <td><img src="<?php echo $folder_foto_siswa.$data['foto']; ?>" class="img-circle" width="25px"/></td> 
                         <td><?php echo $data['nama_siswa']?></td>
                         <td><?php echo $data['nim']?></td>
                         <td></td>
