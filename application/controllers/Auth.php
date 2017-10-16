@@ -229,14 +229,21 @@ class Auth extends CI_Controller {
 	}
 
 	public function create_admin(){
-		$password = $this->Front_model->randompassword("superadmin123");
-		$admin_data = array("username" => "superadmin", "password" => $password, "level" => 9);
-		if($this->db->insert("login", $admin_data)){
-			echo "OK!";
+		$data_admin = array("nama" => "Super Admin", "nip" => 0, "email" => "rainhanifa@gmail.com");
+		if($this->db->insert("data_guru", $data_admin)){
+			$user_id 	= $this->db->insert_id();
+			$password = $this->Front_model->randompassword("superadmin123");
+
+			$admin_data = array("username" => "superadmin", "password" => $password,
+							 "user_id" => $user_id, "level" => 9);
+			if($this->db->insert("login", $admin_data)){
+				echo "OK!";
+			}
+			else{
+				echo "Failed";
+			}
 		}
-		else{
-			echo "Failed";
-		}
+		
 	}
 
 	public function keluar(){

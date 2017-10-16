@@ -26,5 +26,6 @@
         				->where('login.username = "'.$username.'"')->get()->result_array();
         	return $profil;
         }
+
     }
 ?>
