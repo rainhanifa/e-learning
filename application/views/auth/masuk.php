@@ -33,14 +33,14 @@
             <div class="row">
                 
                 <form name="login" id="login" class="form-group form-login" role="form" action="<?php echo base_url("auth/domasuk")?>" method="post">
-                            <?php
-                                if($this->session->flashdata("error") != ""){
-                                     echo "<label class='label label-danger' style='color:white;'>".$this->session->flashdata("error")."</label>";
-                                }
-                                if($this->session->flashdata("message") != ""){
-                                     echo "<p class='label label-warning text-center'>".$this->session->flashdata("message")."</p>";
-                                }
-                            ?>
+                    <?php
+                        if($this->session->flashdata("error") != ""){
+                             echo "<label class='label label-danger' style='color:white;'>".$this->session->flashdata("error")."</label>";
+                        }
+                        if($this->session->flashdata("message") != ""){
+                             echo "<p class='label label-warning text-center'>".$this->session->flashdata("message")."</p>";
+                        }
+                    ?>
                             
                     <label for="namalogin" class="control-label"> Nama </label>
                     <input type="text" name="namalogin" class="form-control" id="namalogin" value="">

@@ -9,7 +9,6 @@
         public static function randompassword($password){
             $random     = "x0e7q5t1k3g8s2n4lr9f";
             $randompass = sha1(md5($random.md5($password).$random));
-
             return $randompass;
         }
 

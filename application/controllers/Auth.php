@@ -21,8 +21,8 @@ class Auth extends CI_Controller {
 	public function masuk()
 	{
 		$data['js']			= array('form-validator/formValidation.js', 'form-validator/bootstrap.js');
-		$data['validasi'] 	= array($this->load->view('template/js/validasi_login', NULL, TRUE),
-								$this->load->view('template/js/js_modal', NULL, TRUE),
+		$data['validasi'] 	= array($this->load->view('template/js/js_modal', NULL, TRUE),
+								$this->load->view('template/js/validasi_login', NULL, TRUE),
 								$this->load->view('template/js/validasi_forgotpass', NULL, TRUE));
 		$this->load->view('template/header');
 		$this->load->view('auth/masuk', $data);
@@ -67,7 +67,7 @@ class Auth extends CI_Controller {
 
 	        	$this->Front_model->write_log($user, $user." login");
 
-	        	if($login->level == 1){
+	        	if($login->level == 1 || $login->level == 9){
 	        		redirect("guru");
 	        	}
 	        	else

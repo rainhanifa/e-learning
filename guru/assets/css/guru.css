@@ -1,0 +1,545 @@
+/* 
+    Meta Viewport 
+*/
+@-ms-viewport{
+  width: device-width;
+}
+
+/* 
+    Beranda
+*/
+/* Form Cari */
+.form-cari{
+    margin-top: 25px;
+}
+.form-cari .form-control {
+    height: 41px;
+    border-radius: 3px;
+}
+.form-cari .btn.btn-default.action{
+    width: 100%;
+    margin-bottom: 15px;
+}
+.form-cari a.btn.btn-default.action{
+    font-size: 15px;
+    padding-top: 5px;
+}
+
+/* Progress Box */
+.progress-box{
+    margin: 60px auto 30px;
+}
+.progress-box p{
+    color: #95a5a6;
+}
+.box {
+	cursor: pointer;
+	height: auto;
+	float: none;
+    margin-bottom: 10px;
+	position: relative;
+    display: block;
+	width: 100%;
+    font-weight: 300;
+}
+.box > .progress-box{
+    width: 90%;
+    height: auto;
+	position: relative;
+    display: block;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;	
+	transition: all 300ms ease-out;
+}
+
+/* Caption Common Style */
+.box ol li{
+    color: #95a5a6;
+}
+.box .caption {
+	background: #4ea1d3;
+	position: absolute;
+	color: #fff;
+	z-index: 100;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;	
+    transition: all 300ms ease-out;
+    top: -30px;
+    right: 40%;
+    opacity: 1;
+    display: block;
+	text-align: center;
+	padding: 11px 15px;
+}
+.box .scale-caption{
+    border: 1px solid #4ea1d3;
+	position: absolute;
+	color: #95a5a6;
+	z-index: 100;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;	
+    transition: all 300ms ease-out;
+    top: -30px;
+    right: 40%;
+    opacity: 1;
+    display: block;
+	text-align: center;
+	padding: 11px 15px;
+}
+
+.box img{
+    width: 100%;
+    height: auto;
+    border-radius: 7px;
+}
+.box .img-box{
+    height: 215px;
+    width: 150px;
+    overflow: hidden;
+    margin: 0 auto 25px;
+    border-radius: 7px;
+}
+
+/** Fade Caption :hover Behaviour **/
+.progress-box .row{
+    border: 1px solid #eeeff3;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+}
+.box:hover .progress-box .row{
+    border: 1px solid #4ea1d3;
+    border-radius: 3px;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;	
+    transition: all 300ms ease-out;
+}
+.box:hover .caption{
+    opacity: 0;
+}
+.box:hover .scale-caption  {
+	opacity: 1;
+}
+.icon-zoom{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: auto;
+    padding: 3px 5px;
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 0;
+    color: #95a5a6;
+}
+
+
+/*
+    Profil Guru
+*/
+.profil-guru{
+    margin-top: 45px;
+    margin-bottom: 45px;
+}
+.profil-guru .container .row{
+    padding-left: 15px;
+    padding-right: 15px; 
+}
+.profil-guru span,
+.profil-guru label{
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 36px;
+    color: #95a5a6;
+}
+.profil-guru span{
+    margin-right: 10px;
+}
+.profil-guru .profil-head{
+    font-weight: 800;
+}
+.profil-guru hr{
+    border: 1px solid #99cbed;
+    width: auto;
+    margin-left: 15px;
+    margin-right: 15px; 
+}
+.profil-guru .form-reg{
+    padding-left: 15px;
+}
+.profil-guru .form-reg .btn.btn-default{
+    padding: 17px 25px;
+}
+.profil-guru .img-profile{
+    height: 215px;
+    width: 150px;
+    overflow: hidden;
+    margin: 10px auto 10px;
+    -moz-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
+}
+.profil-guru img{
+    height: auto;
+    width: 100%;
+    -moz-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
+}
+
+
+/*
+    Daftar Materi
+*/
+.container .deskripsi-materi{
+    margin-left: 15px;
+}
+.deskripsi-materi{
+    padding: 10px 10px 10px 20px;
+    margin-top: 0px;
+/*    margin-bottom: 45px;*/
+    border: none;
+    border-bottom: 5px solid #ddd;
+}
+.deskripsi-materi .row{
+    border: 1px solid #ddd;
+    padding-top: 5px;
+    margin-bottom: 15px;
+}
+.deskripsi-materi h5,
+.deskripsi-materi p,
+.deskripsi-materi .form-comment label{
+    color: #95a5a6;
+    letter-spacing: 0;
+}
+.deskripsi-materi h5{
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 36px;
+    margin-left: -15px;
+}
+.deskripsi-materi p,
+.deskripsi-materi .form-comment label{
+    font-size: 14px;
+    line-height: 28px;
+    font-weight: 600;
+}
+.form-comment .send{
+    display: block;
+    margin-top: 15px;
+}
+.all-materi .deskripsi-materi .form-reg{
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.deskripsi-materi .form-reg{
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+.deskripsi-materi .form-reg .btn,
+.deskripsi-materi .form-reg .btn.btn-default,
+.deskripsi-materi .form-reg .btn.btn-default.action,
+.materi-siswa .form-reg.modul-siswa .btn.btn-default.action{
+    font-weight: 600;
+    display: inline-block;
+    line-height: normal;
+}
+.deskripsi-materi .form-reg .btn,
+.deskripsi-materi .form-reg .btn.btn-default{
+    font-size: 16px;
+    width: auto;
+    padding: 10px 30px;
+    margin: 0;
+}
+.row .btn.btn-default.add:first-child{
+    margin-left: 15px;
+/*    margin-right: 26px;*/
+}
+.row .btn.btn-default.add{
+    margin-bottom: 5px;
+    margin-top: 30px;
+    display: inline-block;
+    width: 137px;
+    font-size: 15px;
+    padding: 5px 14px;
+    height: auto;
+    white-space: normal;
+}
+.deskripsi-materi .form-reg .btn.btn-default.delete{
+    width: 125px;
+    margin: 0 5px 0 auto;
+    white-space: normal;
+    padding: 10px;
+    height: auto;
+    font-size: 15px;
+}
+.deskripsi-materi .form-reg .btn.btn-default.delete:first-child{
+    margin-left: -15px;
+}
+.deskripsi-materi .form-reg .btn.btn-default.action{
+    font-size: 14px;
+    white-space: normal;
+    width: 45%;
+    height: auto;
+    margin: 0 3% 0 0;
+    font-weight: 400;
+}
+.deskripsi-materi .form-reg .btn.btn-default.action:nth-child(1){
+    padding: 5px 25px;
+}
+.deskripsi-materi .form-reg .btn.btn-default.action:nth-child(2){
+    padding: 5px 30px;
+}
+.materi-siswa .form-reg.modul-siswa .btn.btn-default.action{
+    white-space: normal;
+    padding: 6px 25px;
+    line-height: 24px;
+}
+.materi-siswa .form-reg.modul-siswa .btn.btn-default,
+.materi-siswa .form-reg.modul-siswa .btn.btn-default.action{
+    display: inline-block;
+    white-space: normal;
+    margin: 0 15px 0 0;
+    font-size: 14px;
+    width: auto;
+    height: auto;
+}
+.materi-msg{
+    margin-left: -5px;
+    margin-top: 15px;
+    text-align: center;
+}
+.comment-list{
+    margin: 0 30px 30px;
+    padding-bottom: 10px;
+}
+.comment-list p{
+    margin-bottom: 0;
+    line-height: 30px;
+    font-size: 15px;
+}
+.comment-list:not(:last-child){
+    border-bottom: 1px solid #ededed;
+}
+.comment-list:not(:last-child){
+    border-bottom: 1px solid #ededed;
+}
+
+/*
+    Modul
+*/
+.siswa-selesai{
+    margin-top: 25px;
+    margin-bottom: 30px;
+}
+.tab-content{
+    font-size: 14px;
+    margin-bottom: 60px;
+    border-bottom: 1px solid #f1f1f1;
+}
+.table-responsive th{
+    text-align: center;
+    vertical-align: top;
+}
+.table > thead:first-child > tr:first-child > th{
+    border-top: 2px solid #ddd;
+}
+.table > thead > tr > th{
+    vertical-align: middle;
+    border: 2px solid #ddd;
+}
+.table > tbody > tr > td{
+    border: 1px solid #ddd;
+}
+
+/*
+    Ubah Modul
+*/
+.form-reg .item-reg text-area,
+.form-reg .item-reg iframe{
+    height: 300px;
+}
+.form-reg .video-materi{
+    display: inline;
+}
+.form-reg .text-video{
+    margin-top: 15px;
+}
+.video-materi .custom-file-input {
+    color: transparent;
+    display: block;
+}
+.video-materi .custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.video-materi .custom-file-input::before {
+    content: 'Upload Video';
+    display: inline-block;
+    background: #e85a71;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    border-bottom: 3px solid #df405a;
+    padding: 6px 25px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: none;
+    border-radius: 0;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0;
+    width: auto;
+    height: 40px;
+    color: #fafafa;
+}
+.video-materi .custom-file-input:hover::before {
+    border-bottom: 3px solid #fd999a;
+}
+.video-materi .custom-file-input:active {
+    outline: 0;
+}
+.video-materi .custom-file-input:active::before {
+    background: #e85a71; 
+    outline: 0;
+    border-bottom: 3px solid #fd999a;
+}
+
+/*
+    Rapor
+*/
+.rapor{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.label.label-default.clues{
+    color: #fff;
+}
+
+/*
+    Media Queries
+*/
+@media print{
+    .row.form-cari,
+    .label.label-danger,
+    .btn.btn-default,
+    .cellact
+    {
+        display: none;
+    }
+}
+@media(max-width: 767px){
+    .profil-guru span{
+        display: none;
+    }
+    .materi-siswa .form-reg.modul-siswa .btn.btn-default.action,
+    .materi-siswa .form-reg.modul-siswa .btn.btn-default{
+        display: block;
+        width: 50%;
+        margin-top: 15px;
+    }
+    .container .deskripsi-materi {
+        margin-left: 0;
+    }
+}
+
+@media(min-width: 768px){
+    .box .caption,
+    .box .scale-caption{
+        top: -25px;
+        right: 10px;
+    }
+    .box > .progress-box{
+        margin-left: 15px;
+        margin-right: 15px;
+        width: 97.5%;
+    }
+    .box img{
+        margin: 0;
+    }
+    .progress-box{
+        margin-top: 40px;
+    }
+    .form-cari .btn.btn-default.action{
+        margin-bottom: 0;
+    }
+    .deskripsi-materi .form-reg .btn.btn-default.delete{
+        width: 200px;
+        margin-left: 15px;
+    }
+    .form-cari.materi{
+        margin-left: 0;    
+    }
+    .deskripsi-materi .form-reg .btn.btn-default.delete:first-child,
+    .container .deskripsi-materi,
+    .deskripsi-materi h5{
+        margin-left: 0;
+    }
+    .row .btn.btn-default.add{
+        width: 200px;
+        margin-left: 15px;
+    }
+    .deskripsi-materi{
+        margin-top: 0px;
+    }
+    .form-reg .text-video{
+        display: inline;
+        width: 100%;
+    }
+    .video-materi .custom-file-input {
+        color: transparent;
+        display: inline;
+    }
+    .materi-msg{
+        text-align: left;
+        margin-left: 0;
+    }
+    .rapor{
+        padding-left: 25px;
+        padding-right: 15px;
+    }
+}
+
+@media (min-width: 992px){
+    .embed-responsive.embed-responsive-16by9 {
+        padding-bottom: 35%;
+        width: auto;
+        height: 1200px;
+    }
+    .video-konten.embed-responsive.embed-responsive-16by9 {
+        height: auto;
+    }
+    .profil-guru .form-reg .btn.btn-default{
+        margin-left: 0;
+    }
+    .deskripsi-materi{
+        padding: 10px 0;
+    }
+    .deskripsi-materi .row{
+        margin-left: 0;
+        width: 100%;
+    }
+    .container .deskripsi-materi {
+        margin-left: 10px;
+    }
+    .row .btn.btn-default.add:first-child{
+        margin-left: 30px;
+        margin-right: 26px;
+    }
+    .deskripsi-materi .form-reg .btn.btn-default.delete{
+        margin-left: 0;
+        margin-right: 41px;
+    }
+    .materi-msg{
+        margin-left: 15px;
+    }
+}
