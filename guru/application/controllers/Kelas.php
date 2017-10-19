@@ -16,10 +16,6 @@ class Kelas extends CI_Controller {
 
         // MODEL
         $this->load->model("Guru_model");
-
-        // JS
-		$data['js'] = '';
-		$data['validasi'] = '';
     }
 	
 
@@ -27,6 +23,7 @@ class Kelas extends CI_Controller {
 	{
 		$data['js'] = '';
 		$data['validasi'] = '';
+		$data['modal'] = '';
 
 		//HASIL PROGRESS
 		$data['kelas'] 		= $this->Guru_model->get_kelas();
@@ -36,10 +33,11 @@ class Kelas extends CI_Controller {
 	}
 
 	public function detail($kelas = 0)
-	{
+	{	
 		if($kelas > 0){
 			$data['js'] = '';
 			$data['validasi'] = '';
+			$data['modal'] = '';
 
 			//DETAIL KELAS
 			$data['kelas'] 		= $this->Guru_model->get_kelas_by_id($kelas);

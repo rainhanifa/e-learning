@@ -17,9 +17,6 @@ class Dosen extends CI_Controller {
         // MODEL
         $this->load->model("Guru_model");
 
-        // JS
-		$data['js'] = '';
-		$data['validasi'] = '';
     }
 	
 
@@ -27,6 +24,7 @@ class Dosen extends CI_Controller {
 	{
 		$data['js'] = '';
 		$data['validasi'] = '';
+		$data['modal'] = '';
 
 		// DATA DOSEN
 		$data['dosen'] 		= $this->Guru_model->get_dosen();
@@ -41,6 +39,7 @@ class Dosen extends CI_Controller {
 		if($dosen > 0){
 			$data['js'] = '';
 			$data['validasi'] = '';
+			$data['modal'] = '';
 
 			//DETAIL DOSEN
 			$data['dosen'] 		= $this->Guru_model->get_detail_dosen($dosen);

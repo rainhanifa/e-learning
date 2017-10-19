@@ -18,10 +18,6 @@ class Beranda extends CI_Controller {
         // MODEL
         $this->load->model("Guru_model");
 
-        // JS
-		$data['js'] = '';
-		$data['validasi'] = '';
-
         // TUGAS
         $this->folder_tugas 	=	base_url().'/upload/tugas/';
     }
@@ -31,6 +27,7 @@ class Beranda extends CI_Controller {
 	{
 		$data['js'] = '';
 		$data['validasi'] = '';
+		$data['modal'] = '';
 
 		//HASIL PROGRESS
 		$data['kelas'] 		= $this->Guru_model->get_kelas();

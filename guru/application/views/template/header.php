@@ -81,6 +81,7 @@
         
                                     ?>
                                     <ul class="nav navbar-nav">
+                                    <?php if($this->session->level == 1){ ?>
                                         <li class="<?php echo $halaman == 'beranda' ? 'active' : '' ?>">
                                             <a href="<?php echo base_url('beranda');?>">Beranda</a>
                                             <span class="<?php echo $halaman == 'beranda' ? 'home' : '' ?>"></span>
@@ -101,7 +102,8 @@
                                             <a href="<?php echo base_url('catatan');?>">Catatan</a>
                                             <span class="<?php echo $halaman == 'catatan' ? 'note' : '' ?>"></span>
                                         </li>
-                                    <?php if($this->session->level = 9){ ?>
+                                    <?php } ?>
+                                    <?php if($this->session->level == 9){ ?>
                                             <li class="dropdown">
                                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Data Master <span class="caret"></span></a>
                                                 <ul class="dropdown-menu" role="menu">

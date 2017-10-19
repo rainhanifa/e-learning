@@ -3,9 +3,120 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mapel extends CI_Controller {
 
+
+	public function __construct()
+    {
+        parent::__construct();
+
+        // CHECK LOGIN
+        if($this->session->userdata('level') != 9){
+        	$this->session->set_flashdata("error","Anda harus login untuk mengakses halaman ini ");
+        	redirect("../auth/masuk");
+        }
+
+        // MODEL
+        $this->load->model("Guru_model");
+
+        // JS
+		$data['js'] = '';
+		$data['validasi'] = '';
+    }
+	
+
 	public function index()
 	{
-		$this->load->view('mapel/index');
+		$data['js'] = '';
+		$data['validasi'] = '';
+		$data['modal']	= array($this->load->view("template/modal/tambah_mapel", NULL, TRUE));
+		// DATA MAPEL
+		$data['mapel'] 		= $this->Guru_model->get_mapel();
+		$this->load->view('template/header');
+		$this->load->view('mapel/index', $data);
+		$this->load->view('template/footer');
+	}
+
+
+	public function detail($tmapel = 0)
+	{	
+		// TAMPILKAN MATERI DARI MAPEL DENGAN DOSEN TSB 
+		if($mapel > 0){
+			$data['js'] = '';
+			$data['validasi'] = '';
+
+			//DETAIL TMAPEL
+			$data['mapel'] 		= $this->Guru_model->get_tmapel_materi($tmapel);
+			$this->load->view('template/header');
+			$this->load->view('mapel/detail', $data);
+			$this->load->view('template/footer');	
+		}
+		else
+		{
+			redirect("kelas");
+		}
+	}
+
+	public function tambah(){
+		if($_POST){
+			$nama_mapel	= $this->input->post("nama");
+
+			$data_mapel	= array("nama" => $nama_mapel);
+			if($this->db->insert("mata_pelajaran", $data_mapel)){
+				$this->session->set_flashdata("error","Berhasil menambahkan mata kuliah");
+			}
+			else
+			{
+				$this->session->set_flashdata("error","Kegagalan sistem.");
+			}
+		}
+		else
+		{
+        	$this->session->set_flashdata("error","Lengkapi semua data terlebih dahulu");
+		}
+		redirect("mapel");
+	}
+
+
+	public function tambahdosen($mapel = 0)
+	{	
+		
+		if($mapel > 0){
+			$data['js'] = '';
+			$data['validasi'] = '';
+			$data['modal'] = '';
+
+			//CARI DOSEN YANG BELUM MASUK MAPEL
+			$data['available'] 		= $this->Guru_model->getAvailableDosen($mapel);
+			//GET NAMA MAPEL
+			$data['mapel']			= $this->Guru_model->getDetailMapel($mapel);
+			$this->load->view('template/header');
+			$this->load->view('mapel/tambah_dosen_mapel', $data);
+			$this->load->view('template/footer');	
+		}
+		else
+		{
+			redirect("kelas");
+		}
+	}
+
+	public function do_tambah_dosen(){
+		if($_POST){
+			$mapel	= $this->input->post("mapel");
+			$dosen	= $this->input->post("dosen");
+
+			$data_t_mapel	= array("mapel_id" => $mapel, "dosen_id" => $dosen);
+			if($this->db->insert("t_mapel", $data_t_mapel)){
+				$this->session->set_flashdata("error","Berhasil menambahkan dosen");
+			}
+			else
+			{
+				$this->session->set_flashdata("error","Kegagalan sistem.");
+			}
+		}
+		else
+		{
+        	$this->session->set_flashdata("error","Lengkapi semua data terlebih dahulu");
+		}
+		redirect("mapel");
 	}
 
 }

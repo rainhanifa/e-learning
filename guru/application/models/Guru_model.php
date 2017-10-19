@@ -70,8 +70,6 @@
             return $dosen;
         }
 
-
-
         public static function get_detail_dosen($id){
             $CI     =& get_instance();
             $where  = array("level" => 1, "id" => $id);
@@ -80,5 +78,36 @@
             return $dosen;
         }
 
+
+        public static function get_mapel(){
+            $CI     =& get_instance();
+            $mapel  = $CI->db->get("mata_pelajaran")->result_array();
+            return $mapel;
+        }
+
+
+        public static function getDetailMapel($mapel){
+            $CI     =& get_instance();
+            $where  = array("id" => $mapel);
+            $mapel  = $CI->db->get_where("mata_pelajaran", $where)->result_array();
+            return $mapel;
+        }
+
+
+
+        public static function getAvailableDosen($mapel){
+            $CI =& get_instance();
+           
+            // $where  = "NOT EXISTS
+            //             (SELECT * FROM t_mapel WHERE mapel_id = ".$mapel.")";
+            // $dosen  = $CI->db->select("*")->FROM("data_guru")
+            //                 ->join("login", "data_guru.id = login.user_id")
+            //                 ->where($where." AND login.level = 1")->get()->result_array();
+            $dosen  = $CI->db->query("SELECT * FROM data_guru JOIN login ON data_guru.id = login.user_id
+                                        WHERE data_guru.id NOT IN
+                                        (SELECT dosen_id FROM t_mapel WHERE mapel_id = ".$mapel.")
+                                        AND login.level = 1")->result_array();
+            return $dosen;
+        }
     }
 ?>

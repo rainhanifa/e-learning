@@ -1,21 +1,4 @@
-    <!-- General -->
-    <script type="text/javascript" src="<?php echo base_url('../assets/js/')?>jquery-1.11.2.js"></script>
-    <script type="text/javascript" src="<?php echo base_url('../assets/js/')?>bootstrap.js"></script>
-
-    <?php if (is_array($js)) {
-                foreach ($js as $js){
-                    ?>
-                    <script type='text/javascript' src='<?php echo base_url("../assets/js/").$js; ?>'></script>
-                    <?php
-                }
-            }?>
-            <?php if (is_array($validasi)) {
-                foreach ($validasi as $validasi){
-                    echo $validasi;
-                }
-            }?>
-
-
+   
         <footer>
             <div class="container">
                 <div class="row">
@@ -27,5 +10,28 @@
                 </div>
             </div>
         </footer>
+
+         <!-- General -->
+        <script type="text/javascript" src="<?php echo base_url('../assets/js/')?>jquery-1.11.2.js"></script>
+        <script type="text/javascript" src="<?php echo base_url('../assets/js/')?>bootstrap.js"></script>
+
+        <?php
+            if (is_array($modal)) {
+                foreach ($modal as $modal){
+                    echo $modal;
+                }
+            }
+            if (is_array($js)) {
+                    foreach ($js as $js){
+                        ?>
+                        <script type='text/javascript' src='<?php echo base_url("../assets/js/").$js; ?>'></script>
+                        <?php
+                    }
+                }?>
+                <?php if (is_array($validasi)) {
+                    foreach ($validasi as $validasi){
+                        echo $validasi;
+                    }
+                }?>
 
 </html>

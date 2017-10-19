@@ -67,8 +67,11 @@ class Auth extends CI_Controller {
 
 	        	$this->Front_model->write_log($user, $user." login");
 
-	        	if($login->level == 1 || $login->level == 9){
+	        	if($login->level == 1){
 	        		redirect("guru");
+	        	}
+	        	else if($login->level == 9){
+	        		redirect("guru/dosen");
 	        	}
 	        	else
 	        	{
