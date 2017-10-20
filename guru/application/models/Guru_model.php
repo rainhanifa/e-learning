@@ -66,14 +66,14 @@
         public static function get_dosen(){
             $CI     =& get_instance();
             $dosen  = $CI->db->select("*")->from("data_guru")->join("login", "login.user_id = data_guru.id")
-                        ->where("level = 1")->get()->result_array();
+                        ->where("level = 1 AND status = 1")->get()->result_array();
             return $dosen;
         }
 
         public static function get_detail_dosen($id){
             $CI     =& get_instance();
             $where  = array("level" => 1, "id" => $id);
-            $dosen  = $CI->db->select("*, data_guru.nama as nama_guru")->from("data_guru")->join("login", "login.user_id = data_guru.id")
+            $dosen  = $CI->db->select("*, data_guru.nama as nama_guru")->from("data_guru")->join("login", "login.user_id = data_guru.id AND login.status = 1")
                         ->where($where)->get()->result_array();
             return $dosen;
         }
@@ -106,7 +106,7 @@
             $dosen  = $CI->db->query("SELECT * FROM data_guru JOIN login ON data_guru.id = login.user_id
                                         WHERE data_guru.id NOT IN
                                         (SELECT dosen_id FROM t_mapel WHERE mapel_id = ".$mapel.")
-                                        AND login.level = 1")->result_array();
+                                        AND login.level = 1 AND login.status = 1")->result_array();
             return $dosen;
         }
     }

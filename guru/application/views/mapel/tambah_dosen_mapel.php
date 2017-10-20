@@ -34,7 +34,7 @@
                         </div>
                         <input type="hidden" name="mapel" value="<?php echo $mapel['id']?>">
                         <div class="col-md-offset-3">
-                            <input type="submit" name="finish_reg" value="Simpan" class="btn btn-default action">
+                            <input type="submit" name="finish_reg" value="Simpan" class="btn btn-primary">
                         </div>
                                 <?php    } else { ?>
                                     <option>Tidak ada dosen yang tersedia untuk mata kuliah ini</option>

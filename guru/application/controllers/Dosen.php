@@ -18,7 +18,6 @@ class Dosen extends CI_Controller {
         $this->load->model("Guru_model");
 
     }
-	
 
 	public function index()
 	{
@@ -33,6 +32,21 @@ class Dosen extends CI_Controller {
 		$this->load->view('dosen/index', $data);
 		$this->load->view('template/footer');
 	}
+
+
+	public function hapus($id = 0)
+	{
+		if($id > 0){
+			$hapus = array("status" => 0);
+			$where = array("user_id" => $id, "level" => 1);
+			$this->db->where($where);
+			if($this->db->update("login", $hapus)){
+				$this->session->set_flashdata("error", "Berhasil menghapus dosen");
+			}
+		}
+		redirect("dosen");
+	}
+
 
 	public function detail($dosen = 0)
 	{	

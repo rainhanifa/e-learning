@@ -1,7 +1,7 @@
 <html>
     <head>
         <?php $halaman = ucfirst($this->router->fetch_class()); ?>
-        <title> <?php echo $halaman ?> Dosen </title>
+        <title> Area <?php echo $this->session->userdata('level') == 9 ? 'Admin | Manajemen ' : 'Dosen | '; ?><?php echo $halaman ?></title>
         
         <!-- Meta Tags -->
         <meta charset="UTF-8">

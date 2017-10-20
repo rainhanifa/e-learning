@@ -13,22 +13,25 @@
                 if(is_array($mapel)){
             ?>
 
-                <table class="table table-border text-center">
+                <table class="table table-striped ">
                     <tr>
                         <th class="text-center">Nama Mata Kuliah</th>
-                        <th class="text-center" colspan="2">Dosen</th>
+                        <th class="text-center">Dosen</th>
                     </tr>
             <?php
                     foreach($mapel as $data){
             ?>
                     <tr>
-                        <td><?php echo $data['nama']?></td>    
+                        <td class="text-center"><?php echo $data['nama']?></td>    
                         <td>
+                            <div class="col-sm-6">
                             <?php $dosen_mapel = getDosenMapel($data['id']);
                                     if(is_array($dosen_mapel)){ ?>
                                         <ul>
                             <?php foreach($dosen_mapel as $dosen_mapel){ ?>
-                                            <li><?php echo $dosen_mapel['nama_dosen']?></li>
+                                            <li><?php echo $dosen_mapel['nama_dosen']?>
+                                                <a href="<?php echo base_url("mapel/hapusdosen/")?>"><i class="glyphicon glyphicon-trash"></i></a>
+                                            </li>
                             <?php       } ?>
                                         </ul>
                             <?php
@@ -37,10 +40,11 @@
                                         echo "<i>Belum ada dosen</i>";
                                     }
                             ?>
-
-                        </td>
-                        <td>
-                            <a href="<?php echo base_url('mapel/tambahdosen/').$data['id']?>" class="btn btn-primary tambah_dosen">Tambah Dosen Makul</a>
+                            </div>
+                            <div class="col-sm-6">
+                                <a href="<?php echo base_url('mapel/tambahdosen/').$data['id']?>" class="btn btn-primary">Tambah Dosen</a>
+                                <a href="<?php echo base_url('mapel/hapus/').$data['id']?>" class="btn btn-warning">Hapus Makul</a>
+                            </div>
                         </td>
                     </tr>
         <?php           } ?>
