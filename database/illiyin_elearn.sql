@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 16, 2017 at 02:22 AM
+-- Generation Time: Oct 20, 2017 at 02:51 PM
 -- Server version: 5.7.19-0ubuntu0.16.04.1
 -- PHP Version: 5.6.31-2+ubuntu16.04.1+deb.sury.org+1
 
@@ -44,7 +44,14 @@ INSERT INTO `activity_log` (`id`, `time`, `description`, `username`) VALUES
 (4, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
 (5, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
 (6, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(7, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh');
+(7, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
+(8, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
+(9, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
+(10, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
+(11, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
+(12, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
+(13, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
+(14, '0000-00-00 00:00:00', 'superadmin login', 'superadmin');
 
 -- --------------------------------------------------------
 
@@ -57,7 +64,7 @@ CREATE TABLE `data_guru` (
   `nama` varchar(50) NOT NULL,
   `nip` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `foto` text NOT NULL
+  `foto` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -65,7 +72,9 @@ CREATE TABLE `data_guru` (
 --
 
 INSERT INTO `data_guru` (`id`, `nama`, `nip`, `email`, `foto`) VALUES
-(1, 'Ibnu Shodiqin', '19650819970110038', 'ibnuspeedster@gmail.com', 'ibnu1993-dosen-pa.png');
+(1, 'Ibnu Shodiqin', '19650819970110038', 'ibnuspeedster@gmail.com', 'ibnu1993-dosen-pa.png'),
+(2, 'Super Admin', '0', 'rainhanifa@gmail.com', NULL),
+(3, 'Muhammad Handharbeni', '12345678976543', 'mhandharbeni@gmail.com', 'mhandharbeni-dosen-pa.png');
 
 -- --------------------------------------------------------
 
@@ -178,17 +187,19 @@ CREATE TABLE `login` (
   `username` varchar(30) NOT NULL,
   `password` varchar(50) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `level` tinyint(1) NOT NULL
+  `level` tinyint(1) NOT NULL,
+  `status` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`username`, `password`, `user_id`, `level`) VALUES
-('superadmin', 'b0e818d9d46ef26177190ef128130e026484bd28', 0, 9),
-('ibnu1993', '28222eb36cbc5290d83d03b80569e3e6b6cefc48', 1, 1),
-('luqmanppmh', '28222eb36cbc5290d83d03b80569e3e6b6cefc48', 1, 2);
+INSERT INTO `login` (`username`, `password`, `user_id`, `level`, `status`) VALUES
+('ibnu1993', '28222eb36cbc5290d83d03b80569e3e6b6cefc48', 1, 1, 1),
+('luqmanppmh', '28222eb36cbc5290d83d03b80569e3e6b6cefc48', 1, 2, 1),
+('superadmin', 'b0e818d9d46ef26177190ef128130e026484bd28', 2, 9, 1),
+('mhandharbeni', '28222eb36cbc5290d83d03b80569e3e6b6cefc48', 3, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -200,6 +211,19 @@ CREATE TABLE `mata_pelajaran` (
   `id` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mata_pelajaran`
+--
+
+INSERT INTO `mata_pelajaran` (`id`, `nama`) VALUES
+(1, 'Media Pembelajaran dan TIK Olahraga'),
+(2, 'Psikologi Pendidikan'),
+(3, 'Sejarah dan Filosofi Olahraga'),
+(4, 'Medis Olahraga'),
+(5, 'Pelatihan Olahraga Tenis'),
+(6, 'Pelatihan Olahraga Bulutangkis'),
+(7, 'Manajemen Kepelatihan Olahraga Sepak Bola');
 
 -- --------------------------------------------------------
 
@@ -291,6 +315,15 @@ CREATE TABLE `t_mapel` (
   `mapel_id` int(11) DEFAULT NULL,
   `dosen_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_mapel`
+--
+
+INSERT INTO `t_mapel` (`id`, `mapel_id`, `dosen_id`) VALUES
+(1, 1, 1),
+(3, 1, 3),
+(4, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -401,12 +434,12 @@ ALTER TABLE `t_mapel`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `data_guru`
 --
 ALTER TABLE `data_guru`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `data_kelas`
 --
@@ -441,7 +474,7 @@ ALTER TABLE `kontenmateri`
 -- AUTO_INCREMENT for table `mata_pelajaran`
 --
 ALTER TABLE `mata_pelajaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `materi`
 --
@@ -466,7 +499,7 @@ ALTER TABLE `t_jadwal`
 -- AUTO_INCREMENT for table `t_mapel`
 --
 ALTER TABLE `t_mapel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
