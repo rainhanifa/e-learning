@@ -17,4 +17,41 @@ function getDosenMapel($mapel){
     return $dosen;
 }
 
+function getSubMateri($materi){
+    $CI =& get_instance();
+    $where  =   array("materi_id" => $materi);
+    $submateri  = $CI->db->get_where('submateri', $where)->result_array();
+    return $submateri;   
+}
+
+function getKontenSubMateri($submateri){
+    $CI =& get_instance();
+    $where  =   array("submateri_id" => $submateri);
+    $submateri  = $CI->db->get_where('kontenmateri', $where)->result_array();
+    return $submateri;   
+}
+
+function kontenLab($submateri){
+    $CI =& get_instance();
+    $where  =   array("submateri_id" => $submateri, "tipe" => 2);
+    $exist  = $CI->db->get_where('kontenmateri', $where)->num_rows();
+    if($exist > 0)  {
+        return $CI->db->get_where('kontenmateri', $where)->row()->id;
+    }
+    else{
+        return 0;
+    }
+}
+
+function kontenClass($submateri){
+    $CI =& get_instance();
+    $where  =   array("submateri_id" => $submateri, "tipe" => 1);
+    $exist  = $CI->db->get_where('kontenmateri', $where)->num_rows();
+    if($exist > 0)  {
+        return $CI->db->get_where('kontenmateri', $where)->row()->id;
+    }
+    else{
+        return 0;
+    }
+}
 ?>

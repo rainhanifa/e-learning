@@ -62,6 +62,7 @@ class Auth extends CI_Controller {
             $login =  $this->Front_model->login($user, $pass);
         	if(is_object($login)){
         		$user_data 		=	array("username" => $login->username,
+        									"userid"=> $login->user_id,
         									"level"  => $login->level);
 	        	$this->session->set_userdata($user_data);
 

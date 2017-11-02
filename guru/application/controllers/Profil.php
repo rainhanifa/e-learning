@@ -41,7 +41,7 @@ class Profil extends CI_Controller {
 		$data['validasi']	= array($this->load->view('template/js/validasi_ubahprofil', NULL, TRUE));
 
 		//PROFIL SISWA
-		$data['profil'] = $this->Guru_model->get_profil($this->username);
+		$data['profil'] = $this->Guru_model->get_profil($this->username, $this->session->level);
 		$data['kelas']	= $this->Guru_model->get_kelas();
 		$this->load->view('template/header');
 		$this->load->view('profil/ubah', $data);

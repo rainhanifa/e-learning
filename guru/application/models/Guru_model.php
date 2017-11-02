@@ -6,6 +6,7 @@
                 parent::__construct();
         }
 
+
         public static function get_kelas(){
             $CI     =& get_instance();
             return $CI->db->get("data_kelas")->result_array();;
@@ -94,7 +95,6 @@
         }
 
 
-
         public static function getAvailableDosen($mapel){
             $CI =& get_instance();
            
@@ -109,5 +109,59 @@
                                         AND login.level = 1 AND login.status = 1")->result_array();
             return $dosen;
         }
+
+        public static function getMapelDosen($dosen){
+            $CI =& get_instance();
+            $where  = array("dosen_id" => $dosen);
+            $mapel  = $CI->db->select("mapel_id as id_mapel, nama as nama_mapel")
+                            ->from("t_mapel")
+                            ->join("mata_pelajaran", "t_mapel.mapel_id = mata_pelajaran.id")
+                            ->where($where)
+                            ->get()
+                            ->result_array();
+            return $mapel;
+        }
+
+        public static function getMateriDosen($dosen){
+            $CI =& get_instance();
+            $where  = array("dosen_id" => $dosen);
+            $mapel  = $CI->db->select("mata_pelajaran.nama as nama_mapel,
+                                    materi.nama as nama_materi, materi.id as id_materi")
+                            ->from("t_mapel")
+                            ->join("mata_pelajaran", "t_mapel.mapel_id = mata_pelajaran.id")
+                            ->join("detail_mapel", "detail_mapel.mapel_id = mata_pelajaran.id")
+                            ->join("materi", "detail_mapel.materi_id = materi.id")
+                            ->where($where)
+                            ->get()
+                            ->result_array();
+            return $mapel;
+        }
+
+        public static function getMateribyNama($nama){
+            $CI =& get_instance();
+            $where  = array("nama" => $nama);
+            $materi  = $CI->db->get_where('materi', $where)->result_array();
+            return $materi;
+        }
+
+        public static function checkMateriExist($nama){
+            $CI =& get_instance();
+            $where  = array("nama" => $nama);
+            $materi  = $CI->db->get_where('materi', $where);;
+            if($materi->num_rows() > 0){
+                return $materi->row()->id;
+            }
+            else{
+                return false;
+            }
+        }
+
+        public static function getMateriDetail($id){
+            $CI =& get_instance();
+            $where  = array("materi.id" => $id);
+            $materi  = $CI->db->get_where('materi',$where)->result_array();
+            return $materi;
+        }
+
     }
 ?>
