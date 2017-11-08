@@ -163,5 +163,11 @@
             return $materi;
         }
 
+        public static function getKontenDetail($id){
+            $CI =& get_instance();
+            $where  = array("kontenmateri.id" => $id);
+            $materi  = $CI->db->get_where('kontenmateri',$where)->result_array();
+            return $materi;
+        }
     }
 ?>

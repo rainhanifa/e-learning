@@ -85,6 +85,7 @@ class Materi extends CI_Controller {
 					$materi_id 			= $this->db->insert_id();
 					$data_detail		= array("mapel_id" => $mapel,
 												"materi_id" => $materi_id);
+					$this->db->insert('detail_mapel', $data_detail);
 				}
 				else{
 					// ERROR
@@ -102,5 +103,92 @@ class Materi extends CI_Controller {
 				redirect('materi/tambah');
 			}
 		}
+	}
+
+	public function tambahkonten()
+	{
+		$data['userid'] = $this->userid;
+		$data['mapel']	  = $this->Guru_model->getMapelDosen($this->userid);
+
+		$data['js']	= array('cdn/tinymce/tinymce.min.js');
+		$data['modal'] = '';
+		$data['validasi'] = array($this->load->view('template/js/dynamic_kontenmateri', NULL, TRUE));
+
+		$this->load->view('template/header');
+		$this->load->view('materi/tambahkonten', $data);
+		$this->load->view('template/footer');
+	}
+
+	public function ubahkonten($id)
+	{
+		$data['userid'] = $this->userid;
+		$data['mapel']	= $this->Guru_model->getMapelDosen($this->userid);
+		$data['konten']	= $this->Guru_model->getKontenDetail($id);
+
+		$data['js']	= '';
+		$data['modal'] = '';
+		$data['validasi'] = array($this->load->view('template/js/dynamic_kontenmateri', NULL, TRUE));
+
+		$this->load->view('template/header');
+		$this->load->view('materi/tambahkonten', $data);
+		$this->load->view('template/footer');
+	}
+
+
+	public function doTambahKonten(){
+		if($_POST){
+			$userid		=	$this->userid;
+			$submateri 	=	$this->input->post('submateri');
+			$tipe 		=	$this->input->post('kategori');
+
+			// JIKA UPLOAD FILE
+				// $isi = file
+			// JIKA TIDAK
+				$isi 	=	$this->input->post('isimateri');
+
+
+			// INSERT NEW KONTEN MATERI
+			$data_materi 	= array("submateri_id" => $submateri,
+									"tipe" => $tipe,
+									"isi" => $isi);
+
+			if($this->db->insert('kontenmateri', $data_materi)){
+				redirect('materi');
+			} 	
+			else{
+				// ERROR
+				redirect('materi/tambahkonten');
+			}
+		}
+	}
+
+	public function getMateriJSON($idmapel){
+		$where 		=	array("mapel_id" => $idmapel);
+		$materi		=	$this->db->select('detail_mapel.materi_id as id_materi, materi.nama as nama_materi')
+									->from('detail_mapel')
+									->join('materi', 'detail_mapel.materi_id = materi.id')
+									->where($where)
+								->get()->result_array();
+		// push to array
+		$data 		= array();
+		foreach($materi as $materi){
+			$data[$materi['id_materi']] = $materi['nama_materi'];
+	    }
+		// return as encoded
+		echo json_encode($data);
+		exit;
+	}
+
+	public function getSubMateriJSON($idmateri){
+		$where 		=	array("materi_id" => $idmateri);
+		$submateri		=	$this->db->get_where('submateri', $where)->result_array();
+		// push to array
+		$data 		= array();
+		foreach($submateri as $submateri){
+			$data[$submateri['id']] = $submateri['nama'];
+	    }
+		// return as encoded
+		echo json_encode($data);
+		exit;
 	}
 }
