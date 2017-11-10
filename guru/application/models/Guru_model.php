@@ -137,6 +137,22 @@
             return $mapel;
         }
 
+
+        public static function getSubMateriDosen($dosen){
+            $CI =& get_instance();
+            $where  = array("dosen_id" => $dosen);
+            $mapel  = $CI->db->select("submateri.id as id_submateri, submateri.nama as nama_submateri")
+                            ->from("t_mapel")
+                            ->join("mata_pelajaran", "t_mapel.mapel_id = mata_pelajaran.id")
+                            ->join("detail_mapel", "detail_mapel.mapel_id = mata_pelajaran.id")
+                            ->join("materi", "detail_mapel.materi_id = materi.id")
+                            ->join("submateri", "submateri.materi_id = materi.id")
+                            ->where($where)
+                            ->get()
+                            ->result_array();
+            return $mapel;
+        }
+
         public static function getMateribyNama($nama){
             $CI =& get_instance();
             $where  = array("nama" => $nama);
@@ -169,5 +185,45 @@
             $materi  = $CI->db->get_where('kontenmateri',$where)->result_array();
             return $materi;
         }
+
+        public static function getMapelbyKonten($id){
+            $CI =& get_instance();
+            $where  = array("kontenmateri.id" => $id);
+            $mapel  = $CI->db->select('mata_pelajaran.nama as nama_mapel, materi.nama as nama_materi, submateri.nama as nama_submateri')
+                                ->from('mata_pelajaran')
+                                ->join('detail_mapel', 'detail_mapel.mapel_id = mata_pelajaran.id')
+                                ->join('materi', 'detail_mapel.materi_id = materi.id')
+                                ->join('submateri', 'submateri.materi_id = materi.id')
+                                ->join('kontenmateri', 'kontenmateri.submateri_id = submateri.id')
+                                ->where($where)
+                                ->get()
+                                ->result_array();
+            return $mapel;
+        }
+
+
+        public static function getTugasKonten($id){
+            $CI =& get_instance();
+            $where  = array("kontenmateri.id" => $id);
+            $mapel  = $CI->db->select('tugas.id as id_tugas, tugas.file as file_tugas, data_siswa.id as id_siswa, data_siswa.nama as nama_siswa, data_siswa.nim as nim_siswa')
+                                ->from('tugas')
+                                ->join('kontenmateri', 'kontenmateri.id = tugas.kontenmateri_id')
+                                ->join('data_siswa', 'data_siswa.id = tugas.siswa_id')
+                                ->where($where)
+                                ->get()
+                                ->result_array();
+            return $mapel;
+        }
+
+        public static function deleteKonten($id){
+            $CI =& get_instance();
+            $where  =   array('id' => $id);
+            if($CI->db->delete('kontenmateri', $where)){
+                return "Konten telah dihapus";
+            }else{
+                return "Konten gagal dihapus";
+            }
+        }
+
     }
 ?>

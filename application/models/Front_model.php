@@ -122,11 +122,11 @@
                     return $match->row();
                 }
                 else{
-                    return "Kata kunci tidak sesuai dengan nama pengguna tersebut. Mohon periksa kembali.";
+                    return "Kata kunci tidak sesuai dengan nama pengguna tersebut.";
                 }
             }
             else{
-                return "Nama pengguna tidak ditemukan. Mohon periksa kembali.";
+                return "Nama pengguna tidak ditemukan.";
             }
 
         }

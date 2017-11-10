@@ -64,8 +64,8 @@
                                         $kontenclass = kontenClass($submateri['id']);
                                         $kontenlab   = kontenLab($submateri['id']);
                                     ?>
-                                    <a href="<?php echo ($kontenclass > 0) ? base_url('detail_materi/').$kontenclass : base_url('materi')  ?>" class="btn activity action">Class Activity <?php echo ($kontenclass > 0) ? '' : 'Kosong'  ?></a>
-                                    <a href="<?php echo ($kontenlab > 0) ? base_url('detail_materi/').$kontenlab : base_url('materi')  ?>" class="btn lab action">Lab Activity <?php echo ($kontenlab > 0) ? '' : 'Kosong'  ?></a>
+                                    <a href="<?php echo ($kontenclass > 0) ? base_url('materi/activity/').$kontenclass : base_url('materi')  ?>" class="btn activity action">Class Activity <?php echo ($kontenclass > 0) ? '' : 'Kosong'  ?></a>
+                                    <a href="<?php echo ($kontenlab > 0) ? base_url('materi/activity/').$kontenlab : base_url('materi')  ?>" class="btn lab action">Lab Activity <?php echo ($kontenlab > 0) ? '' : 'Kosong'  ?></a>
                                 </div>
                             </div>
                             <?php

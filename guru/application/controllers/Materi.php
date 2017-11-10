@@ -121,19 +121,23 @@ class Materi extends CI_Controller {
 
 	public function ubahkonten($id)
 	{
-		$data['userid'] = $this->userid;
-		$data['mapel']	= $this->Guru_model->getMapelDosen($this->userid);
-		$data['konten']	= $this->Guru_model->getKontenDetail($id);
+		$data['userid'] 	= $this->userid;
+		$data['submateri']	= $this->Guru_model->getSubMateriDosen($this->userid);
+		$data['konten']		= $this->Guru_model->getKontenDetail($id);
 
-		$data['js']	= '';
+		$data['js']	= array('cdn/tinymce/tinymce.min.js');
 		$data['modal'] = '';
 		$data['validasi'] = array($this->load->view('template/js/dynamic_kontenmateri', NULL, TRUE));
 
 		$this->load->view('template/header');
-		$this->load->view('materi/tambahkonten', $data);
+		$this->load->view('materi/ubahkonten', $data);
 		$this->load->view('template/footer');
 	}
 
+	public function hapuskonten($id){
+		$hapus  	=	$this->Guru_model->deleteKonten($id);
+		redirect('materi');
+	}
 
 	public function doTambahKonten(){
 		if($_POST){
@@ -142,24 +146,83 @@ class Materi extends CI_Controller {
 			$tipe 		=	$this->input->post('kategori');
 
 			// JIKA UPLOAD FILE
-				// $isi = file
-			// JIKA TIDAK
+			if (!empty($_FILES['filemateri']['name'])) {
+				// CEK FILE EXTENSION
+				$file_ext = pathinfo($file_name,PATHINFO_EXTENSION);
+				$folder   = '';
+				if($file_ext == 'pdf'){
+					// PDF
+					$config['upload_path']          = realpath('./../')."/upload/materi/pdf";	
+					$folder 	= 'pdf/';
+				}
+				else
+				{
+					// VIDEO
+					$config['upload_path']          = realpath('./../')."/upload/materi/video";	
+					$folder 	= 'video/';
+				}
+
+		    	$config['allowed_types']        = 'pdf|mp4|webm|oggv';
+		    	$config['file_name']			= $submateri.'-'.$_FILES['filemateri']['name'];
+
+	            $this->load->library('upload');
+	            $this->upload->initialize($config);
+
+	            if(!$this->upload->do_upload('filemateri'))
+                {
+                        echo $this->upload->display_errors();
+                }
+                else
+                {
+                        $isi = $folder.$this->upload->data('file_name');
+						chmod($config['upload_path'].'/'.$isi, 0777); // note that it's usually changed to 0755
+                }
+
+			}
+			else{
+				// JIKA TIDAK
 				$isi 	=	$this->input->post('isimateri');
+			}
 
-
-			// INSERT NEW KONTEN MATERI
 			$data_materi 	= array("submateri_id" => $submateri,
 									"tipe" => $tipe,
 									"isi" => $isi);
 
-			if($this->db->insert('kontenmateri', $data_materi)){
-				redirect('materi');
-			} 	
-			else{
-				// ERROR
-				redirect('materi/tambahkonten');
+
+			// CEK JIKA KONTEN MATERI UNTUK TIPE TSB SUDAH ADA
+			$where2 		= array('submateri_id' => $submateri, 'tipe' => $tipe);
+			$konten_exist 	= $this->db->get_where('kontenmateri', $where2)->num_rows();
+
+			if($konten_exist > 0){
+				// UPDATE
+				$id_exist 	= $this->db->get_where('kontenmateri', $where2)->row()->id;
+				$this->db->where('id',$id_exist);
+				if($this->db->update('kontenmateri', $data_materi)){
+					redirect('materi');
+				}
 			}
+			else{
+				if($this->db->insert('kontenmateri', $data_materi)){
+					redirect('materi');
+				}	
+			}
+			redirect('materi/tambahkonten');
 		}
+	}
+
+	public function activity($id)
+	{
+		$data['materi'] = $this->Guru_model->getMapelbyKonten($id);
+		$data['konten']	= $this->Guru_model->getKontenDetail($id);
+		$data['tugas']  = $this->Guru_model->getTugasKonten($id);
+
+		$data['js']	= '';
+		$data['modal'] = '';
+		$data['validasi'] = array($this->load->view('template/js/dynamic_tabkonten', NULL, TRUE));
+
+		$this->load->view('template/header');
+		$this->load->view('materi/konten', $data);
+		$this->load->view('template/footer');
 	}
 
 	public function getMateriJSON($idmapel){

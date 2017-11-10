@@ -24,6 +24,13 @@ function getSubMateri($materi){
     return $submateri;   
 }
 
+function getSubMateriNama($id){
+    $CI =& get_instance();
+    $where  =   array("id" => $id);
+    $nama  = $CI->db->get_where('submateri', $where)->row()->nama;
+    return $nama;   
+}
+
 function getKontenSubMateri($submateri){
     $CI =& get_instance();
     $where  =   array("submateri_id" => $submateri);
@@ -33,7 +40,7 @@ function getKontenSubMateri($submateri){
 
 function kontenLab($submateri){
     $CI =& get_instance();
-    $where  =   array("submateri_id" => $submateri, "tipe" => 2);
+    $where  =   array("submateri_id" => $submateri, "tipe" => 'lab');
     $exist  = $CI->db->get_where('kontenmateri', $where)->num_rows();
     if($exist > 0)  {
         return $CI->db->get_where('kontenmateri', $where)->row()->id;
@@ -45,7 +52,7 @@ function kontenLab($submateri){
 
 function kontenClass($submateri){
     $CI =& get_instance();
-    $where  =   array("submateri_id" => $submateri, "tipe" => 1);
+    $where  =   array("submateri_id" => $submateri, "tipe" => 'class');
     $exist  = $CI->db->get_where('kontenmateri', $where)->num_rows();
     if($exist > 0)  {
         return $CI->db->get_where('kontenmateri', $where)->row()->id;

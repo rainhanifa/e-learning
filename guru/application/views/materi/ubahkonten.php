@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <h1 class="reg-heading">Form Tambah Konten Materi</h1>
+        <h1 class="reg-heading">Form Ubah Konten Materi</h1>
     </div>
 </div>
 
@@ -21,39 +21,16 @@
 
 <section class="form-reg">
     <div class="container">
-        <form name="formtmkonten" id="formtmkonten" method="post" action="<?php echo base_url('materi/doTambahKontenMateri') ?>" enctype="multipart/form-data" class="form-group" role="form">
-            <div class="row item-reg">
-                <div class="col-lg-1 col-md-2 col-sm-3 col-xs-12">
-                    <label for="mapel" class="control-label">Mata Kuliah</label>
-                </div>
-                <div class="col-lg-11 col-md-10 col-sm-9 col-xs-12">
-                    <select name="mapel" class="form-control" id="mapel">
-                        <option value="">-- Pilih Mata Kuliah --</option>
-                        <?php foreach($mapel as $mapel){ ?>
-                            <option value="<?php echo $mapel['id_mapel']?>"><?php echo $mapel['nama_mapel']?></option>
-                        <?php }?>
-                    </select>
-                    <label class="clues">Pilih salah satu materi</label>
-                </div>
-            </div>
-            <div class="row item-reg">
-                <div class="col-lg-1 col-md-2 col-sm-3 col-xs-12">
-                    <label for="materi" class="control-label">Materi</label>
-                </div>
-                <div class="col-lg-11 col-md-10 col-sm-9 col-xs-12">
-                    <select name="materi" class="form-control" id="materi">
-                        <option value="">-- Pilih Materi --</option>
-                    </select>
-                    <label class="clues">Pilih salah satu materi</label>
-                </div>
-            </div>
+        <?php foreach($konten as $konten) { ?>
+        <form name="formtmkonten" id="formtmkonten" method="post" action="<?php echo base_url('materi/doTambahKonten') ?>" enctype="multipart/form-data" class="form-group" role="form">
             <div class="row item-reg">
                 <div class="col-lg-1 col-md-2 col-sm-3 col-xs-12">
                     <label for="submateri" class="control-label">Sub Materi</label>
                 </div>
                 <div class="col-lg-11 col-md-10 col-sm-9 col-xs-12">
                     <select name="submateri" class="form-control" id="submateri">
-                        <option value="">-- Pilih Sub Materi --</option>
+                            <option value="<?php echo $konten['submateri_id']?>" selected><?php echo getSubMateriNama($konten['submateri_id'])?>
+                            </option>
                     </select>
                     <label class="clues">Pilih salah satu submateri</label>
                 </div>
@@ -65,9 +42,8 @@
                 </div>
                 <div class="col-lg-11 col-md-10 col-sm-9 col-xs-12">
                     <select name="kategori" class="form-control" id="kategori">
-                        <option value="">-- Pilih Kategori --</option>
-                        <option value="class">Class Activity</option>
-                        <option value="lab">Lab Activity</option>
+                        <option value="class" <?php ($konten['tipe'] == 'class') ? 'selected' : '' ?>>Class Activity</option>
+                        <option value="lab" <?php ($konten['tipe'] == 'lab') ? 'selected' : '' ?>>Lab Activity</option>
                     </select>
                     <label class="clues">Pilih kategori sesuai dengan modul yang dibuat</label>
                 </div>
@@ -77,9 +53,32 @@
                     <label for="isimateri" class="control-label">Isi Materi</label>
                 </div>
                 <div class="col-lg-11 col-md-10 col-sm-9 col-xs-12">
-                
-                    <textarea name="isimateri" id="isimateri" rows="20"></textarea>
-                    <label class="clues">Silahkan masukkan materi untuk modul anda (teks, gambar)</label>
+                    <?php
+                        $tipekonten = substr($konten['isi'],0,3);
+                        $filename = "http://localhost/e-learning/upload/materi/".$konten['isi'];
+                        if($tipekonten == "pdf"){       
+                            ?>
+                            <iframe src="http://localhost/e-learning/public/js/pdfjs/web/viewer.html?file=<?php echo $filename?>#zoom=page-auto"></iframe>
+                            <br/>
+                        <?php
+                        }
+                        else if($tipekonten == "vid"){
+                            //$filename =  realpath(dirname(__DIR__)."/../../materi".$data['konten']);
+                            ?>
+                            <div class="video-konten embed-responsive embed-responsive-16by9">
+                                <video controls src="<?php echo $filename?>" class="embed-responsive-item">
+                                    Browser Anda tidak mendukung Video Player HTML5.
+                                </video> 
+                            </div>
+                            <br/>
+                            <?php
+                        }
+                        ?>
+                            <!-- FIELD INPUT -->
+                            <textarea name="isimateri" id="isimateri" rows="20">
+                            <?php echo ($tipekonten != 'pdf' && $tipekonten != 'vid') ? $konten['isi'] : '' ;?>
+                            </textarea>
+                            <label class="clues">Silahkan masukkan materi untuk modul anda (teks, gambar)</label>
                 </div>
             </div>
             <div class="row item-reg">
@@ -96,5 +95,6 @@
                 <input type="submit" name="finish_reg" value="Selesai" class="btn btn-default">
             </div>
         </form>
+        <?php } ?>
     </div>
 </section>
