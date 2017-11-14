@@ -129,7 +129,7 @@
                                                     </li>
                                                     <li class="divider"></li>
                                                     <li>
-                                                        <a href="<?php echo base_url('mapel') ?>">Mata Pelajaran</a>
+                                                        <a href="<?php echo base_url('mapel') ?>">Mata Kuliah</a>
                                                     </li>
                                                     <li class="divider"></li>
                                                     <li>

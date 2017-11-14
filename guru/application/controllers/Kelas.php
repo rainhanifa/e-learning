@@ -52,4 +52,24 @@ class Kelas extends CI_Controller {
 			redirect("kelas");
 		}
 	}
+
+	public function mapel($kelas = 0)
+	{	
+		if($kelas > 0){
+			$data['js'] = '';
+			$data['validasi'] = '';
+			$data['modal'] = '';
+
+			//DETAIL KELAS
+			$data['kelas'] 		= $this->Guru_model->get_kelas_by_id($kelas);
+			$data['mapel'] 		= $this->Guru_model->get_mapel_by_kelas($kelas);
+			$this->load->view('template/header');
+			$this->load->view('kelas/mapel', $data);
+			$this->load->view('template/footer');	
+		}
+		else
+		{
+			redirect("kelas");
+		}
+	}
 }

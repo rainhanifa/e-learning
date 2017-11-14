@@ -15,21 +15,15 @@
                 if(is_array($kelas)){
             ?>
 
-                <table class="table table-border text-center">
-                    <tr>
-                        <th class="text-center">Nama Kelas</th>
-                        <th class="text-center">Angkatan</th>
-                        <th class="text-center">Jumlah Siswa</th>
-                        <th class="text-center"></th>
-                    </tr>
+                <table class="table table-no-border">
             <?php
                     foreach($kelas as $data){
             ?>
                     <tr>
                         <td><?php echo $data['nama']?></td>    
                         <td><?php echo $data['tahun']."/".($data['tahun']+1)?></td>
-                        <td><?php echo getTotalSiswa($data['id'])?></td>
-                        <td><a href="<?php echo base_url('kelas/detail/').$data['id']?>" class="btn btn-primary">Daftar Siswa</a></td>
+                        <td><?php echo getTotalSiswa($data['id'])?> mahasiswa</td>
+                        <td><a href="<?php echo base_url('kelas/detail/').$data['id']?>" class="btn btn-primary">Data Siswa</a> <a href="<?php echo base_url('kelas/mapel/').$data['id']?>" class="btn btn-primary">Data Mata Kuliah</a></td>
                     </tr>
         <?php           } ?>
                 </table>          

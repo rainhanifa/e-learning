@@ -79,10 +79,24 @@
             return $dosen;
         }
 
-
         public static function get_mapel(){
             $CI     =& get_instance();
             $mapel  = $CI->db->get("mata_pelajaran")->result_array();
+            return $mapel;
+        }
+
+
+        public static function get_mapel_by_kelas($kelas){
+            $CI     =& get_instance();
+            $where  = array('t_jadwal.kelas_id' => $kelas);
+            $mapel  = $CI->db->select('t_jadwal.id as id_jadwal, mata_pelajaran.nama as nama_mapel, data_guru.nama as nama_guru')
+                        ->from('t_jadwal')
+                        ->join('t_mapel', 't_jadwal.t_mapel_id = t_mapel.id')
+                        ->join('mata_pelajaran', 't_mapel.mapel_id = mata_pelajaran.id')
+                        ->join('data_guru', 't_mapel.dosen_id = data_guru.id')
+                        ->where($where)
+                        ->get()
+                        ->result_array();
             return $mapel;
         }
 

@@ -8,7 +8,7 @@
 
         public static function get_kelas(){
             $CI     =& get_instance();
-            return $CI->db->get("data_kelas")->result_array();;
+            return $CI->db->get("data_kelas")->result_array();
         }
 
         public static function get_profil($username){
@@ -25,6 +25,11 @@
         				->join('data_kelas', 'detail_kelas.kelas_id = data_kelas.id')
         				->where('login.username = "'.$username.'"')->get()->result_array();
         	return $profil;
+        }
+
+        public static function get_mapel(){
+            $CI     =& get_instance();
+            return $CI->db->get("data_kelas")->result_array();
         }
 
     }
