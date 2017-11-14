@@ -81,7 +81,8 @@
         
                                     ?>
                                     <ul class="nav navbar-nav">
-                                    <?php if($this->session->level == 1){ ?>
+                                    <?php
+                                        if($this->session->level == 1){ ?>
                                         <li class="<?php echo $halaman == 'beranda' ? 'active' : '' ?>">
                                             <a href="<?php echo base_url('beranda');?>">Beranda</a>
                                             <span class="<?php echo $halaman == 'beranda' ? 'home' : '' ?>"></span>
@@ -89,6 +90,10 @@
                                         <li class="<?php echo $halaman == 'profil' ? 'active' : '' ?>">
                                             <a href="<?php echo base_url('profil');?>">Profil</a>
                                             <span class="<?php echo $halaman == 'profil' ? 'user' : '' ?>"></span>
+                                        </li>
+                                        <li class="<?php echo $halaman == 'mapel' ? 'active' : '' ?>">
+                                            <a href="<?php echo base_url('mapel');?>">Mata Kuliah</a>
+                                            <span class="<?php echo $halaman == 'mapel' ? 'mapel' : '' ?>"></span>
                                         </li>
                                         <li class="<?php echo $halaman == 'materi' ? 'active' : '' ?>">
                                             <a href="<?php echo base_url('materi');?>">Materi</a>
@@ -104,6 +109,14 @@
                                         </li>
                                     <?php } ?>
                                     <?php if($this->session->level == 9){ ?>
+                                        <li class="<?php echo $halaman == 'beranda' ? 'active' : '' ?>">
+                                            <a href="<?php echo base_url('beranda');?>">Beranda</a>
+                                            <span class="<?php echo $halaman == 'beranda' ? 'home' : '' ?>"></span>
+                                        </li>
+                                        <li class="<?php echo $halaman == 'profil' ? 'active' : '' ?>">
+                                            <a href="<?php echo base_url('profil');?>">Profil</a>
+                                            <span class="<?php echo $halaman == 'profil' ? 'user' : '' ?>"></span>
+                                        </li>
                                             <li class="dropdown">
                                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Data Master <span class="caret"></span></a>
                                                 <ul class="dropdown-menu" role="menu">

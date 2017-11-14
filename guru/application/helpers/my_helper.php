@@ -1,4 +1,5 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 function getTotalSiswa($kelas){
     $CI =& get_instance();
@@ -61,4 +62,37 @@ function kontenClass($submateri){
         return 0;
     }
 }
+
+function getTugasSiswa($idkonten){
+    $CI =& get_instance();
+    $where  =   array("kontenmateri_id" => $idkonten);
+    $tugas  = $CI->db->select("tugas.id as id_tugas, data_siswa.nama as nama_siswa, tugas.file as file_tugas")
+                    ->from('tugas')
+                    ->join('data_siswa', 'tugas.siswa_id = data_siswa.id')
+                    ->where($where)
+                    ->get()
+                ->result_array();
+    return $tugas;   
+}
+
+function getKomentar($idkonten){
+    $CI =& get_instance();
+    $where  =   array("kontenmateri_id" => $idkonten);
+    $komentar  = $CI->db->order_by('tanggal', 'DESC')->get_where('komentar', $where)->result_array();
+    return $komentar;   
+}
+
+function getNama($userid, $level){
+    $CI =& get_instance();
+    $where  =   array("id" => $userid);
+
+    if($level == 2){
+        $nama = $CI->db->get_where('data_siswa', $where)->row()->nama;
+    }
+    else{
+        $nama = $CI->db->get_where('data_guru', $where)->row()->nama;   
+    }
+    return $nama;
+}
+
 ?>

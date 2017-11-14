@@ -138,6 +138,21 @@
         }
 
 
+        public static function getMateriDosenbyMapel($dosen, $mapel){
+            $CI =& get_instance();
+            $where  = array("dosen_id" => $dosen, "mata_pelajaran.id" => $mapel);
+            $mapel  = $CI->db->select("mata_pelajaran.nama as nama_mapel,
+                                    materi.nama as nama_materi, materi.id as id_materi")
+                            ->from("t_mapel")
+                            ->join("mata_pelajaran", "t_mapel.mapel_id = mata_pelajaran.id")
+                            ->join("detail_mapel", "detail_mapel.mapel_id = mata_pelajaran.id")
+                            ->join("materi", "detail_mapel.materi_id = materi.id")
+                            ->where($where)
+                            ->get()
+                            ->result_array();
+            return $mapel;
+        }
+
         public static function getSubMateriDosen($dosen){
             $CI =& get_instance();
             $where  = array("dosen_id" => $dosen);

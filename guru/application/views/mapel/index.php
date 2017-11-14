@@ -7,7 +7,7 @@
 <section class="profil-guru">
     <div class="container">
         <div class="row">
-            <span><a data-toggle="modal" href="#tambah" data-dismiss="#tambah-dosen" class="btn btn-primary">Tambah Mata Kuliah</a></span>
+            <span><a data-toggle="modal" href="#tambah" data-dismiss="#tambah-dosen" class="btn btn-default add">Tambah Mata Kuliah</a></span>
             <br/><br/>
             <?php
                 if(is_array($mapel)){

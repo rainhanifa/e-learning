@@ -1,4 +1,3 @@
-
                 <script type="text/javascript">
                     $(document).ready(function(){
                         $('#mapel').change(function(){

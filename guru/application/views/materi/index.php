@@ -1,13 +1,19 @@
+<div class="container">
+    <div class="row">
+        <h1 class="reg-heading">Materi Dosen</h1>
+    </div>
+</div>
+<!--
 <section>
     <div class="container">
         <div class="row reg-heading">
             <h1 class="text-center">Daftar Materi</h1>
         </div>
         <div class="row form-cari materi">
-            <form name="carimateri" id="carimateri" method="post" action="<?php echo base_url('materi/cari') ?>" role="form" class="form-group">
+            <form name="carimateri" id="carimateri" method="post" action="<php echo base_url('materi/cari') ?>" role="form" class="form-group">
                 <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
                     <select name="category" form="carimateri" class="form-control">
-                        <option value="">--- Kategori Pencarian ---</option> 
+                        <option value="">- Kategori Pencarian -</option> 
                         <option value="materi">Materi</option>
                         <option value="submateri">Submateri</option>
                     </select>
@@ -25,6 +31,7 @@
         </div> 
     </div>
 </section>
+-->
 
 <section class="all-materi">
     <div class="container">

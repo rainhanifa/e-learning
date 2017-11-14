@@ -33,6 +33,19 @@ class Materi extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 
+	public function byMapel($id)
+	{
+		$data['js']	= '';
+		$data['modal'] = '';
+		$data['validasi'] = '';
+
+		$data['materi'] = $this->Guru_model->getMateriDosenbyMapel($this->userid,$id);
+
+		$this->load->view('template/header');
+		$this->load->view('materi/index', $data);
+		$this->load->view('template/footer');
+	}
+
 	public function tambah()
 	{
 		$data['userid'] = $this->userid;
@@ -217,12 +230,30 @@ class Materi extends CI_Controller {
 		$data['tugas']  = $this->Guru_model->getTugasKonten($id);
 
 		$data['js']	= '';
-		$data['modal'] = '';
+		$data['modal'] =  '';
 		$data['validasi'] = array($this->load->view('template/js/dynamic_tabkonten', NULL, TRUE));
 
 		$this->load->view('template/header');
 		$this->load->view('materi/konten', $data);
 		$this->load->view('template/footer');
+	}
+
+	public function komentar(){
+		$subyek		=	$this->input->post('subyek');
+		$komentar	=	$this->input->post('komentar');
+		$kontenmateri	=	$this->input->post('kontenmateri');
+
+		$data_komentar	= array("user_id" 		=> $this->userid,
+								"level"			=> $this->session->userdata('level'),
+								"kontenmateri_id" => $kontenmateri,
+								"subyek"	=> $subyek,
+								"deskripsi"	=> $komentar,
+								"tanggal"	=> date("H:i:s Y-m-d")
+								);
+		if($this->db->insert('komentar', $data_komentar)){
+			echo "OK";
+		}
+		redirect("materi/activity/".$kontenmateri);
 	}
 
 	public function getMateriJSON($idmapel){

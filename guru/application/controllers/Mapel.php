@@ -9,7 +9,7 @@ class Mapel extends CI_Controller {
         parent::__construct();
 
         // CHECK LOGIN
-        if($this->session->userdata('level') != 9){
+        if(!$this->session->userdata('level')){
         	$this->session->set_flashdata("error","Anda harus login untuk mengakses halaman ini ");
         	redirect("../auth/masuk");
         }
@@ -17,9 +17,8 @@ class Mapel extends CI_Controller {
         // MODEL
         $this->load->model("Guru_model");
 
-        // JS
-		$data['js'] = '';
-		$data['validasi'] = '';
+        // SET USER ID
+        $this->userid = $this->session->userdata('userid');
     }
 	
 
@@ -28,10 +27,23 @@ class Mapel extends CI_Controller {
 		$data['js'] = '';
 		$data['validasi'] = '';
 		$data['modal']	= array($this->load->view("template/modal/tambah_mapel", NULL, TRUE));
-		// DATA MAPEL
-		$data['mapel'] 		= $this->Guru_model->get_mapel();
+
+		
 		$this->load->view('template/header');
-		$this->load->view('mapel/index', $data);
+
+		if($this->session->userdata('level') == 1){
+			// DATA MAPEL UNTUK GURU
+			$data['mapel'] 		= $this->Guru_model->getMapelDosen($this->userid);
+			$this->load->view('mapel/index-guru', $data);	
+		}
+		else
+		{
+			// DATA MAPEL UNTUK ADMIN
+			$data['mapel'] 		= $this->Guru_model->get_mapel();
+			$this->load->view('mapel/index', $data);		
+		}
+		
+
 		$this->load->view('template/footer');
 	}
 
