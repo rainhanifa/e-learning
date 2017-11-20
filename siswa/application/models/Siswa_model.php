@@ -32,5 +32,30 @@
             return $CI->db->get("data_kelas")->result_array();
         }
 
+        public static function get_mapel_kelas($kelas){
+            $CI     =& get_instance();
+            $where  = array("kelas_id" => $kelas);
+
+            $mapel  =   $CI->db->select('mata_pelajaran.id as id_mapel, mata_pelajaran.nama as nama_mapel,
+                                data_guru.id as id_guru, data_guru.nama as nama_guru')
+                                ->from('t_jadwal')
+                                ->join('t_mapel', 't_mapel.id = t_jadwal.t_mapel_id')
+                                ->join('mata_pelajaran', 't_mapel.mapel_id = mata_pelajaran.id')
+                                ->join('data_guru', 't_mapel.dosen_id = data_guru.id')
+                            ->where($where)->get()->result_array();
+            return $mapel;
+        }
+
+        public static function get_mapel_siswa($username){
+            $CI     =& get_instance();
+            $where  = array("username" => $username);
+
+            $data_siswa = $CI->Siswa_model->get_profil($username);
+            $id_kelas   = $data_siswa[0]['id_kelas'];
+
+            $mapel  = $CI->Siswa_model->get_mapel_kelas($id_kelas);
+            return $mapel;
+        }
+
     }
 ?>

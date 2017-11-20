@@ -58,7 +58,7 @@ class Kelas extends CI_Controller {
 		if($kelas > 0){
 			$data['js'] = '';
 			$data['validasi'] = '';
-			$data['modal'] = '';
+			$data['modal'] = array($this->load->view("template/modal/tambah_mapel", NULL, TRUE));
 
 			//DETAIL KELAS
 			$data['kelas'] 		= $this->Guru_model->get_kelas_by_id($kelas);

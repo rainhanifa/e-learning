@@ -19,6 +19,7 @@
                         <td><?php echo $mapel['nama_mapel']?></td>    
                         <td>
                                 <a href="<?php echo base_url('materi/bymapel/').$mapel['id_mapel']?>" class="btn btn-primary">Lihat Materi</a>
+                                <a href="<?php echo base_url('rapor/bymapel/').$mapel['id_mapel']?>" class="btn btn-primary">Lihat Nilai</a>
                         </td>
                     </tr>
         <?php           } ?>

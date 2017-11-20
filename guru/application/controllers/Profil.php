@@ -26,6 +26,7 @@ class Profil extends CI_Controller {
         // JS
 		$data['js'] = '';
 		$data['validasi'] = '';
+		$data['modal'] = '';
 
 		//PROFIL SISWA
 		$data['profil'] = $this->Guru_model->get_profil($this->username, $this->session->userdata('level'));
@@ -39,6 +40,7 @@ class Profil extends CI_Controller {
         // JS
 		$data['js']			= array('form-validator/formValidation.js', 'form-validator/bootstrap.js');
 		$data['validasi']	= array($this->load->view('template/js/validasi_ubahprofil', NULL, TRUE));
+		$data['modal'] = '';
 
 		//PROFIL SISWA
 		$data['profil'] = $this->Guru_model->get_profil($this->username, $this->session->level);

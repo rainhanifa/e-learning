@@ -2,10 +2,15 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Beranda extends CI_Controller {
+	var $username = '';
 
 	public function __construct()
     {
         parent::__construct();
+
+        // MODEL
+        $this->load->model("Siswa_model");
+
         // JS
 
 		$data['js'] = '';
@@ -16,10 +21,23 @@ class Beranda extends CI_Controller {
         	$this->session->set_flashdata("error","Anda harus login untuk mengakses halaman ini ");
         	redirect("../auth/masuk");
         }
+
+        $this->username = $this->session->userdata('username');
     }
 	
 
 	public function index()
+	{
+		$data['js'] = '';
+		$data['validasi'] = '';
+
+		//MAPEL PILIHAN SESUAI KELAS
+		$data['mapel'] = $this->Siswa_model->get_mapel_siswa($this->username);
+
+		$this->load->view('beranda/mapel', $data);
+	}
+
+	public function materi()
 	{
 		$data['js'] = '';
 		$data['validasi'] = '';
