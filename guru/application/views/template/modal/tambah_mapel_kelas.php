@@ -4,7 +4,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content infotrophy-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Tambah Dosen Mata Kuliah</h4>
+                <h4 class="modal-title" id="myModalLabel">Tambah Mata Kuliah</h4>
             </div>
             <div class="modal-body">
                 <div id="container_update">

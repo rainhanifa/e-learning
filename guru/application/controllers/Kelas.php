@@ -58,11 +58,13 @@ class Kelas extends CI_Controller {
 		if($kelas > 0){
 			$data['js'] = '';
 			$data['validasi'] = '';
-			$data['modal'] = array($this->load->view("template/modal/tambah_mapel", NULL, TRUE));
+			$data['modal'] = '';
 
 			//DETAIL KELAS
 			$data['kelas'] 		= $this->Guru_model->get_kelas_by_id($kelas);
-			$data['mapel'] 		= $this->Guru_model->get_mapel_by_kelas($kelas);
+			$data['mapel'] 		= $this->Guru_model->get_mapel_kelas($kelas);
+			$data['available_mapel'] 		= $this->Guru_model->getAvailableMapelKelas($kelas);
+
 			$this->load->view('template/header');
 			$this->load->view('kelas/mapel', $data);
 			$this->load->view('template/footer');	
@@ -70,6 +72,24 @@ class Kelas extends CI_Controller {
 		else
 		{
 			redirect("kelas");
+		}
+	}
+
+	public function tambah_mapel(){
+		if($_POST){
+			$mapel 	=	$this->input->post('mapel');
+			$kelas 	=	$this->input->post('kelas');
+
+			// GET T_MAPEL
+
+			$data_jadwal	=	array("t_mapel_id" => $mapel,
+										"kelas_id" => $kelas,
+										"tahun" => date('Y'),
+										"jam" => date('H:i'));
+
+			if($this->db->insert('t_jadwal', $data_jadwal)){
+				redirect("kelas/mapel/".$kelas);
+			}
 		}
 	}
 }

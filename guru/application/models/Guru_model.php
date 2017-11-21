@@ -86,10 +86,10 @@
         }
 
 
-        public static function get_mapel_by_kelas($kelas){
+        public static function get_mapel_kelas($kelas){
             $CI     =& get_instance();
             $where  = array('t_jadwal.kelas_id' => $kelas);
-            $mapel  = $CI->db->select('t_jadwal.id as id_jadwal, mata_pelajaran.nama as nama_mapel, data_guru.nama as nama_guru')
+            $mapel  = $CI->db->select('t_jadwal.id as id_jadwal, mata_pelajaran.nama as nama_mapel, data_guru.nama as nama_dosen')
                         ->from('t_jadwal')
                         ->join('t_mapel', 't_jadwal.t_mapel_id = t_mapel.id')
                         ->join('mata_pelajaran', 't_mapel.mapel_id = mata_pelajaran.id')
@@ -127,7 +127,7 @@
         public static function getMapelDosen($dosen){
             $CI =& get_instance();
             $where  = array("dosen_id" => $dosen);
-            $mapel  = $CI->db->select("mapel_id as id_mapel, nama as nama_mapel")
+            $mapel  = $CI->db->select("t_mapel.id as id_mapel, nama as nama_mapel")
                             ->from("t_mapel")
                             ->join("mata_pelajaran", "t_mapel.mapel_id = mata_pelajaran.id")
                             ->where($where)
@@ -143,7 +143,7 @@
                                     materi.nama as nama_materi, materi.id as id_materi")
                             ->from("t_mapel")
                             ->join("mata_pelajaran", "t_mapel.mapel_id = mata_pelajaran.id")
-                            ->join("detail_mapel", "detail_mapel.mapel_id = mata_pelajaran.id")
+                            ->join("detail_mapel", "detail_mapel.t_mapel_id = t_mapel.id")
                             ->join("materi", "detail_mapel.materi_id = materi.id")
                             ->where($where)
                             ->get()
@@ -159,7 +159,7 @@
                                     materi.nama as nama_materi, materi.id as id_materi")
                             ->from("t_mapel")
                             ->join("mata_pelajaran", "t_mapel.mapel_id = mata_pelajaran.id")
-                            ->join("detail_mapel", "detail_mapel.mapel_id = mata_pelajaran.id")
+                            ->join("detail_mapel", "detail_mapel.t_mapel_id = t_mapel.id")
                             ->join("materi", "detail_mapel.materi_id = materi.id")
                             ->where($where)
                             ->get()
@@ -173,7 +173,7 @@
             $mapel  = $CI->db->select("submateri.id as id_submateri, submateri.nama as nama_submateri")
                             ->from("t_mapel")
                             ->join("mata_pelajaran", "t_mapel.mapel_id = mata_pelajaran.id")
-                            ->join("detail_mapel", "detail_mapel.mapel_id = mata_pelajaran.id")
+                            ->join("detail_mapel", "detail_mapel.t_mapel_id = t_mapel.id")
                             ->join("materi", "detail_mapel.materi_id = materi.id")
                             ->join("submateri", "submateri.materi_id = materi.id")
                             ->where($where)
@@ -220,13 +220,28 @@
             $where  = array("kontenmateri.id" => $id);
             $mapel  = $CI->db->select('mata_pelajaran.nama as nama_mapel, materi.nama as nama_materi, submateri.nama as nama_submateri')
                                 ->from('mata_pelajaran')
-                                ->join('detail_mapel', 'detail_mapel.mapel_id = mata_pelajaran.id')
+                                ->join('t_mapel', 't_mapel.mapel_id = mata_pelajaran.id')
+                                ->join('detail_mapel', 'detail_mapel.t_mapel_id = t_mapel.id')
                                 ->join('materi', 'detail_mapel.materi_id = materi.id')
                                 ->join('submateri', 'submateri.materi_id = materi.id')
                                 ->join('kontenmateri', 'kontenmateri.submateri_id = submateri.id')
                                 ->where($where)
                                 ->get()
                                 ->result_array();
+            return $mapel;
+        }
+
+
+        public static function getAvailableMapelKelas($id_kelas){
+            $CI =& get_instance();
+            $mapel  = $CI->db->query("SELECT t_mapel.id as id_mapel, mata_pelajaran.nama as nama_mapel,
+                                        data_guru.nama as nama_dosen
+                                        FROM mata_pelajaran
+                                        JOIN t_mapel ON t_mapel.mapel_id = mata_pelajaran.id
+                                        JOIN data_guru ON t_mapel.dosen_id = data_guru.id
+                                        WHERE t_mapel.id NOT IN
+                                        (SELECT t_mapel_id FROM t_jadwal WHERE t_jadwal.kelas_id = ".$id_kelas.")
+                                    ")->result_array();
             return $mapel;
         }
 

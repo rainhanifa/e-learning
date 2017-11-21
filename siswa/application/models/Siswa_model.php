@@ -57,5 +57,14 @@
             return $mapel;
         }
 
+
+        public static function get_materi_siswa($username, $mapel){
+            $CI     =& get_instance();
+            $where  = array("mapel_id" => $mapel);
+
+            $mapel  =  $CI->db->get('mata_pelajaran')->result_array();
+            return $mapel;
+        }
+
     }
 ?>

@@ -96,7 +96,7 @@ class Materi extends CI_Controller {
 				if($this->db->insert('materi', $data_materi)){
 					// INSERT KE TABEL DETAIL MAPEL
 					$materi_id 			= $this->db->insert_id();
-					$data_detail		= array("mapel_id" => $mapel,
+					$data_detail		= array("t_mapel_id" => $mapel,
 												"materi_id" => $materi_id);
 					$this->db->insert('detail_mapel', $data_detail);
 				}
@@ -257,10 +257,11 @@ class Materi extends CI_Controller {
 	}
 
 	public function getMateriJSON($idmapel){
-		$where 		=	array("mapel_id" => $idmapel);
+		$where 		=	array("t_mapel_id" => $idmapel);
 		$materi		=	$this->db->select('detail_mapel.materi_id as id_materi, materi.nama as nama_materi')
 									->from('detail_mapel')
 									->join('materi', 'detail_mapel.materi_id = materi.id')
+									->join('t_mapel', 't_mapel.id = detail_mapel.t_mapel_id')
 									->where($where)
 								->get()->result_array();
 		// push to array

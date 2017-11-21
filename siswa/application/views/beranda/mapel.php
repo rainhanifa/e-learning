@@ -36,7 +36,9 @@
                     <h3 class="text-center" style='color:white;'>Silakan Pilih Mata Kuliah </h3>
                     <hr/>
                     <?php foreach ($mapel as $mapel) { ?>
-                    <a class="btn btn-large btn-success">Mata Kuliah 1</a></li>
+                    <div class="row">
+                        <h4><a class="label label-success" href="<?php echo base_url('beranda/mapel/').$mapel['id_mapel']?>"><?php echo $mapel['nama_mapel']?></a></h4>
+                    </div>
                     <?php } ?>
                 </form>
             </div>

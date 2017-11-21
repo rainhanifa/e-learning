@@ -22,6 +22,92 @@
                     </div>
                 </div>
             </div>
+
+            <!-- RIGHT CONTENT -->
+            <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 right-content">
+                <div class="header-listmateri text-center">
+                    <h6>Daftar Materi</h6>
+                </div>
+                <div class="body-listmateri">
+                       <ul class="detail-listmateri">
+                           <!-- Mengecek materi apakah materi tersebut sedang dalam pengerjaan atau tidak -->
+                           <?php foreach($materi as $materi){?>
+                           <li>
+                               <p><?php echo strtoupper($materi['nama'])?></p>
+                               <ul>
+                                    <?php
+                                        $submateri = getSubMateri($materi['id']);
+                                        foreach($submateri as $submateri){
+                                    ?>
+                                    <li><?php echo $submateri['nama']?></li>
+                                    <?php } ?>
+                               </ul>
+                           </li>
+                           <?php } ?>
+                       </ul>
+
+                    <!-- 
+                        <ul class="detail-listmateri">
+                            <!-- Materi selanjutnya 
+                            <li>
+                                <p><a href="index.php">NEXT MATERI</a></p>
+                            </li>
+                            <!-- Materi yang sudah selesai 
+                                <ul>
+                                    <li class="finish">
+                                        <p>
+                                            <a href="index.php?p=me&sm=&cm=class">
+                                                MATERI SUDAH SELESAI (LULUS)
+                                            </a>
+                                        </p>
+                                        <span class="check"></span> 
+                                    </li>
+                                </ul>
+                            <!-- Materi yang sedang dalam proses pengerjaan dimana salah satu sudah selesai dikerjakan    
+                                    <li class="active">
+                                        <p>
+                                            <a href="index.php?p=me&sm=&cm=">
+                                                SUBMATERI YANG SEBAGIAN SUDAH SELESAI
+                                            </a>
+                                        </p>
+                                        <span class="time"></span>
+                                    </li>
+                                         
+                            <!-- Materi yang belum sama sekali dikerjakan 
+                                <ul>
+                                    <li class="notfinish"><p>SUBMATERI BELUM SELESAI</p></li>
+                                </ul>
+                       
+                       <!-- SUDAH SEMUA
+                        <ul class="detail-listmateri">
+                            
+                            <li>
+                                <p>JUDUL MATERI SUDAH SEMUA</p>
+                                <ul>
+                           
+                            <!-- Semua submateri selesai 
+                            <li>
+                                <p>
+                                    <a href="index.php">
+                                        SUB MATERI SUDAH SEMUA
+                                </p>
+                                <span class="check"></span>
+                            </li>
+                            <!-- Semua submateri selesai
+                            <li>SUBMATERI SUDAH SEMUA</li>
+                        
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="detail-listmateri">
+                            <!-- Materi belum dibuat 
+                            <li>
+                                <p><label class="label label-danger">Data materi belum ada/tidak ditemukan</label></p>
+                            </li>
+                        </ul>
+                        -->
+                </div>
+            </div>
         </div>
     </div>
 </section>
