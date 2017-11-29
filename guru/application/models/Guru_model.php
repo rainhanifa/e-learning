@@ -85,7 +85,6 @@
             return $mapel;
         }
 
-
         public static function get_mapel_kelas($kelas){
             $CI     =& get_instance();
             $where  = array('t_jadwal.kelas_id' => $kelas);
@@ -100,6 +99,20 @@
             return $mapel;
         }
 
+        public static function get_kelas_by_mapel($mapel){
+            $CI     =& get_instance();
+            $where  = array('t_mapel.mapel_id' => $mapel);
+            $mapel  = $CI->db->select('data_kelas.id as id_kelas, data_kelas.nama as nama_kelas, data_kelas.tahun as tahun_kelas')
+                        ->from('data_kelas')
+                        ->join('t_jadwal', 't_jadwal.kelas_id = data_kelas.id')
+                        ->join('t_mapel', 't_jadwal.t_mapel_id = t_mapel.id')
+                        ->join('mata_pelajaran', 't_mapel.mapel_id = mata_pelajaran.id')
+                        ->join('data_guru', 't_mapel.dosen_id = data_guru.id')
+                        ->where($where)
+                        ->get()
+                        ->result_array();
+            return $mapel;
+        }
 
         public static function getDetailMapel($mapel){
             $CI     =& get_instance();
@@ -108,6 +121,29 @@
             return $mapel;
         }
 
+        public static function get_full_detail_submateri($submateri){
+            $CI =& get_instance();
+            $where  =   array("submateri.id" => $submateri);
+            $detail  = $CI->db->select('mata_pelajaran.id as id_mapel, mata_pelajaran.nama as nama_mapel, materi.id as id_materi, materi.nama as nama_materi, submateri.id as id_submateri, submateri.nama as nama_submateri')
+                            ->from('submateri')
+                            ->join('materi', 'materi.id = submateri.materi_id')
+                            ->join('detail_mapel', 'detail_mapel.materi_id = materi.id')
+                            ->join('t_mapel', 't_mapel.id = detail_mapel.t_mapel_id')
+                            ->join('mata_pelajaran', 't_mapel.mapel_id = mata_pelajaran.id')
+                            ->where($where)->get()->result_array();
+            return $detail;   
+        }
+
+        public static function get_full_detail_siswa($siswa){
+            $CI =& get_instance();
+            $where  =   array("data_siswa.id" => $siswa);
+            $detail  = $CI->db->select('data_siswa.id as id_siswa, data_siswa.nama as nama_siswa, data_siswa.nim as nama_siswa, data_kelas.id as id_kelas, data_kelas.nama as nama_kelas, data_kelas.tahun as tahun_kelas')
+                            ->from('data_siswa')
+                            ->join('detail_kelas', 'detail_kelas.siswa_id = data_siswa.id')
+                            ->join('data_kelas', 'detail_kelas.kelas_id = data_kelas.id')
+                            ->where($where)->get()->result_array();
+            return $detail;   
+        }
 
         public static function getAvailableDosen($mapel){
             $CI =& get_instance();
@@ -268,6 +304,21 @@
                 return "Konten gagal dihapus";
             }
         }
+
+        public static function get_rapor($mapel, $kelas){
+            $CI =& get_instance();
+            return array(array("nama" => "A", "nilai" => 90),array("nama" => "B", "nilai" => 70));
+        }
+
+
+        public static function getNilaiSiswa($idsiswa, $idsubmateri){
+            $CI =& get_instance();
+            $where  =   array("submateri_id" => $idsubmateri, "siswa_id" => $idsiswa);
+            $nilai  =   $CI->db->get_where('nilai',$where)->result_array();
+
+            return $nilai;
+        }
+
 
     }
 ?>

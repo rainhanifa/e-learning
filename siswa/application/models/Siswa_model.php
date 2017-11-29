@@ -58,12 +58,75 @@
         }
 
 
-        public static function get_materi_siswa($username, $mapel){
+        public static function get_materi_list($mapel){
             $CI     =& get_instance();
             $where  = array("mapel_id" => $mapel);
 
             $mapel  =  $CI->db->get('mata_pelajaran')->result_array();
             return $mapel;
+        }
+
+
+        public static function get_current_materi($username, $mapel){
+            $CI     =& get_instance();
+
+            $profil =  $CI->Siswa_model->get_profil($username);
+            $id_siswa     =  $profil[0]['id_siswa'];
+            $where  = array("user_id" => $id_siswa);
+
+            $materi   =  $CI->db->select('*')
+                            ->from('progress_belajar')
+                            ->where($where)
+                            ->order_by('submateri_id', 'DESC')
+                            ->limit(1)
+                            ->get();
+            if($materi->num_rows() > 0){
+                $current  = $materi->result_array();
+                $current_id = $current[0]['submateri_id'];
+                return $current_id;
+            }
+            else{
+                return false;
+            }
+        }
+
+         public static function get_mapel_by_konten($id){
+            $CI =& get_instance();
+            $where  = array("kontenmateri.id" => $id);
+            $mapel  = $CI->db->select('mata_pelajaran.nama as nama_mapel, materi.nama as nama_materi, submateri.nama as nama_submateri')
+                                ->from('mata_pelajaran')
+                                ->join('t_mapel', 't_mapel.mapel_id = mata_pelajaran.id')
+                                ->join('detail_mapel', 'detail_mapel.t_mapel_id = t_mapel.id')
+                                ->join('materi', 'detail_mapel.materi_id = materi.id')
+                                ->join('submateri', 'submateri.materi_id = materi.id')
+                                ->join('kontenmateri', 'kontenmateri.submateri_id = submateri.id')
+                                ->where($where)
+                                ->get()
+                                ->result_array();
+            return $mapel;
+        }
+
+        public static function get_konten_detail($id){
+            $CI =& get_instance();
+            $where  = array("kontenmateri.id" => $id);
+            $materi  = $CI->db->get_where('kontenmateri',$where)->result_array();
+            return $materi;
+        }
+
+        public static function get_first_materi($mapel){
+            $CI     =& get_instance();
+            $where  = array("mapel_id" => $mapel);
+
+            $materi  =  $CI->db->select('submateri.id as id_submateri')
+                            ->from('mata_pelajaran')
+                            ->join('t_mapel', 't_mapel.mapel_id = mata_pelajaran.id')
+                            ->join('detail_mapel', 'detail_mapel.t_mapel_id = t_mapel.id')
+                            ->join('materi', 'materi.id = detail_mapel.materi_id')
+                            ->join('submateri', 'submateri.materi_id = materi.id')
+                            ->where($where)
+                            ->limit(1)
+                            ->get()->row()->id_submateri;
+            return $materi; 
         }
 
     }

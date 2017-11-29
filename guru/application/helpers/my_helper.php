@@ -75,6 +75,36 @@ function getTugasSiswa($idkonten){
     return $tugas;   
 }
 
+function getNilaiSiswa($idsiswa, $idkonten){
+    $CI =& get_instance();
+    $where  =   array("kontenmateri_id" => $idkonten, "siswa_id" => $idsiswa);
+    $nilai  =   $CI->db->get_where('nilai',$where);
+    if($nilai->num_rows() > 0)
+        return $nilai->row()->nilai;
+    else
+        return 0;
+}
+
+function getNilaiClass($idsiswa, $idsub){
+    $CI =& get_instance();
+    $where  =   array("submateri_id" => $idsub, "siswa_id" => $idsiswa);
+    $nilai  =   $CI->db->get_where('nilai',$where);
+    if($nilai->num_rows() > 0)
+        return $nilai->row()->nilai_lab;
+    else
+        return 0;
+}
+
+function getNilaiLab($idsiswa, $idsub){
+    $CI =& get_instance();
+    $where  =   array("submateri_id" => $idsub, "siswa_id" => $idsiswa);
+    $nilai  =   $CI->db->get_where('nilai',$where);
+    if($nilai->num_rows() > 0)
+        return $nilai->row()->nilai_lab;
+    else
+        return 0;
+}
+
 function getKomentar($idkonten){
     $CI =& get_instance();
     $where  =   array("kontenmateri_id" => $idkonten);
@@ -93,6 +123,21 @@ function getNama($userid, $level){
         $nama = $CI->db->get_where('data_guru', $where)->row()->nama;   
     }
     return $nama;
+}
+
+function getKelasNama($id){
+    $CI =& get_instance();
+    $where  =   array("id" => $id);
+    $nama  = $CI->db->get_where('data_kelas', $where)->row()->nama;
+    return $nama;   
+}
+
+
+function getMapelNama($id){
+    $CI =& get_instance();
+    $where  =   array("id" => $id);
+    $nama  = $CI->db->get_where('mata_pelajaran', $where)->row()->nama;
+    return $nama;   
 }
 
 ?>

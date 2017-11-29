@@ -3,35 +3,6 @@
         <h1 class="reg-heading">Materi Dosen</h1>
     </div>
 </div>
-<!--
-<section>
-    <div class="container">
-        <div class="row reg-heading">
-            <h1 class="text-center">Daftar Materi</h1>
-        </div>
-        <div class="row form-cari materi">
-            <form name="carimateri" id="carimateri" method="post" action="<php echo base_url('materi/cari') ?>" role="form" class="form-group">
-                <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
-                    <select name="category" form="carimateri" class="form-control">
-                        <option value="">- Kategori Pencarian -</option> 
-                        <option value="materi">Materi</option>
-                        <option value="submateri">Submateri</option>
-                    </select>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
-                    <input type="text" name="searchid" value="" placeholder="Kata Kunci Pencarian" class="form-control">
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-                    <input type="submit" value="Cari" class="btn btn-default action">
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-                    <a href="<?php echo base_url('materi') ?>" class="btn btn-default action">Lihat Semua</a>
-                </div>
-            </form>
-        </div> 
-    </div>
-</section>
--->
 
 <section class="all-materi">
     <div class="container">
@@ -48,13 +19,6 @@
                         <h5>Materi : <?php echo $data['nama_materi']; ?></h5>
                         
                         <?php
-//                                backgurucode::connecttodb();
-                                if(!isset($_GET['c']) and !isset($_GET['k'])){
-                                    //$arrmateri      = backgurucode::listmateri($data['materi']); 
-                                } else {
-                                    //$arrmateri      = backgurucode::smateri($data['materi'], $category, $keyword);
-                                }
-                                
                                 $no               = 1;
                                 $submateri  =   getSubMateri($data['id_materi']);
                                 foreach($submateri as $submateri){

@@ -99,9 +99,9 @@
                                             <a href="<?php echo base_url('materi');?>">Materi</a>
                                             <span class="<?php echo $halaman == 'materi' ? 'materi' : '' ?>"></span>
                                         </li>
-                                        <li class="<?php echo $halaman == 'nilai' ? 'active' : '' ?>">
-                                            <a href="<?php echo base_url('nilai'); ?>">Daftar Nilai</a>
-                                            <span class="<?php echo $halaman == 'nilai' ? 'clue' : '' ?>"></span>
+                                        <li class="<?php echo $halaman == 'rapor' ? 'active' : '' ?>">
+                                            <a href="<?php echo base_url('rapor'); ?>">Daftar Nilai</a>
+                                            <span class="<?php echo $halaman == 'rapor' ? 'clue' : '' ?>"></span>
                                         </li>
                                         <li class="<?php echo $halaman == 'catatan' ? 'active' : '' ?>">
                                             <a href="<?php echo base_url('catatan');?>">Catatan</a>

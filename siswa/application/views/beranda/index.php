@@ -9,8 +9,7 @@
                     <li>Kerjakan latihan pada materi secara individu.</li>
                     <li>Tanyakan kepada Dosen jika ada hal yang tidak dimengerti melalui kolom komentar yang tersedia pada masing-masing materi.</li>
                     <li>Sebelum menyelesaikan suatu materi/submateri, siswa <strong>tidak dapat belajar</strong> materi/submateri selanjutnya.</li>
-                    <li>Setiap selesai mengerjakan tugas pada materi lab activity, <strong>upload</strong> program &amp; laporan dalam bentuk file .rar </li>
-                    <li>Khusus untuk tugas lab activity bisa menggunakan live compiler yang tersedia pada materi.</li>
+                    <li>Setiap selesai mengerjakan tugas pada materi lab activity, <strong>upload</strong>  tugas &amp; laporan dalam bentuk file .rar </li>
                     <li>Suatu submateri dianggap selesai jika siswa <strong>telah mendapatkan nilai</strong> class dan lab activity memenuhi Kriteria Ketuntasan Minimal (75).</li>
                     <li>Progress akan bertambah apabila submateri yang telah dikerjakan (class dan lab) memenuhi KKM. </li>
                 </ol>

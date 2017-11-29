@@ -55,7 +55,7 @@ class Beranda extends CI_Controller {
 
 		//HASIL PROGRESS
 		$data['hasilprogress'] = 0;
-		$data['materi'] = $this->Siswa_model->get_materi_siswa($this->username, $this->mapel);
+		$data['materi'] = $this->Siswa_model->get_materi_list($this->mapel);
 
 		$this->load->view('template/header');
 		$this->load->view('beranda/index', $data);

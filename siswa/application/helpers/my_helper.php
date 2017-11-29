@@ -32,4 +32,27 @@ function getKontenSubMateri($submateri){
     return $submateri;   
 }
 
+
+function getKomentar($idkonten){
+    $CI =& get_instance();
+    $where  =   array("kontenmateri_id" => $idkonten);
+    $komentar  = $CI->db->order_by('tanggal', 'DESC')->get_where('komentar', $where)->result_array();
+    return $komentar;   
+}
+
+
+function getNama($userid, $level){
+    $CI =& get_instance();
+    $where  =   array("id" => $userid);
+
+    if($level == 2){
+        $nama = $CI->db->get_where('data_siswa', $where)->row()->nama;
+    }
+    else{
+        $nama = $CI->db->get_where('data_guru', $where)->row()->nama;   
+    }
+    return $nama;
+}
+
+
 ?>
