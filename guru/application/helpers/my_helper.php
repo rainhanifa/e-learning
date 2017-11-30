@@ -25,6 +25,14 @@ function getSubMateri($materi){
     return $submateri;   
 }
 
+function getSubMateriTotal($materi){
+    $CI =& get_instance();
+    $where  =   array("materi_id" => $materi);
+    $submateri  = $CI->db->get_where('submateri', $where)->num_rows();
+    return $submateri;   
+}
+
+
 function getSubMateriNama($id){
     $CI =& get_instance();
     $where  =   array("id" => $id);

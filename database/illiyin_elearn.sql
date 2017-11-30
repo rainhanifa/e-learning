@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 30, 2017 at 05:12 AM
+-- Generation Time: Nov 30, 2017 at 05:14 PM
 -- Server version: 5.7.20-0ubuntu0.16.04.1
 -- PHP Version: 5.6.31-2+ubuntu16.04.1+deb.sury.org+1
 
@@ -99,7 +99,11 @@ INSERT INTO `activity_log` (`id`, `time`, `description`, `username`) VALUES
 (59, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
 (60, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
 (61, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(62, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993');
+(62, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
+(63, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
+(64, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
+(65, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
+(66, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh');
 
 -- --------------------------------------------------------
 
@@ -233,7 +237,8 @@ CREATE TABLE `komentar` (
 --
 
 INSERT INTO `komentar` (`id`, `user_id`, `level`, `kontenmateri_id`, `subyek`, `deskripsi`, `tanggal`) VALUES
-(1, 1, 1, 1, 'Mau tanya', 'Di slidenya ada keterangan tapi saya kurang paham', '2017-11-14 10:00:00');
+(1, 1, 1, 1, 'Mau tanya', 'Di slidenya ada keterangan tapi saya kurang paham', '2017-11-14 10:00:00'),
+(2, 1, 2, 1, 'Videonya terpotong', 'Pak, videonya terpotong tidak sampai akhir', '2017-11-30 09:52:18');
 
 -- --------------------------------------------------------
 
@@ -346,6 +351,14 @@ CREATE TABLE `nilai` (
   `nilai_lab` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `nilai`
+--
+
+INSERT INTO `nilai` (`id`, `siswa_id`, `submateri_id`, `class_id`, `lab_id`, `nilai_class`, `nilai_lab`) VALUES
+(1, 1, 1, NULL, NULL, 80, 0),
+(2, 3, 1, NULL, NULL, 80, 75);
+
 -- --------------------------------------------------------
 
 --
@@ -379,6 +392,28 @@ CREATE TABLE `nilai_submateri` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `progress`
+--
+
+CREATE TABLE `progress` (
+  `id` int(11) NOT NULL,
+  `siswa_id` int(11) NOT NULL,
+  `submateri_id` int(11) NOT NULL,
+  `tugas_class` text NOT NULL,
+  `tugas_lab` text NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `progress`
+--
+
+INSERT INTO `progress` (`id`, `siswa_id`, `submateri_id`, `tugas_class`, `tugas_lab`, `status`) VALUES
+(1, 1, 1, '', '', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `progress_belajar`
 --
 
@@ -388,13 +423,6 @@ CREATE TABLE `progress_belajar` (
   `submateri_id` int(11) NOT NULL,
   `tugas_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `progress_belajar`
---
-
-INSERT INTO `progress_belajar` (`id`, `user_id`, `submateri_id`, `tugas_id`) VALUES
-(1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -564,6 +592,12 @@ ALTER TABLE `nilai`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `progress`
+--
+ALTER TABLE `progress`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `progress_belajar`
 --
 ALTER TABLE `progress_belajar`
@@ -601,7 +635,7 @@ ALTER TABLE `t_mapel`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 --
 -- AUTO_INCREMENT for table `data_guru`
 --
@@ -631,7 +665,7 @@ ALTER TABLE `detail_mapel`
 -- AUTO_INCREMENT for table `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `kontenmateri`
 --
@@ -651,12 +685,17 @@ ALTER TABLE `materi`
 -- AUTO_INCREMENT for table `nilai`
 --
 ALTER TABLE `nilai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `progress`
+--
+ALTER TABLE `progress`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `progress_belajar`
 --
 ALTER TABLE `progress_belajar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `submateri`
 --

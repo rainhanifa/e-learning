@@ -2,8 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Materi extends CI_Controller {
-	var $username = '';
-	var $mapel = '';
 
 	public function __construct()
     {
@@ -56,6 +54,8 @@ class Materi extends CI_Controller {
 		//MAPEL PILIHAN SESUAI KELAS
 		$data['materi'] = $this->Siswa_model->get_mapel_by_konten($id);
 		$data['konten'] = $this->Siswa_model->get_konten_detail($id);
+
+		echo $this->Siswa_model->get_prev_materi($id);
 
 		$this->load->view('template/header');
 		$this->load->view('materi/index', $data);

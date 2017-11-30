@@ -18,6 +18,14 @@ function getSubMateri($materi){
     return $submateri;   
 }
 
+function getSubMateriTotal($materi){
+    $CI =& get_instance();
+    $where  =   array("materi_id" => $materi);
+    $submateri  = $CI->db->get_where('submateri', $where)->num_rows();
+    return $submateri;   
+}
+
+
 function getSubMateriNama($id){
     $CI =& get_instance();
     $where  =   array("id" => $id);
@@ -31,7 +39,6 @@ function getKontenSubMateri($submateri){
     $submateri  = $CI->db->get_where('kontenmateri', $where)->result_array();
     return $submateri;   
 }
-
 
 function getKomentar($idkonten){
     $CI =& get_instance();
@@ -54,6 +61,27 @@ function getNama($userid, $level){
     return $nama;
 }
 
+function getNilaiClass($idsub){
+    $CI =& get_instance();
+    $where  =   array("submateri_id" => $idsub, "siswa_id" => $CI->userid);
+    $nilai  =   $CI->db->get_where('nilai',$where);
+    if(($nilai->num_rows()) > 0){
+        return $nilai->row()->nilai_class;
+    }
+    else{
+        return 0;
+    }
+}
+
+function getNilaiLab($idsub){
+    $CI =& get_instance();
+    $where  =   array("submateri_id" => $idsub, "siswa_id" => $CI->userid);
+    $nilai  =   $CI->db->get_where('nilai',$where);
+    if(($nilai->num_rows()) > 0)
+        return $nilai->row()->nilai_lab;
+    else
+        return 0;
+}
 
 function get_current_materi(){
     $CI     =& get_instance();
