@@ -20,11 +20,13 @@ class Beranda extends CI_Controller {
         if(!$this->session->userdata('level')){
         	$this->session->set_flashdata("error","Anda harus login untuk mengakses halaman ini ");
         	redirect("../auth/masuk");
+        }else if($this->session->userdata('level') < 2){
+        	redirect("../guru");
         }
 
         $this->mapel 	= $this->session->userdata('mapel');
-
         $this->username = $this->session->userdata('username');
+        $this->userid = $this->session->userdata('userid');
     }
 	
 
@@ -45,7 +47,6 @@ class Beranda extends CI_Controller {
 
 	public function materi()
 	{
-
 		if(!$this->session->userdata('mapel')){
 			redirect("beranda");
 		}
@@ -54,7 +55,7 @@ class Beranda extends CI_Controller {
 		$data['validasi'] = '';
 
 		//HASIL PROGRESS
-		$data['hasilprogress'] = 0;
+		$data['hasilprogress'] = $this->Siswa_model->progress_percentage($this->mapel);
 		$data['materi'] = $this->Siswa_model->get_materi_list($this->mapel);
 
 		$this->load->view('template/header');
@@ -66,4 +67,9 @@ class Beranda extends CI_Controller {
 		$this->session->set_userdata('mapel', $id);
 		redirect("beranda/materi");
 	}
+
+	public function unset_mapel(){
+		$this->session->unset_userdata('mapel');
+		redirect("beranda/materi");
+	}	
 }

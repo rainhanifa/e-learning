@@ -137,7 +137,7 @@
         public static function get_full_detail_siswa($siswa){
             $CI =& get_instance();
             $where  =   array("data_siswa.id" => $siswa);
-            $detail  = $CI->db->select('data_siswa.id as id_siswa, data_siswa.nama as nama_siswa, data_siswa.nim as nama_siswa, data_kelas.id as id_kelas, data_kelas.nama as nama_kelas, data_kelas.tahun as tahun_kelas')
+            $detail  = $CI->db->select('data_siswa.id as id_siswa, data_siswa.nama as nama_siswa, data_siswa.nim as nim_siswa, data_kelas.id as id_kelas, data_kelas.nama as nama_kelas, data_kelas.tahun as tahun_kelas')
                             ->from('data_siswa')
                             ->join('detail_kelas', 'detail_kelas.siswa_id = data_siswa.id')
                             ->join('data_kelas', 'detail_kelas.kelas_id = data_kelas.id')

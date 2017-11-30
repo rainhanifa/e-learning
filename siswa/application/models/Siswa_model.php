@@ -60,19 +60,22 @@
 
         public static function get_materi_list($mapel){
             $CI     =& get_instance();
-            $where  = array("mapel_id" => $mapel);
-
-            $mapel  =  $CI->db->get('mata_pelajaran')->result_array();
+            $where  = array("mata_pelajaran.id" => $mapel);
+            $mapel  = $CI->db->select("materi.nama as nama_materi, materi.id as id_materi")
+                            ->from("t_mapel")
+                            ->join("mata_pelajaran", "t_mapel.mapel_id = mata_pelajaran.id")
+                            ->join("detail_mapel", "detail_mapel.t_mapel_id = t_mapel.id")
+                            ->join("materi", "detail_mapel.materi_id = materi.id")
+                            ->where($where)
+                            ->get()
+                            ->result_array();
             return $mapel;
         }
 
 
-        public static function get_current_materi($username, $mapel){
+        public static function get_current_materi(){
             $CI     =& get_instance();
-
-            $profil =  $CI->Siswa_model->get_profil($username);
-            $id_siswa     =  $profil[0]['id_siswa'];
-            $where  = array("user_id" => $id_siswa);
+            $where  = array("user_id" => $CI->userid);
 
             $materi   =  $CI->db->select('*')
                             ->from('progress_belajar')
@@ -93,7 +96,12 @@
          public static function get_mapel_by_konten($id){
             $CI =& get_instance();
             $where  = array("kontenmateri.id" => $id);
-            $mapel  = $CI->db->select('mata_pelajaran.nama as nama_mapel, materi.nama as nama_materi, submateri.nama as nama_submateri')
+            $mapel  = $CI->db->select('mata_pelajaran.id as id_mapel,
+                                        mata_pelajaran.nama as nama_mapel,
+                                        materi.id as id_materi,
+                                        materi.nama as nama_materi,
+                                        submateri.id as id_submateri,
+                                        submateri.nama as nama_submateri')
                                 ->from('mata_pelajaran')
                                 ->join('t_mapel', 't_mapel.mapel_id = mata_pelajaran.id')
                                 ->join('detail_mapel', 'detail_mapel.t_mapel_id = t_mapel.id')
@@ -129,5 +137,41 @@
             return $materi; 
         }
 
+        public static function progress_exist($submateri_id){
+            $CI     =& get_instance();
+            $where  = array("siswa_id" => $CI->userid, "submateri_id" => $submateri_id);
+
+            $exist  = $CI->db->get_where('progress', $where)->num_rows();
+            if($exist > 0)
+                return true;
+            else
+                return false;
+        }
+
+        public static function progress_percentage($mapel){
+            $CI     =& get_instance();
+            // GET NUM OF SUBMATERI BY MAPEL IN T_MAPEL
+            $where  = array("mapel_id" => $mapel);
+            $total_submateri  =  $CI->db->select('submateri.id as id_submateri')
+                                ->from('mata_pelajaran')
+                                ->join('t_mapel', 't_mapel.mapel_id = mata_pelajaran.id')
+                                ->join('detail_mapel', 'detail_mapel.t_mapel_id = t_mapel.id')
+                                ->join('materi', 'materi.id = detail_mapel.materi_id')
+                                ->join('submateri', 'submateri.materi_id = materi.id')
+                                ->where($where)->get()->num_rows();
+
+            // GET NUM OF SUBMATERI BY MAPEL AND SISWA IN PROGRESS
+            $where2  = array("mapel_id" => $mapel, "siswa_id" => $CI->userid, "progress.status" => 1);
+            $total_progress  =  $CI->db->select('submateri.id as id_submateri')
+                                ->from('mata_pelajaran')
+                                ->join('t_mapel', 't_mapel.mapel_id = mata_pelajaran.id')
+                                ->join('detail_mapel', 'detail_mapel.t_mapel_id = t_mapel.id')
+                                ->join('materi', 'materi.id = detail_mapel.materi_id')
+                                ->join('submateri', 'submateri.materi_id = materi.id')
+                                ->join('progress', 'progress.submateri_id = submateri.id')
+                                ->where($where2)->get()->num_rows();
+            $percentage = round($total_progress/$total_submateri * 100);
+            return $percentage;
+        }
+
     }
-?>

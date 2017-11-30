@@ -68,4 +68,41 @@ class Rapor extends CI_Controller {
 		$this->load->view('rapor/formnilai', $data);
 		$this->load->view('template/footer');
 	}
+
+	public function assignnilai(){
+		if($_POST){
+			$id_hasil 	=	$this->input->post('id_hasil');
+			$id_siswa 	=	$this->input->post('id_siswa');
+			$id_submateri 	=	$this->input->post('id_submateri');
+			$id_mapel 	=	$this->input->post('id_mapel');
+			$id_kelas 	=	$this->input->post('id_kelas');
+
+			$nilai_class 	=	$this->input->post('nilai_class');
+			$nilai_lab 		=	$this->input->post('nilai_lab');
+
+
+			$data_nilai 	=	array("siswa_id" => $id_siswa,
+									"submateri_id" => $id_submateri,
+									"nilai_class" => $nilai_class,
+									"nilai_lab" => $nilai_lab,
+									"status" => 1
+								);
+
+			if($id_hasil != ''){
+				// UPDATE QUERY
+				$this->db->where('id', $id_hasil);
+				if($this->db->update('nilai', $data_nilai)){
+					redirect('rapor/kelas/'.$id_mapel.'/'.$id_kelas);			
+				}
+			}
+			else{
+				// CREATE QUERY
+				if($this->db->insert('nilai', $data_nilai)){
+					redirect('rapor/kelas/'.$id_mapel.'/'.$id_kelas);			
+				}
+			}
+		}
+		$this->session->set_flashdata("Data nilai tidak dapat disimpan");
+		redirect('rapor/berinilai/'.$id_siswa.'/'.$id_submateri);			
+	}
 }

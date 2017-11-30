@@ -10,6 +10,7 @@
         
         <div class="row">
             <?php
+            if($kelas){
                 if(is_array($kelas)){
             ?>
 
@@ -27,12 +28,13 @@
                 </table>          
         </div>
         <?php
-                } else {
+                }
+            } else {
         ?>
                     <div class="container">
                         <div class="row materi-msg">
                             <div class="item-reg text-center">
-                                    <label class="label label-danger" style="color:white;">Data tidak ditemukan</label>
+                                    <label class="label label-danger" style="color:white;">Materi/Kelas untuk Mata Kuliah ini belum tersedia</label>
                             </div>
                         </div>
                     </div>

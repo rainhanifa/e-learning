@@ -97,9 +97,14 @@
                                             <a href="<?php echo base_url('nilai'); ?>">Rapor</a>
                                             <span class="<?php echo $halaman == 'nilai' ? 'clue' : '' ?>"></span>
                                         </li>
+                                        <!--
                                         <li class="<?php echo $halaman == 'catatan' ? 'active' : '' ?>">
                                             <a href="<?php echo base_url('catatan');?>">Catatan</a>
                                             <span class="<?php echo $halaman == 'catatan' ? 'note' : '' ?>"></span>
+                                        </li>
+                                        -->
+                                        <li>
+                                            <a href="<?php echo base_url('beranda/unset_mapel')?>">Ganti Mata Kuliah</a>
                                         </li>
                                         <li>
                                             <a href="<?php echo base_url('../auth/keluar')?>">Keluar</a>

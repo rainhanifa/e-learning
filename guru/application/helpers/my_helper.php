@@ -89,17 +89,19 @@ function getNilaiClass($idsiswa, $idsub){
     $CI =& get_instance();
     $where  =   array("submateri_id" => $idsub, "siswa_id" => $idsiswa);
     $nilai  =   $CI->db->get_where('nilai',$where);
-    if($nilai->num_rows() > 0)
-        return $nilai->row()->nilai_lab;
-    else
+    if(($nilai->num_rows()) > 0){
+        return $nilai->row()->nilai_class;
+    }
+    else{
         return 0;
+    }
 }
 
 function getNilaiLab($idsiswa, $idsub){
     $CI =& get_instance();
     $where  =   array("submateri_id" => $idsub, "siswa_id" => $idsiswa);
     $nilai  =   $CI->db->get_where('nilai',$where);
-    if($nilai->num_rows() > 0)
+    if(($nilai->num_rows()) > 0)
         return $nilai->row()->nilai_lab;
     else
         return 0;
@@ -139,5 +141,4 @@ function getMapelNama($id){
     $nama  = $CI->db->get_where('mata_pelajaran', $where)->row()->nama;
     return $nama;   
 }
-
 ?>

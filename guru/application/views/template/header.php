@@ -144,7 +144,7 @@
                                         </li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li><a href="#">Selamat datang, <label class="label label-warning"><?php echo $this->session->userdata("username"); ?></label></a></li>
+                                        <li><a href="<?php echo base_url()?>">Selamat datang, <label class="label label-warning"><?php echo $this->session->userdata("username"); ?></label></a></li>
                                     </ul>
                                 </div><!-- /.navbar-collapse -->
                             </div><!-- /.container-fluid -->

@@ -2,7 +2,11 @@
     <div class="container">
         <div class="row">
             <?php
-                if(is_array($konten)){
+                if($this->session->flashdata("message") != ''){
+                    echo $this->session->flashdata("message");
+                }
+
+                if($konten){
                     foreach($konten as $konten){
                     ?>
             <div id="printpdf">
@@ -17,7 +21,6 @@
                 <div class="form-reg">
                     <!-- konten -->
                     <?php
-
                         $tipekonten = substr($konten['isi'],0,3);
                         $filename = "http://localhost/e-learning/upload/materi/".$konten['isi'];
                         if($tipekonten == "pdf"){       
@@ -39,12 +42,22 @@
                             echo $konten['isi'];
                         }?>
                 </div>
+                <?php
+                    // SET CURRENT PROGRESS IF THIS IS NEW ACTIVITY
+                            $current    = get_current_materi();
+                            if($current != $materi['id_submateri']){
+                                // get id submateri
+                                set_progress($materi['id_submateri'],'', '', 0);
+                            }
+                ?>
             </div>
             <div class="class">
                 <label class="clues">Upload file tugas dalam bentuk <strong>.zip</strong> dengan nama file nama_jenismateri_submateri (contoh: ibnu_class_carakerjaaplikasiwebberbasisserver.zip)</label>
-                <label class="clues">Klik tombol <strong>Upload File Jawaban Latihan</strong>, lalu Klik OK</label>
-                <form name="formup" id="formup" method="post" action="index.php?p=fupmateri" enctype="multipart/form-data">
+                <label class="clues">Klik tombol <strong>Upload File Tugas</strong>, lalu Klik OK</label>
+                <form name="formup" id="formup" method="post" action="<?php echo base_url('materi/upload_tugas')?>" enctype="multipart/form-data">
                     <input type="hidden" name="submateri" value="<?php echo $konten['submateri_id']; ?>">
+                    <input type="hidden" name="kontenmateri" value="<?php echo $konten['id']; ?>">
+                    <input type="hidden" name="tipekonten" value="<?php echo $konten['tipe']; ?>">
                     <input type="file" name="uptugas" id="uptugas" class="custom-file-input" value="">
                     <div class="form-reg finish">
                         <input type="submit" name="finish_reg" value="OK" class="btn btn-default act">
@@ -52,10 +65,6 @@
                     <hr>
                 </form>
             </div>
-            <?php
-                            }
-            ?>
-            
             <div class="form-reg modul-siswa">
                 <!-- NEW LINK -->
                 
@@ -102,11 +111,11 @@
                             $komentar = getKomentar($konten['id']);
 
                             if(is_array($komentar)){
-                                foreach ($komentar as $komentar) {
+                                foreach ($komentar as $data) {
                         ?>
                         <div class="comment-list">
-                            <p><b><?php echo date("d F Y H:i", strtotime($komentar['tanggal'])); ?></b>, <b><?php echo getNama($komentar['user_id'], $komentar['level']) ?></b> mengatakan :</p>
-                            <p><?php echo $komentar['deskripsi']?></p>
+                            <p><b><?php echo date("d F Y H:i", strtotime($data['tanggal'])); ?></b>, <b><?php echo getNama($data['user_id'], $data['level']) ?></b> mengatakan :</p>
+                            <p><?php echo $data['deskripsi']?></p>
                         </div>
                         <?php 
                                 }
@@ -117,14 +126,18 @@
                                 <?php
                             }
                         ?>
-                        
-                        <!-- JIKA TIDAK ADA -->
-                        <!--  -->
                     </div>
                 </div>
             </div>
             <?php
+                    } // end fetching
                 } // end if konten exist
+                else{
+                    // data tidak ada
+            ?>
+                <label class="label label-danger">Materi belum tersedia</label>
+            <?php
+                }
             ?>
             </div>
         </div>

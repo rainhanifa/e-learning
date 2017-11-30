@@ -29,8 +29,11 @@
                 $id_hasil       = '';
                 // FETCHING DETAIL SISWA
                 foreach ($siswa as $siswa) {
-                    $id_siswa           = $siswa['id_siswa'];
-                    $nama_siswa         = $siswa['nama_siswa'];
+                    $id_siswa       = $siswa['id_siswa'];
+                    $nama_siswa     = $siswa['nama_siswa'];
+                    $id_kelas       = $siswa['id_kelas'];
+                    $kelas_siswa    = $siswa['nama_kelas'];
+                    $nim_siswa      = $siswa['nim_siswa'];
                 }
 
                 // FETCHING DETAIL SUBMATERI
@@ -55,6 +58,8 @@
             <!-- HIDDEN -->
             <input type="hidden" name="id_hasil" value="<?php echo $id_hasil?>">
             <input type="hidden" name="id_siswa" value="<?php echo $id_siswa?>">
+            <input type="hidden" name="id_kelas" value="<?php echo $id_kelas?>">
+            <input type="hidden" name="id_mapel" value="<?php echo $id_mapel?>">
             <input type="hidden" name="id_submateri" value="<?php echo $id_submateri?>">
 
             <input type="hidden" name="kontenmateri_class" value="">
@@ -90,7 +95,7 @@
                     <label for="nama" class="control-label">Nama</label>
                 </div>
                 <div class="col-lg-11 col-md-10 col-sm-9 col-xs-12">
-                    <label class="label label-default clues"><?php echo $nama_siswa; ?></label>
+                    <label class="label label-default clues"><?php echo $nama_siswa." (".$kelas_siswa." - ".$nim_siswa.")"; ?></label>
                 </div>
             </div>
             <!--
@@ -109,7 +114,7 @@
                     <label for="nama" class="control-label">Nilai Teori</label>
                 </div>
                 <div class="col-lg-11 col-md-10 col-sm-9 col-xs-12">
-                    <input type="text" name="nilaiclass" class="form-control" id="nilai" value="<?php echo $nilai_class; ?>">
+                    <input type="text" name="nilai_class" class="form-control" id="nilai" value="<?php echo $nilai_class; ?>">
                     <label class="clues">Masukkan total nilai class activity sesuai dengan hasil penghitungan berdasarkan pedoman penilaian</label>
                 </div>
             </div>
@@ -119,7 +124,7 @@
                     <label for="nama" class="control-label">Nilai Praktikum</label>
                 </div>
                 <div class="col-lg-11 col-md-10 col-sm-9 col-xs-12">
-                    <input type="text" name="nilailab" class="form-control" id="nilai" value="<?php echo $nilai_lab; ?>">
+                    <input type="text" name="nilai_lab" class="form-control" id="nilai" value="<?php echo $nilai_lab; ?>">
                     <label class="clues">Masukkan total nilai lab activity sesuai dengan hasil penghitungan berdasarkan pedoman penilaian</label>
                 </div>
             </div>

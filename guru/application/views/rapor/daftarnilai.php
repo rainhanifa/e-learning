@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row reg-heading">
                 <h1 class="text-center">Laporan Hasil Belajar Mahasiswa <?php echo getKelasNama($idkelas); ?></h1>
-                <h2>Mata Kuliah: <?php echo getMapelNama($idmapel); ?></h2>
+                <h2 class="text-center">Mata Kuliah: <?php echo getMapelNama($idmapel); ?></h2>
             </div>
             </div> 
         </div>
@@ -18,7 +18,7 @@
                         foreach($materi as $data){
                             $submateri  =   getSubMateri($data['id_materi']);
                 ?>
-                <p class="bold">Materi : <?php echo $data['nama_materi']?></p>
+                <p><b>Materi : <?php echo $data['nama_materi']?></b></p>
                 <?php
                         // FETCHING SUB MATERI
                         foreach($submateri as $submateri){
@@ -47,7 +47,7 @@
                                 <td><?php echo $no;?></td>
                                 <td><?php echo $data_siswa['nama_siswa']?></td>
                 <?php
-                        // SET NILAI
+                        // SET NILAI;
                                 $nilaiclass = getNilaiClass($data_siswa['id_siswa'], $submateri['id']);
                                 $nilailab   = getNilaiLab($data_siswa['id_siswa'], $submateri['id']);;
                 ?>

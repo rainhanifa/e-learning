@@ -55,4 +55,58 @@ function getNama($userid, $level){
 }
 
 
+function get_current_materi(){
+    $CI     =& get_instance();
+    $where  = array("user_id" => $CI->userid);
+
+    $materi   =  $CI->db->select('*')
+                    ->from('progress_belajar')
+                    ->where($where)
+                    ->order_by('submateri_id', 'DESC')
+                    ->limit(1)
+                    ->get();
+    if($materi->num_rows() > 0){
+        $current  = $materi->result_array();
+        $current_id = $current[0]['submateri_id'];
+        return $current_id;
+    }
+    else{
+        return false;
+    }
+}
+
+function set_progress($submateri, $class, $lab, $status){
+    $CI     =& get_instance();
+    // CHECK IF PROGRESS EXIST
+    $exist  = $CI->Siswa_model->progress_exist($submateri);
+    if($exist){
+        if(($class != '') || ($lab != '')){
+            // UPDATE IF UPLOADED
+            if($class != ''){
+                $data_progress  =   array("tugas_class" => $class);
+            }
+            else if($lab != ''){
+                $data_progress  =   array("tugas_lab" => $lab);
+            }
+            $where  =   array("siswa_id" => $CI->userid, "submateri_id" => $submateri);
+
+            $CI->db->where($where);
+            if($CI->db->update('progress', $data_progress)){
+                return true;
+            }
+        }
+    }
+    else{
+        $data_progress  =   array("siswa_id" => $CI->userid,
+                            "submateri_id" => $submateri,
+                            "tugas_class" => $class,
+                            "tugas_lab" => $lab,
+                            "status" => 0);
+        if($CI->db->insert('progress', $data_progress)){
+            return true;
+        }
+    }
+        
+    return false;
+}
 ?>

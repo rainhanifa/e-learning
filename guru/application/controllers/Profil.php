@@ -45,8 +45,11 @@ class Profil extends CI_Controller {
 		//PROFIL SISWA
 		$data['profil'] = $this->Guru_model->get_profil($this->username, $this->session->level);
 		$data['kelas']	= $this->Guru_model->get_kelas();
+
 		$this->load->view('template/header');
 		$this->load->view('profil/ubah', $data);
 		$this->load->view('template/footer');
 	}
+	
+	// proses ubah
 }

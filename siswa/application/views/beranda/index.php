@@ -20,6 +20,10 @@
                         <?php echo $hasilprogress; ?>&#37;
                     </div>
                 </div>
+
+                <div class="form-reg">
+                    <a href="<?php echo base_url('materi')?>" class="btn btn-default"><?php echo ($hasilprogress > 0) ? 'Lanjutkan' : 'Mulai'; ?></a>
+                </div>
             </div>
 
             <!-- RIGHT CONTENT -->
@@ -32,10 +36,10 @@
                            <!-- Mengecek materi apakah materi tersebut sedang dalam pengerjaan atau tidak -->
                            <?php foreach($materi as $materi){?>
                            <li>
-                               <p><?php echo strtoupper($materi['nama'])?></p>
+                               <p><?php echo strtoupper($materi['nama_materi'])?></p>
                                <ul>
                                     <?php
-                                        $submateri = getSubMateri($materi['id']);
+                                        $submateri = getSubMateri($materi['id_materi']);
                                         foreach($submateri as $submateri){
                                     ?>
                                     <li><?php echo $submateri['nama']?></li>
