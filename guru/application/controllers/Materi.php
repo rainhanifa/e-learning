@@ -118,6 +118,21 @@ class Materi extends CI_Controller {
 		}
 	}
 
+	public function doUbah(){
+		
+		 $id 	=	$this->input->post('idmateri');
+		 $nama 	=	$this->input->post('materi');
+
+		 $where =	array("id" => $id);
+		 $data 	=	array("nama" => $nama);
+
+		 
+		 $this->db->where($where);
+		 if($this->db->update('materi', $data)){
+		 	$this->session->set_flashdata('message', 'Berhasil');
+		 }
+		redirect('materi');;
+	}
 	public function tambahkonten()
 	{
 		$data['userid'] = $this->userid;
