@@ -6,6 +6,12 @@
             parent::__construct();
         }
 
+        public static function randompassword($password){
+            $random     = "x0e7q5t1k3g8s2n4lr9f";
+            $randompass = sha1(md5($random.md5($password).$random));
+            return $randompass;
+        }
+        
         public static function get_kelas(){
             $CI     =& get_instance();
             return $CI->db->get("data_kelas")->result_array();
@@ -66,20 +72,23 @@
             return $mapel;
         }
 
-
         public static function get_current_materi(){
             $CI     =& get_instance();
-            $where  = array("user_id" => $CI->userid);
+            $where  = array("progress.siswa_id" => $CI->userid, "t_mapel.mapel_id" => $CI->mapel);
 
-            $materi   =  $CI->db->select('*')
-                            ->from('progress_belajar')
+            $materi   =  $CI->db->select('progress.submateri_id as id_submateri')
+                            ->from('progress')
+                            ->join('submateri', 'progress.submateri_id = submateri.id')
+                            ->join('materi', 'submateri.materi_id = materi.id')
+                            ->join('detail_mapel', 'detail_mapel.materi_id = materi.id')
+                            ->join('t_mapel', 'detail_mapel.t_mapel_id = t_mapel.id')
                             ->where($where)
                             ->order_by('submateri_id', 'DESC')
                             ->limit(1)
                             ->get();
             if($materi->num_rows() > 0){
                 $current  = $materi->result_array();
-                $current_id = $current[0]['submateri_id'];
+                $current_id = $current[0]['id_submateri'];
                 return $current_id;
             }
             else{
@@ -87,7 +96,23 @@
             }
         }
 
-         public static function get_mapel_by_konten($id){
+        public static function get_materi_status($id_submateri){
+            $CI     =& get_instance();
+            $where  = array("siswa_id" => $CI->userid, "submateri_id" => $id_submateri);
+
+            $materi   =  $CI->db->get_where('progress', $where);
+
+            if($materi->num_rows() > 0){
+                $current  = $materi->result_array();
+                $current_status = $current[0]['status'];
+                return $current_status;
+            }
+            else{
+                return false;
+            }
+        }
+
+        public static function get_mapel_by_konten($id){
             $CI     =& get_instance();
             $where  = array("kontenmateri.id" => $id);
             $mapel  = $CI->db->select('mata_pelajaran.id as id_mapel,
@@ -111,7 +136,45 @@
         public static function get_konten_detail($id){
             $CI     =& get_instance();
             $where  = array("kontenmateri.id" => $id);
-            $materi  = $CI->db->get_where('kontenmateri',$where)->result_array();
+            $materi  = $CI->db->select("kontenmateri.id as id_konten, kontenmateri.isi as isi, kontenmateri.tipe as tipe, 
+                                        submateri.id as id_submateri, submateri.nama as nama_submateri,
+                                        materi.id as id_materi, materi.nama as nama_materi,
+                                        mata_pelajaran.id as id_mapel, mata_pelajaran.nama as nama_mapel,
+                                        data_guru.id as id_dosen, data_guru.nama as nama_dosen
+                                        ")
+                            ->from('kontenmateri')
+                            ->join('submateri', 'kontenmateri.submateri_id = submateri.id')
+                            ->join('materi', 'submateri.materi_id = materi.id')
+                            ->join('detail_mapel', 'detail_mapel.materi_id = materi.id')
+                            ->join('t_mapel', 'detail_mapel.t_mapel_id = t_mapel.id')
+                            ->join('mata_pelajaran', 't_mapel.mapel_id = mata_pelajaran.id')
+                            ->join('data_guru', 't_mapel.dosen_id = data_guru.id')
+                            ->where($where)
+                            ->get()
+                        ->result_array();
+            return $materi;
+        }
+
+        public static function get_konten_detail_by_submateri($id_submateri){
+            $CI     =& get_instance();
+            $where  = array("submateri.id" => $id_submateri);
+            $materi  = $CI->db->select("kontenmateri.id as id_konten, kontenmateri.isi as isi, kontenmateri.tipe as tipe, 
+                                        submateri.id as id_submateri, submateri.nama as nama_submateri,
+                                        materi.id as id_materi, materi.nama as nama_materi,
+                                        mata_pelajaran.id as id_mapel, mata_pelajaran.nama as nama_mapel,
+                                        data_guru.id as id_dosen, data_guru.nama as nama_dosen
+                                        ")
+                            ->from('kontenmateri')
+                            ->join('submateri', 'kontenmateri.submateri_id = submateri.id')
+                            ->join('materi', 'submateri.materi_id = materi.id')
+                            ->join('detail_mapel', 'detail_mapel.materi_id = materi.id')
+                            ->join('t_mapel', 'detail_mapel.t_mapel_id = t_mapel.id')
+                            ->join('mata_pelajaran', 't_mapel.mapel_id = mata_pelajaran.id')
+                            ->join('data_guru', 't_mapel.dosen_id = data_guru.id')
+                            ->where($where)
+                            ->limit(1,0)
+                            ->get()
+                        ->result_array();
             return $materi;
         }
 
@@ -163,48 +226,208 @@
             $CI     =& get_instance();
             $where  = array("mapel_id" => $mapel);
 
-            $materi  =  $CI->db->select('submateri.id as id_submateri')
+            $materi  =  $CI->db->select('submateri.id as id_submateri, kontenmateri.id as id_konten')
                             ->from('mata_pelajaran')
                             ->join('t_mapel', 't_mapel.mapel_id = mata_pelajaran.id')
                             ->join('detail_mapel', 'detail_mapel.t_mapel_id = t_mapel.id')
                             ->join('materi', 'materi.id = detail_mapel.materi_id')
                             ->join('submateri', 'submateri.materi_id = materi.id')
+                            ->join('kontenmateri', 'kontenmateri.submateri_id = submateri.id')
                             ->where($where)
                             ->limit(1)
-                            ->get()->row()->id_submateri;
+                            ->get()->result_array();
             return $materi; 
         }
+
+        public static function get_first_kontenmateri($submateri){
+            $CI     =& get_instance();
+            $where  = array("submateri_id" => $submateri);
+
+            $materi  =  $CI->db->get_where("kontenmateri", $where)->result_array();
+            return $materi; 
+        }
+
         public static function get_prev_materi($idkonten){
             $CI     =& get_instance();
-            $tipe       =   $CI->Siswa_model->get_tipe_konten($idkonten);
-            $submateri  =   $CI->Siswa_model->get_konten_detail($idkonten);
-            $submateri_id   =   $submateri[0]['id'];
 
-            $konten     = '';
+            $tipe       =   $CI->Siswa_model->get_tipe_konten($idkonten);
+            $detail     =   $CI->Siswa_model->get_konten_detail($idkonten);
+            $submateri_id   =   $detail[0]['id_submateri'];
+            $materi_id      =   $detail[0]['id_materi'];
+            $mapel_id       =   $detail[0]['id_mapel'];
+
+
+
+            $konten         =   '';
+
+            // AMBIL DARI SUB MATERI YANG SAMA
+            if($tipe == 'lab'){
+                // konten class untuk sub materi yang sama
+                $where      =   "submateri_id = $submateri_id AND tipe = 'class'";
+                $konten_exist     =   $CI->db->get_where("kontenmateri", $where);
+
+                if($konten_exist->num_rows() > 0){
+                    // jika ada
+                    $konten =   $konten_exist->row()->id;
+                    return $konten;
+                }
+            }
+
+            // AMBIL DARI MATERI YANG SAMA
+            $where          =   "submateri.id < $submateri_id AND materi.id = $materi_id";
+            $submateri_prev =   $CI->db->select("kontenmateri.id as id_konten")
+                            ->from('kontenmateri')
+                            ->join('submateri', 'kontenmateri.submateri_id = submateri.id')
+                            ->join('materi', 'submateri.materi_id = materi.id')
+                            ->join('detail_mapel', 'detail_mapel.materi_id = materi.id')
+                            ->join('t_mapel', 'detail_mapel.t_mapel_id = t_mapel.id')
+                            ->join('mata_pelajaran', 't_mapel.mapel_id = mata_pelajaran.id')
+                            ->where($where)
+                            ->order_by("kontenmateri.id", "DESC")
+                            ->limit(1,0)
+                            ->get();
+
+            if( $submateri_prev->num_rows() > 0){
+                $konten = $submateri_prev->row()->id_konten;
+                return $konten;
+            }
+
+            // AMBIL DARI MAPEL YANG SAMA
+            $where          =   "materi.id < $materi_id AND mata_pelajaran.id = $mapel_id";
+            $materi_prev =   $CI->db->select("kontenmateri.id as id_konten")
+                            ->from('kontenmateri')
+                            ->join('submateri', 'kontenmateri.submateri_id = submateri.id')
+                            ->join('materi', 'submateri.materi_id = materi.id')
+                            ->join('detail_mapel', 'detail_mapel.materi_id = materi.id')
+                            ->join('t_mapel', 'detail_mapel.t_mapel_id = t_mapel.id')
+                            ->join('mata_pelajaran', 't_mapel.mapel_id = mata_pelajaran.id')
+                            ->where($where)
+                            ->order_by("kontenmateri.id", "DESC")
+                            ->limit(1,0)
+                            ->get();
+
+            if( $materi_prev->num_rows() > 0){
+                $konten = $materi_prev->row()->id_konten;
+                return $konten;
+            }
+            return $konten;
         }
-        // MATERI SEBELUMNYA
-            // JIKA LAB
-                // CEK ID KONTEN YANG SUB MATERI SAMA 'class'
-                    // JIKA ADA RETURN ID KONTEN
-                    
-            // CEK ID KONTEN UNTUK SUB MATERI < PADA MATERI YANG SAMA
-                // JIKA ADA RETURN ID KONTEN
-                // JIKA TIDAK ADA
-                    // CEK ID SUB MATERI YANG ID_MATERI < PADA MAPEL YANG SAMA
-                        // JIKA ADA RETURN ID SUB MATERI
-                        // JIKA TIDAK ADA RETURN NO LINK
+        
 
         public static function get_next_materi($idkonten){
-            // JIKA CLASS
-                // CEK ID KONTEN YANG SUB MATERI SAMA 'lab'
-                    // JIKA ADA RETURN ID KONTEN
-                    
-            // CEK ID KONTEN UNTUK SUB MATERI < PADA MATERI YANG SAMA
-                // JIKA ADA RETURN ID KONTEN
-                // JIKA TIDAK ADA
-                    // CEK ID SUB MATERI YANG ID_MATERI < PADA MAPEL YANG SAMA
-                        // JIKA ADA RETURN ID SUB MATERI
-                        // JIKA TIDAK ADA RETURN NO LINK
+            $CI     =& get_instance();
+            $tipe       =   $CI->Siswa_model->get_tipe_konten($idkonten);
+            $detail     =   $CI->Siswa_model->get_konten_detail($idkonten);
+            
+            $submateri_id   =   $detail[0]['id_submateri'];
+            $materi_id      =   $detail[0]['id_materi'];
+            $mapel_id       =   $detail[0]['id_mapel'];
+
+            $konten         =   '';
+
+            // UNTUK NEXT HARUS DICEK: APAKAH STATUS SUDAH 1
+            $progress_status        =   $CI->Siswa_model->get_materi_status($submateri_id);
+            
+            // AMBIL DARI SUB MATERI YANG SAMA
+            if($tipe == 'class'){
+                // konten class untuk sub materi yang sama
+                $where      =   "submateri_id = $submateri_id AND tipe = 'lab'";
+                $konten_exist       =   $CI->db->get_where("kontenmateri", $where);
+
+                if($konten_exist->num_rows() > 0){
+                    // jika ada
+                    $konten =   $konten_exist->row()->id;
+                    return $konten;
+                }
+            }
+            
+
+            if($progress_status == 1){
+                // AMBIL DARI MATERI YANG SAMA
+                $where          =   "submateri.id > $submateri_id AND materi.id = $materi_id";
+                $submateri_prev =   $CI->db->select("kontenmateri.id as id_konten")
+                                ->from('kontenmateri')
+                                ->join('submateri', 'kontenmateri.submateri_id = submateri.id')
+                                ->join('materi', 'submateri.materi_id = materi.id')
+                                ->join('detail_mapel', 'detail_mapel.materi_id = materi.id')
+                                ->join('t_mapel', 'detail_mapel.t_mapel_id = t_mapel.id')
+                                ->join('mata_pelajaran', 't_mapel.mapel_id = mata_pelajaran.id')
+                                ->where($where)
+                                ->order_by("kontenmateri.id", "DESC")
+                                ->limit(1,0)
+                                ->get();
+
+                if( $submateri_prev->num_rows() > 0){
+                    $konten = $submateri_prev->row()->id_konten;
+                    return $konten;
+                }
+
+                // AMBIL DARI MAPEL YANG SAMA
+                $where          =   "materi.id > $materi_id AND mata_pelajaran.id = $mapel_id";
+                $materi_prev =   $CI->db->select("kontenmateri.id as id_konten")
+                                ->from('kontenmateri')
+                                ->join('submateri', 'kontenmateri.submateri_id = submateri.id')
+                                ->join('materi', 'submateri.materi_id = materi.id')
+                                ->join('detail_mapel', 'detail_mapel.materi_id = materi.id')
+                                ->join('t_mapel', 'detail_mapel.t_mapel_id = t_mapel.id')
+                                ->join('mata_pelajaran', 't_mapel.mapel_id = mata_pelajaran.id')
+                                ->where($where)
+                                ->order_by("kontenmateri.id", "DESC")
+                                ->limit(1,0)
+                                ->get();
+
+                if( $materi_prev->num_rows() > 0){
+                    $konten = $materi_prev->row()->id_konten;
+                    return $konten;
+                }
+            }
+            return $konten;
+        }
+
+
+        public static function update_pass($userid, $password){
+            $CI =& get_instance();
+            $randompass = $CI->Siswa_model->randompassword($password);
+
+            $data_pass  =   array("password" => $randompass, );
+            $where      =   array("user_id" => $userid, "level" => 2);
+
+            $CI->db->where($where);
+            if($CI->db->update('login', $data_pass)){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        public static function update_foto($userid, $foto){
+            $CI =& get_instance();
+            $data_guru  =   array("foto" => $foto);
+            $where      =   array('id' => $userid);
+
+            $CI->db->where($where);
+            if($CI->db->update('data_siswa', $data_guru)){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        public static function update_profil($userid, $nama, $nip, $email){
+            $CI =& get_instance();
+            $data_guru  =   array("nama" => $nama, "nim" => $nip, "email" => $email);
+            $where      =   array('id' => $userid);
+
+            $CI->db->where($where);
+            if($CI->db->update('data_siswa', $data_guru)){
+                return true;
+            }
+            else{
+                return false;
+            }
 
         }
+
 }

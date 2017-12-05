@@ -252,7 +252,7 @@ class Auth extends CI_Controller {
 
 	public function keluar(){
 		$this->session->sess_destroy();
-		$user_data 	= array("username", "level");
+		$user_data 	= array("username", "level", "userid", "mapel");
 		$this->session->unset_userdata($user_data);
 
 		$this->session->set_flashdata("message","Anda telah keluar dari sistem.");

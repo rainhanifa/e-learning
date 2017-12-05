@@ -7,6 +7,12 @@
         }
 
 
+        public static function randompassword($password){
+            $random     = "x0e7q5t1k3g8s2n4lr9f";
+            $randompass = sha1(md5($random.md5($password).$random));
+            return $randompass;
+        }
+
         public static function get_kelas(){
             $CI     =& get_instance();
             return $CI->db->get("data_kelas")->result_array();;
@@ -18,7 +24,6 @@
             $where  = array("id" => $kelas);
             return $CI->db->get_where("data_kelas", $where)->result_array();;
         }
-
 
         public static function get_profil($username, $level){
             $CI     =& get_instance();
@@ -319,6 +324,50 @@
             return $nilai;
         }
 
+        public static function update_pass($userid, $password){
+            $CI =& get_instance();
+            $randompass = $CI->Guru_model->randompassword($password);
+
+            $data_pass  =   array("password" => $randompass, );
+            $where      =   array("user_id" => $userid, "level" => 1);
+
+            $CI->db->where($where);
+            if($CI->db->update('login', $data_pass)){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        public static function update_foto($userid, $foto){
+            $CI =& get_instance();
+            $data_guru  =   array("foto" => $foto);
+            $where      =   array('id' => $userid);
+
+            $CI->db->where($where);
+            if($CI->db->update('data_guru', $data_guru)){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        public static function update_profil($userid, $nama, $nip, $email){
+            $CI =& get_instance();
+            $data_guru  =   array("nama" => $nama, "nip" => $nip, "email" => $email);
+            $where      =   array('id' => $userid);
+
+            $CI->db->where($where);
+            if($CI->db->update('data_guru', $data_guru)){
+                return true;
+            }
+            else{
+                return false;
+            }
+
+        }
 
     }
 ?>

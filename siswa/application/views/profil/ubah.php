@@ -6,7 +6,11 @@
 
 <section>
     <div class="container">
-        <div class="row reg-heading head2">
+        <div class="row reg-heading head2"><?php
+                if($this->session->flashdata("message") != ''){
+                    echo $this->session->flashdata("message");
+                }
+            ?>
             <h3>Petunjuk</h3>
             <ol>
                 <li>Isi sesuai dengan data anda.</li>
@@ -35,21 +39,6 @@
                 <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
                     <input type="text" name="nama" class="form-control" id="nama" value="<?php echo $data['nama_siswa']; ?>">
                     <label class="clues">Contoh: Ibnu Shodiqin</label>
-                </div>
-            </div>
-            <div class="row item-reg">
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <label for="kelas" class="control-label">Kelas</label>
-                </div>
-                <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
-                    <select name="kelas" class="form-control">
-                        <?php foreach($kelas as $kelas) { ?>
-                        <option value="<?php echo $kelas['id']?>" <?php echo $data['id_kelas'] == $kelas['id'] ? 'selected' : ''?>>
-                            <?php echo $kelas['nama']." (".$kelas['tahun']."/".($kelas['tahun']+1).")"; ?>
-                        </option>
-                        <?php } ?>
-                    </select>
-                    <label class="clues">Pilih sesuai dengan kelas anda</label>
                 </div>
             </div>
             <div class="row item-reg">

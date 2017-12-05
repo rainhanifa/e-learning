@@ -7,6 +7,11 @@
 <section>
     <div class="container">
         <div class="row reg-heading head2">
+            <?php
+                if($this->session->flashdata("message") != ''){
+                    echo $this->session->flashdata("message");
+                }
+            ?> 
             <h3>Petunjuk</h3>
             <ol>
                 <li>Isi sesuai dengan data anda.</li>
@@ -25,39 +30,24 @@
 ?>
 <section class="form-reg">
     <div class="container">
-        <form class="form-group" role="form" name="formedprofil" id="formedprofil" action="<?php echo base_url('profil/doubah')?>" method="post" enctype="multipart/form-data">
+        <form class="form-group" role="form" name="formedprofil" id="formedprofil" action="<?php echo base_url('profil/doUbah')?>" method="post" enctype="multipart/form-data">
             <input type="hidden" name="username" value="<?php echo $this->session->userdata('username'); ?>">
-            <input type="hidden" name="id" value="<?php echo $data['id_siswa']; ?>">
+            <input type="hidden" name="id" value="<?php echo $data['id_guru']; ?>">
             <div class="row item-reg">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <label for="nama" class="control-label">Nama Lengkap</label>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
-                    <input type="text" name="nama" class="form-control" id="nama" value="<?php echo $data['nama_siswa']; ?>">
+                    <input type="text" name="nama" class="form-control" id="nama" value="<?php echo $data['nama_guru']; ?>">
                     <label class="clues">Contoh: Ibnu Shodiqin</label>
                 </div>
             </div>
             <div class="row item-reg">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <label for="kelas" class="control-label">Kelas</label>
+                    <label for="absen" class="control-label">NIP</label>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
-                    <select name="kelas" class="form-control">
-                        <?php foreach($kelas as $kelas) { ?>
-                        <option value="<?php echo $kelas['id']?>" <?php echo $data['id_kelas'] == $kelas['id'] ? 'selected' : ''?>>
-                            <?php echo $kelas['nama']." (".$kelas['tahun']."/".($kelas['tahun']+1).")"; ?>
-                        </option>
-                        <?php } ?>
-                    </select>
-                    <label class="clues">Pilih sesuai dengan kelas anda</label>
-                </div>
-            </div>
-            <div class="row item-reg">
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <label for="absen" class="control-label">NIM</label>
-                </div>
-                <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
-                    <input type="number" name="absen" class="form-control" id="absen" value="<?php echo $data['nim']; ?>">
+                    <input type="number" name="nip" class="form-control" id="absen" value="<?php echo $data['nip']; ?>">
                     <label class="clues">Contoh: 1105335430633</label>
                 </div>
             </div>
@@ -76,7 +66,7 @@
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12 foto-profil">
                     <div class="pp-edit img-circle">
-                        <img src="<?php echo base_url('../upload/foto/siswa/').$data['foto']; ?>" alt="Foto Profil Siswa" class="img-responsive">
+                        <img src="<?php echo base_url('../upload/foto/guru/').$data['foto']; ?>" alt="Foto Profil Siswa" class="img-responsive">
                     </div>
                     <input name="profil" type="file" class="custom-file-input">
                     <label class="clues">Foto setengah badan dan wajib menggunakan seragam dengan rapi</label>

@@ -34,12 +34,36 @@ class Materi extends CI_Controller {
 		$id 	=	$this->Siswa_model->get_current_materi();
 		if(!$id){
 			// JIKA USER BARU PERTAMA KALI MENGAKSES MATA KULIAH INI
-			$id =	$this->Siswa_model->get_first_materi($this->mapel);
-			// SET PROGRESS KE MATERI AWAL
-			set_progress($id,'','','');	
+			$first =	$this->Siswa_model->get_first_materi($this->mapel);
+
+			if($first){
+				$id_submateri 	= $first[0]['id_submateri'];
+				$id 			= $first[0]['id_konten'];
+
+				// SET PROGRESS KE SUB MATERI AWAL
+				set_progress($id_submateri,'','','');	
+			}
+			else{
+				redirect("materi/belum_tersedia");
+			}
+			
+		}else{
+			$first =	$this->Siswa_model->get_first_kontenmateri($id);
+			$id 			= $first[0]['id'];
 		}
 		
 		redirect("materi/activity/$id");
+	}
+
+	public function belum_tersedia(){
+
+		$data['js'] = '';
+		$data['validasi'] = '';
+		$data['modal'] = '';
+
+		$this->load->view('template/header');
+		$this->load->view('materi/empty', $data);
+		$this->load->view('template/footer');
 	}
 
 	public function activity($id)
@@ -52,10 +76,11 @@ class Materi extends CI_Controller {
 		$data['modal'] = '';
 
 		//MAPEL PILIHAN SESUAI KELAS
-		$data['materi'] = $this->Siswa_model->get_mapel_by_konten($id);
-		$data['konten'] = $this->Siswa_model->get_konten_detail($id);
 
-		echo $this->Siswa_model->get_prev_materi($id);
+		//$data['materi'] = $this->Siswa_model->get_mapel_by_konten($id);
+		$data['konten'] = $this->Siswa_model->get_konten_detail($id);
+		$data['prev']	= $this->Siswa_model->get_prev_materi($id);
+		$data['next']	= $this->Siswa_model->get_next_materi($id);
 
 		$this->load->view('template/header');
 		$this->load->view('materi/index', $data);

@@ -10,13 +10,12 @@
                     foreach($konten as $konten){
                     ?>
             <div id="printpdf">
-                <?php foreach($materi as $materi){ ?>
-                <h2 class="text-center"><?php echo $materi['nama_materi']; ?></h3>
-                <h3 class="text-center" id="submateri"><?php echo $materi['nama_submateri']; ?></h4>
-                <?php } ?>
+                <h2 class="text-center"><?php echo $konten['nama_materi']; ?></h3>
+                <h3 class="text-center" id="submateri"><?php echo $konten['nama_submateri']; ?></h4>
                 <div class="form-reg">
                     <span class="label <?php echo ($konten['tipe'] == 'class') ? 'label-warning' : 'label-danger' ?>"><?php echo ucfirst($konten['tipe'])?> Activity</span>
-                    <span class="label label-default">Mata Kuliah : <?php echo $materi['nama_mapel']; ?></span>
+                    <span class="label label-default">Mata Kuliah : <?php echo $konten['nama_mapel']; ?></span>
+                    <span class="label label-success">Dosen : <?php echo $konten['nama_dosen']; ?></span>
                 </div>
                 <div class="form-reg">
                     <!-- konten -->
@@ -45,9 +44,9 @@
                 <?php
                     // SET CURRENT PROGRESS IF THIS IS NEW ACTIVITY
                             $current    = get_current_materi();
-                            if($current != $materi['id_submateri']){
+                            if($current != $konten['id_submateri']){
                                 // get id submateri
-                                set_progress($materi['id_submateri'],'', '', 0);
+                                set_progress($konten['id_submateri'],'', '', 0);
                             }
                 ?>
             </div>
@@ -55,8 +54,8 @@
                 <label class="clues">Upload file tugas dalam bentuk <strong>.zip</strong> dengan nama file nama_jenismateri_submateri (contoh: ibnu_class_carakerjaaplikasiwebberbasisserver.zip)</label>
                 <label class="clues">Klik tombol <strong>Upload File Tugas</strong>, lalu Klik OK</label>
                 <form name="formup" id="formup" method="post" action="<?php echo base_url('materi/upload_tugas')?>" enctype="multipart/form-data">
-                    <input type="hidden" name="submateri" value="<?php echo $konten['submateri_id']; ?>">
-                    <input type="hidden" name="kontenmateri" value="<?php echo $konten['id']; ?>">
+                    <input type="hidden" name="submateri" value="<?php echo $konten['id_submateri']; ?>">
+                    <input type="hidden" name="kontenmateri" value="<?php echo $konten['id_konten']; ?>">
                     <input type="hidden" name="tipekonten" value="<?php echo $konten['tipe']; ?>">
                     <input type="file" name="uptugas" id="uptugas" class="custom-file-input" value="">
                     <div class="form-reg finish">
@@ -67,10 +66,13 @@
             </div>
             <div class="form-reg modul-siswa">
                 <!-- NEW LINK -->
-                
-                    <a href="index.php?p=me&sm=" class="btn btn-default">Materi Sebelumnya</a>
-                    <a href="index.php?p=me&sm=" class="btn btn-default">Materi Berikutnya</a>
-                <?php if($tipekonten == "/pdf" || $konten == "/vid" ) {
+                    <?php if($prev != ''){ ?>
+                    <a href="<?php echo base_url('materi/activity/'.$prev)?>" class="btn btn-default">Materi Sebelumnya</a>
+                    <?php }
+                          if($next != ''){ ?>
+                    <a href="<?php echo base_url('materi/activity/'.$next)?>" class="btn btn-default">Materi Berikutnya</a>
+                    <?php } ?>
+                <?php if($tipekonten == "pdf" || $tipekonten == "vid" ) {
                             echo'<a href="'.$filename.'" class="btn btn-default">Download Materi</a>';
                         }
                         else{
@@ -102,13 +104,13 @@
                                 <textarea id="komentar" name="komentar" class="form-control"></textarea>
                             <label class="control-label" id="captchaOperation"></label>
                                 <input type="text" class="form-control" name="captcha"/>
-                            <input type="hidden" name="kontenmateri" id="kontenmateri" value="<?php echo $konten['id']?>"> 
+                            <input type="hidden" name="kontenmateri" id="kontenmateri" value="<?php echo $konten['id_konten']?>"> 
                             <input type="submit" name="kirim" value="Kirim" class="btn btn-default action send">
                         </form>
 
                         <!-- DAFTAR KOMENTAR -->
                         <?php
-                            $komentar = getKomentar($konten['id']);
+                            $komentar = getKomentar($konten['id_konten']);
 
                             if(is_array($komentar)){
                                 foreach ($komentar as $data) {
@@ -130,7 +132,7 @@
                 </div>
             </div>
             <?php
-                    } // end fetching
+                    } // end fetching konten
                 } // end if konten exist
                 else{
                     // data tidak ada

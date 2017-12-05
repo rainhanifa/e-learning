@@ -84,15 +84,22 @@ class Rapor extends CI_Controller {
 			$data_nilai 	=	array("siswa_id" => $id_siswa,
 									"submateri_id" => $id_submateri,
 									"nilai_class" => $nilai_class,
-									"nilai_lab" => $nilai_lab,
-									"status" => 1
+									"nilai_lab" => $nilai_lab
 								);
 
 			if($id_hasil != ''){
 				// UPDATE QUERY
 				$this->db->where('id', $id_hasil);
 				if($this->db->update('nilai', $data_nilai)){
-					redirect('rapor/kelas/'.$id_mapel.'/'.$id_kelas);			
+					// SET PROGRESS STATUS TO 1
+					$where			=	array("siswa_id" => $id_siswa, "submateri_id" => $id_submateri);
+					$data_progress	=	array("status" => 1);
+
+					$this->db->where($where);
+
+					if($this->db->update('progress', $data_progress)){
+						redirect('rapor/kelas/'.$id_mapel.'/'.$id_kelas);			
+					}
 				}
 			}
 			else{

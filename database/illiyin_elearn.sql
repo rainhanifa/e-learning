@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 30, 2017 at 05:14 PM
+-- Generation Time: Dec 05, 2017 at 03:12 PM
 -- Server version: 5.7.20-0ubuntu0.16.04.1
 -- PHP Version: 5.6.31-2+ubuntu16.04.1+deb.sury.org+1
 
@@ -103,7 +103,33 @@ INSERT INTO `activity_log` (`id`, `time`, `description`, `username`) VALUES
 (63, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
 (64, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
 (65, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(66, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh');
+(66, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
+(67, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
+(68, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
+(69, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
+(70, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
+(71, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
+(72, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
+(73, '0000-00-00 00:00:00', 'maulidi login', 'maulidi'),
+(74, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
+(75, '0000-00-00 00:00:00', 'maulidi login', 'maulidi'),
+(76, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
+(77, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
+(78, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
+(79, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
+(80, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
+(81, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
+(82, '0000-00-00 00:00:00', 'mhandharbeni login', 'mhandharbeni'),
+(83, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
+(84, '0000-00-00 00:00:00', 'faizalqurni login', 'faizalqurni'),
+(85, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
+(86, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
+(87, '0000-00-00 00:00:00', 'virdana login', 'virdana'),
+(88, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
+(89, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
+(90, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
+(91, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
+(92, '0000-00-00 00:00:00', 'virdana login', 'virdana');
 
 -- --------------------------------------------------------
 
@@ -124,7 +150,7 @@ CREATE TABLE `data_guru` (
 --
 
 INSERT INTO `data_guru` (`id`, `nama`, `nip`, `email`, `foto`) VALUES
-(1, 'Ibnu Shodiqin', '19650819970110038', 'ibnuspeedster@gmail.com', 'ibnu1993-dosen-pa.png'),
+(1, 'Ibnu Shodiqin Suhaemy', '1105335430633', 'ibnuspeedster@gmail.com', 'ibnu1993-ibnu1993.png'),
 (2, 'Super Admin', '0', 'rainhanifa@gmail.com', NULL),
 (3, 'Muhammad Handharbeni', '12345678976543', 'mhandharbeni@gmail.com', 'mhandharbeni-dosen-pa.png'),
 (4, 'Faiz Alqurni', '12301265816412641', 'faizalqurni@gmail.com', 'faizalqurni-dosen-pa.png');
@@ -168,7 +194,7 @@ CREATE TABLE `data_siswa` (
 --
 
 INSERT INTO `data_siswa` (`id`, `nama`, `nim`, `email`, `foto`) VALUES
-(1, 'Luqman Hakim', '1105335430633', 'luqmanppmh@gmail.com', 'luqmanppmh-siswa.png'),
+(1, 'M Luqman Hakim', '11053354306123', 'luqmanppmh@gmail.com', 'luqmanppmh-milk.jpg'),
 (2, 'Dimas Virdana', '170023456781', 'virdana10@gmail.com', 'virdana-siswi.png'),
 (3, 'Akhmad Maulidi', '16356789876525', 'maulidi123@gmail.com', 'maulidi-siswa.png');
 
@@ -260,7 +286,9 @@ CREATE TABLE `kontenmateri` (
 INSERT INTO `kontenmateri` (`id`, `submateri_id`, `isi`, `tipe`) VALUES
 (1, 1, 'video/1-BALL_HANDING_LESSON_1.webm', 'class'),
 (2, 1, 'video/BALL_HANDING_LESSON_1.webm', 'lab'),
-(3, 8, '<p>Olah raga yang dimainkan dengan kok dan raket, kemungkinan berkembang di Mesir kuno sekitar 2000 tahun lalu tetapi juga disebut-sebut di India dan Republik Rakyat Tiongkok.</p>\r\n<p>Nenek moyang terdirinya diperkirakan ialah sebuah permainan Tionghoa, <span class="mw-redirect">Jianzi</span> yang melibatkan penggunaan kok tetapi tanpa raket. Alih-alih, objeknya dimanipulasi dengan kaki. Objek/misi permainan ini adalah untuk menjaga kok agar tidak menyentuh tanah selama mungkin tanpa menggunakan tangan.</p>\r\n<p>Di Inggris sejak zaman pertengahan permainan anak-anak yang disebut <em>Battledores</em> dan <em>Shuttlecocks</em> sangat populer. Anak-anak pada waktu itu biasanya akan memakai dayung/tongkat (Battledores) dan bersiasat bersama untuk menjaga kok tetap di udara dan mencegahnya dari menyentuh tanah. Ini cukup populer untuk menjadi nuansa harian di jalan-jalan London pada tahun 1854 ketika majalah <em><span class="new">Punch</span></em> mempublikasikan kartun untuk ini.</p>\r\n<p>Penduduk Inggris membawa permainan ini ke Jepang, Republik Rakyat Tiongkok, dan Siam (sekarang Thailand) selagi mereka mengolonisasi Asia. Ini kemudian dengan segera menjadi permainan anak-anak di wilayah setempat mereka.</p>\r\n<p>Olah raga kompetitif bulu tangkis diciptakan oleh petugas Tentara Britania di Pune, India pada <span class="mw-redirect">abad ke-19</span> saat mereka menambahkan jaring dan memainkannya secara bersaingan. Oleh sebab kota Pune dikenal sebelumnya sebagai Poona, permainan tersebut juga dikenali sebagai Poona pada masa itu.</p>\r\n<p>Para tentara membawa permainan itu kembali ke Inggris pada 1850-an. Olah raga ini mendapatkan namanya yang sekarang pada 1860 dalam sebuah pamflet oleh <span class="new">Isaac Spratt</span>, seorang penyalur mainan Inggris, berjudul "<em>Badminton Battledore - a new game</em>" ("Battledore bulu tangkis - sebuah permainan baru"). Ini melukiskan permainan tersebut dimainkan di <span class="new">Gedung Badminton</span> (<em>Badminton House</em>), estat <em><span class="new">Duke of Beaufort\'s</span></em> di Gloucestershire, Inggris.</p>\r\n<p>Rancangan peraturan yang pertama ditulis oleh <span class="new">Klub Badminton Bath</span> pada 1877. <span class="new">Asosiasi bulu tangkis Inggris</span> dibentuk pada 1893 dan kejuaraan internasional pertamanya berunjuk-gigi pertama kali pada 1899 dengan Kejuaraan <em><span class="mw-redirect">All England</span></em>.</p>\r\n<p>Bulu tangkis menjadi sebuah olah raga populer di dunia, terutama di wilayah Asia Timur dan Tenggara, yang saat ini mendominasi olah raga ini, dan di negara-negara Skandinavia.</p>', 'class');
+(3, 8, '<p>Olah raga yang dimainkan dengan kok dan raket, kemungkinan berkembang di Mesir kuno sekitar 2000 tahun lalu tetapi juga disebut-sebut di India dan Republik Rakyat Tiongkok.</p>\r\n<p>Nenek moyang terdirinya diperkirakan ialah sebuah permainan Tionghoa, <span class="mw-redirect">Jianzi</span> yang melibatkan penggunaan kok tetapi tanpa raket. Alih-alih, objeknya dimanipulasi dengan kaki. Objek/misi permainan ini adalah untuk menjaga kok agar tidak menyentuh tanah selama mungkin tanpa menggunakan tangan.</p>\r\n<p>Di Inggris sejak zaman pertengahan permainan anak-anak yang disebut <em>Battledores</em> dan <em>Shuttlecocks</em> sangat populer. Anak-anak pada waktu itu biasanya akan memakai dayung/tongkat (Battledores) dan bersiasat bersama untuk menjaga kok tetap di udara dan mencegahnya dari menyentuh tanah. Ini cukup populer untuk menjadi nuansa harian di jalan-jalan London pada tahun 1854 ketika majalah <em><span class="new">Punch</span></em> mempublikasikan kartun untuk ini.</p>\r\n<p>Penduduk Inggris membawa permainan ini ke Jepang, Republik Rakyat Tiongkok, dan Siam (sekarang Thailand) selagi mereka mengolonisasi Asia. Ini kemudian dengan segera menjadi permainan anak-anak di wilayah setempat mereka.</p>\r\n<p>Olah raga kompetitif bulu tangkis diciptakan oleh petugas Tentara Britania di Pune, India pada <span class="mw-redirect">abad ke-19</span> saat mereka menambahkan jaring dan memainkannya secara bersaingan. Oleh sebab kota Pune dikenal sebelumnya sebagai Poona, permainan tersebut juga dikenali sebagai Poona pada masa itu.</p>\r\n<p>Para tentara membawa permainan itu kembali ke Inggris pada 1850-an. Olah raga ini mendapatkan namanya yang sekarang pada 1860 dalam sebuah pamflet oleh <span class="new">Isaac Spratt</span>, seorang penyalur mainan Inggris, berjudul "<em>Badminton Battledore - a new game</em>" ("Battledore bulu tangkis - sebuah permainan baru"). Ini melukiskan permainan tersebut dimainkan di <span class="new">Gedung Badminton</span> (<em>Badminton House</em>), estat <em><span class="new">Duke of Beaufort\'s</span></em> di Gloucestershire, Inggris.</p>\r\n<p>Rancangan peraturan yang pertama ditulis oleh <span class="new">Klub Badminton Bath</span> pada 1877. <span class="new">Asosiasi bulu tangkis Inggris</span> dibentuk pada 1893 dan kejuaraan internasional pertamanya berunjuk-gigi pertama kali pada 1899 dengan Kejuaraan <em><span class="mw-redirect">All England</span></em>.</p>\r\n<p>Bulu tangkis menjadi sebuah olah raga populer di dunia, terutama di wilayah Asia Timur dan Tenggara, yang saat ini mendominasi olah raga ini, dan di negara-negara Skandinavia.</p>', 'class'),
+(4, 3, '<p>TIK dalam pembelajaran olahraga</p>', 'class'),
+(5, 4, '<p>Jenis-jenis Media Pembelajaran</p>', 'class');
 
 -- --------------------------------------------------------
 
@@ -357,7 +385,8 @@ CREATE TABLE `nilai` (
 
 INSERT INTO `nilai` (`id`, `siswa_id`, `submateri_id`, `class_id`, `lab_id`, `nilai_class`, `nilai_lab`) VALUES
 (1, 1, 1, NULL, NULL, 80, 0),
-(2, 3, 1, NULL, NULL, 80, 75);
+(2, 3, 1, NULL, NULL, 80, 75),
+(3, 2, 1, NULL, NULL, 80, 90);
 
 -- --------------------------------------------------------
 
@@ -409,7 +438,11 @@ CREATE TABLE `progress` (
 --
 
 INSERT INTO `progress` (`id`, `siswa_id`, `submateri_id`, `tugas_class`, `tugas_lab`, `status`) VALUES
-(1, 1, 1, '', '', 0);
+(1, 1, 1, '', '', 0),
+(2, 3, 1, '', '', 1),
+(3, 3, 3, '', '', 0),
+(4, 3, 8, '', '', 0),
+(5, 2, 1, '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -635,7 +668,7 @@ ALTER TABLE `t_mapel`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 --
 -- AUTO_INCREMENT for table `data_guru`
 --
@@ -670,7 +703,7 @@ ALTER TABLE `komentar`
 -- AUTO_INCREMENT for table `kontenmateri`
 --
 ALTER TABLE `kontenmateri`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `mata_pelajaran`
 --
@@ -685,12 +718,12 @@ ALTER TABLE `materi`
 -- AUTO_INCREMENT for table `nilai`
 --
 ALTER TABLE `nilai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `progress`
 --
 ALTER TABLE `progress`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `progress_belajar`
 --
