@@ -36,14 +36,35 @@
                            <!-- Mengecek materi apakah materi tersebut sedang dalam pengerjaan atau tidak -->
                            <?php foreach($materi as $materi){?>
                            <li>
-                               <p><?php echo strtoupper($materi['nama_materi'])?></p>
+                               <p><?php echo $materi['nama_materi']?></p>
                                <ul>
                                     <?php
                                         $submateri = getSubMateri($materi['id_materi']);
                                         foreach($submateri as $submateri){
+                                            $status = get_progress_submateri($submateri['id']);
                                     ?>
-                                    <li><?php echo $submateri['nama']?></li>
-                                    <?php } ?>
+                                    <li <?php
+                                            if ($status == 'OK'){
+                                                echo 'class="finish"';
+                                            }
+                                            else{
+                                                if ($status == 'Proses'){
+                                                    echo 'class="active"';
+                                                }
+                                            } ?>
+                                    >
+                                        <?php echo $submateri['nama']; ?>
+                                        <?php
+                                        if ($status == 'OK'){
+                                            echo '<span class="check"></span>';
+                                        }
+                                        else{
+                                            if ($status == 'Proses'){
+                                                echo '<span class="time"></span>';
+                                            }
+                                        }
+                                     } ?>
+                                    </li>
                                </ul>
                            </li>
                            <?php } ?>

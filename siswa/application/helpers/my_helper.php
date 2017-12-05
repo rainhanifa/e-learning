@@ -137,4 +137,24 @@ function set_progress($submateri, $class, $lab, $status){
         
     return false;
 }
+
+function get_progress_submateri($submateri_id){
+    $CI     =& get_instance();
+
+    // Siswa_model->progress_exist($submateri)
+    $where  = array("siswa_id" => $CI->userid, "submateri_id" => $submateri_id);
+
+    $exist  = $CI->db->get_where('progress', $where);
+    if($exist->num_rows() > 0){
+        $status   = $exist->row()->status;
+
+        if($status == 1){
+            return 'OK';
+        }else{
+            return 'Proses';
+        }
+    }
+    else
+        return 'Belum';
+}
 ?>

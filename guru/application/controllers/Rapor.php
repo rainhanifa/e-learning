@@ -89,24 +89,26 @@ class Rapor extends CI_Controller {
 
 			if($id_hasil != ''){
 				// UPDATE QUERY
+
 				$this->db->where('id', $id_hasil);
-				if($this->db->update('nilai', $data_nilai)){
-					// SET PROGRESS STATUS TO 1
-					$where			=	array("siswa_id" => $id_siswa, "submateri_id" => $id_submateri);
-					$data_progress	=	array("status" => 1);
+				$this->db->update('nilai', $data_nilai);
+				// SET PROGRESS STATUS TO 1
+				$where			=	array("siswa_id" => $id_siswa, "submateri_id" => $id_submateri);
+				$data_progress	=	array("status" => 1);
 
-					$this->db->where($where);
+				$this->db->where($where);
 
-					if($this->db->update('progress', $data_progress)){
-						redirect('rapor/kelas/'.$id_mapel.'/'.$id_kelas);			
-					}
+				if($this->db->update('progress', $data_progress)){
+					redirect('rapor/kelas/'.$id_mapel.'/'.$id_kelas);			
 				}
+				
 			}
 			else{
 				// CREATE QUERY
 				if($this->db->insert('nilai', $data_nilai)){
 					redirect('rapor/kelas/'.$id_mapel.'/'.$id_kelas);			
 				}
+				echo $this->db->last_query();exit;
 			}
 		}
 		$this->session->set_flashdata("Data nilai tidak dapat disimpan");
