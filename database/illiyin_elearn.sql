@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 05, 2017 at 03:12 PM
+-- Generation Time: Dec 11, 2017 at 04:48 PM
 -- Server version: 5.7.20-0ubuntu0.16.04.1
 -- PHP Version: 5.6.31-2+ubuntu16.04.1+deb.sury.org+1
 
@@ -32,104 +32,6 @@ CREATE TABLE `activity_log` (
   `description` text NOT NULL,
   `username` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `activity_log`
---
-
-INSERT INTO `activity_log` (`id`, `time`, `description`, `username`) VALUES
-(1, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(2, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(3, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(4, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(5, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(6, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(7, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(8, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
-(9, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(10, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(11, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(12, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
-(13, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
-(14, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
-(15, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
-(16, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
-(17, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
-(18, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
-(19, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
-(20, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
-(21, '0000-00-00 00:00:00', 'mhandharbeni login', 'mhandharbeni'),
-(22, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(23, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(24, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(25, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(26, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(27, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(28, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(29, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(30, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
-(31, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(32, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(33, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(34, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
-(35, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
-(36, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(37, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(38, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
-(39, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(40, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
-(41, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(42, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(43, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(44, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(45, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(46, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
-(47, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(48, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
-(49, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(50, '0000-00-00 00:00:00', 'mhandharbeni login', 'mhandharbeni'),
-(51, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(52, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(53, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(54, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(55, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(56, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(57, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
-(58, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(59, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
-(60, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(61, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(62, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(63, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(64, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(65, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(66, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(67, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(68, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(69, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(70, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(71, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(72, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(73, '0000-00-00 00:00:00', 'maulidi login', 'maulidi'),
-(74, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(75, '0000-00-00 00:00:00', 'maulidi login', 'maulidi'),
-(76, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(77, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(78, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(79, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(80, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(81, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(82, '0000-00-00 00:00:00', 'mhandharbeni login', 'mhandharbeni'),
-(83, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
-(84, '0000-00-00 00:00:00', 'faizalqurni login', 'faizalqurni'),
-(85, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(86, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
-(87, '0000-00-00 00:00:00', 'virdana login', 'virdana'),
-(88, '0000-00-00 00:00:00', 'superadmin login', 'superadmin'),
-(89, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(90, '0000-00-00 00:00:00', 'luqmanppmh login', 'luqmanppmh'),
-(91, '0000-00-00 00:00:00', 'ibnu1993 login', 'ibnu1993'),
-(92, '0000-00-00 00:00:00', 'virdana login', 'virdana');
 
 -- --------------------------------------------------------
 
@@ -164,16 +66,18 @@ INSERT INTO `data_guru` (`id`, `nama`, `nip`, `email`, `foto`) VALUES
 CREATE TABLE `data_kelas` (
   `id` int(11) NOT NULL,
   `nama` varchar(30) NOT NULL,
-  `tahun` year(4) NOT NULL
+  `tahun` year(4) NOT NULL,
+  `status` int(11) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `data_kelas`
 --
 
-INSERT INTO `data_kelas` (`id`, `nama`, `tahun`) VALUES
-(1, 'OFF A', 2017),
-(2, 'OFF B', 2017);
+INSERT INTO `data_kelas` (`id`, `nama`, `tahun`, `status`) VALUES
+(1, 'OFF A', 2017, 1),
+(2, 'OFF B', 2017, 1),
+(3, 'OFF A PJK', 2017, 0);
 
 -- --------------------------------------------------------
 
@@ -195,7 +99,7 @@ CREATE TABLE `data_siswa` (
 
 INSERT INTO `data_siswa` (`id`, `nama`, `nim`, `email`, `foto`) VALUES
 (1, 'M Luqman Hakim', '11053354306123', 'luqmanppmh@gmail.com', 'luqmanppmh-milk.jpg'),
-(2, 'Dimas Virdana', '170023456781', 'virdana10@gmail.com', 'virdana-siswi.png'),
+(2, 'Dimas Virdana', '170023456781', 'virdana10@gmail.com', 'virdana-virdana-alfinda.jpg'),
 (3, 'Akhmad Maulidi', '16356789876525', 'maulidi123@gmail.com', 'maulidi-siswa.png');
 
 -- --------------------------------------------------------
@@ -325,21 +229,22 @@ INSERT INTO `login` (`username`, `password`, `user_id`, `level`, `status`) VALUE
 
 CREATE TABLE `mata_pelajaran` (
   `id` int(11) NOT NULL,
-  `nama` varchar(50) NOT NULL
+  `nama` varchar(50) NOT NULL,
+  `status` int(11) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mata_pelajaran`
 --
 
-INSERT INTO `mata_pelajaran` (`id`, `nama`) VALUES
-(1, 'Media Pembelajaran dan TIK Olahraga'),
-(2, 'Psikologi Pendidikan'),
-(3, 'Sejarah dan Filosofi Olahraga'),
-(4, 'Medis Olahraga'),
-(5, 'Pelatihan Olahraga Tenis'),
-(6, 'Pelatihan Olahraga Bulutangkis'),
-(7, 'Manajemen Kepelatihan Olahraga Sepak Bola');
+INSERT INTO `mata_pelajaran` (`id`, `nama`, `status`) VALUES
+(1, 'Media Pembelajaran dan TIK Olahraga', 1),
+(2, 'Psikologi Pendidikan', 1),
+(3, 'Sejarah dan Filosofi Olahraga', 1),
+(4, 'Medis Olahraga', 1),
+(5, 'Pelatihan Olahraga Tenis', 0),
+(6, 'Pelatihan Olahraga Bulutangkis', 1),
+(7, 'Manajemen Kepelatihan Olahraga Sepak Bola', 1);
 
 -- --------------------------------------------------------
 
@@ -527,19 +432,21 @@ INSERT INTO `t_jadwal` (`id`, `kelas_id`, `t_mapel_id`, `tahun`, `jam`) VALUES
 CREATE TABLE `t_mapel` (
   `id` int(11) NOT NULL,
   `mapel_id` int(11) DEFAULT NULL,
-  `dosen_id` int(11) DEFAULT NULL
+  `dosen_id` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_mapel`
 --
 
-INSERT INTO `t_mapel` (`id`, `mapel_id`, `dosen_id`) VALUES
-(1, 1, 1),
-(3, 1, 3),
-(4, 5, 1),
-(5, 3, 4),
-(6, 7, 4);
+INSERT INTO `t_mapel` (`id`, `mapel_id`, `dosen_id`, `status`) VALUES
+(1, 1, 1, 1),
+(3, 1, 3, 1),
+(4, 5, 1, 0),
+(5, 3, 4, 0),
+(6, 7, 4, 1),
+(7, 6, 4, 0);
 
 -- --------------------------------------------------------
 
@@ -668,7 +575,7 @@ ALTER TABLE `t_mapel`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `data_guru`
 --
@@ -678,7 +585,7 @@ ALTER TABLE `data_guru`
 -- AUTO_INCREMENT for table `data_kelas`
 --
 ALTER TABLE `data_kelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `data_siswa`
 --
@@ -748,7 +655,7 @@ ALTER TABLE `t_jadwal`
 -- AUTO_INCREMENT for table `t_mapel`
 --
 ALTER TABLE `t_mapel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

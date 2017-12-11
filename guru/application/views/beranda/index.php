@@ -36,6 +36,7 @@
             ?> -->
             <h1 class="text-center">Data Progress Belajar <!-- Siswa Kelas <php echo $guru_kelas;?> --></h1>
         </div>
+        <!--
         <div class="row form-cari">
             <form name="cari_siswa" id="cari_siswa" method="post" action="index.php?p=carisiswa" role="form" class="form-group">
                 <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
@@ -57,14 +58,16 @@
                 </div>
             </form>
         </div>
+        -->
     </div>
 </section>
 
 <section>
     <div class="container">
         <?php
+            $url_siswa = base_url()."../upload/foto/siswa/";
 //            $url_siswa = "http://localhost/e_pko/epsettings/siswa/";
-            $url_siswa = "http://".$_SERVER["HTTP_HOST"]."/e_pko/epsettings/siswa/";
+            //$url_siswa = "http://".$_SERVER["HTTP_HOST"]."/e_pko/epsettings/siswa/";
             if($daftarsiswa<>''){
                 if(is_array($daftarsiswa)){
                     foreach($daftarsiswa as $data){
@@ -74,35 +77,37 @@
                 <div class="row">
                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
                         <div class="img-box">
-                            <img src="<?php echo $url_siswa.$data['url_foto']; ?>" alt="Foto Profil Siswa" class="img-responsive">
+                            <img src="<?php echo $url_siswa.$data['foto_siswa']; ?>" alt="Foto Profil Siswa" class="img-responsive">
                         </div>
                     </div>
                     <div class="col-lg-10 col-md-9 col-sm-8 col-xs-12">
                         <p>
                             Nama : <?php echo $data['nama_siswa']; ?> <br>
-                            Materi yang dipelajari:
+                            Mata Kuliah:
                         </p>
                         <?php
-                            $listmateri = backgurucode::siswaselesai($data['id_siswa']); 
-                            if($listmateri<>''){
+                            $makul  =   get_progress("mata_pelajaran.id, mata_pelajaran.nama", "mata_pelajaran.id", "siswa_id =".$data['id_siswa']);
+                            
+                            if($makul<>''){
                         ?>
                         <ol>
                         <?php
-                                foreach($listmateri as $datamateri){
+                                foreach($makul as $makul){
+                                    echo "<li>".$makul['nama'];
                                     $keterangan = "";
-                                    if($datamateri['classdir']<>'' and $datamateri['labdir']<>''){
-                                        $keterangan = "Tugas Lengkap";
-                                    } else if ($datamateri['classdir']<>'' and $datamateri['labdir']==''){
-                                        $keterangan = "Tugas Lab Activity belum selesai";
-                                    } else if ($datamateri['classdir']=='' and $datamateri['labdir']<>''){
-                                        $keterangan = "Tugas Class Activity belum selesai";
-                                    } else {
-                                        $keterangan = "Tugas belum lengkap";
-                                    }
+
+                                    $submateri = get_progress("materi.nama as nama_materi, submateri.id as id_submateri, submateri.nama as nama_submateri", "submateri.id", "siswa_id =".$data['id_siswa']);
+                                    if($submateri){
+                                        echo "<ul>";
+                                        foreach ($submateri as $submateri) {
                         ?>
-                            <li><?php echo $datamateri['submateri']." (".$keterangan.")"; ?></li>
+                                            <li><?php echo $submateri['nama_materi']." (".$submateri['nama_submateri'].")"; ?></li>
                         <?php
-                                }
+                                        }
+                                        echo "</ul>";
+                                    }
+                                    echo "</li>";
+                            }
                         ?>
                         </ol>
                         <?php

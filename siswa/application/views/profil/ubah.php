@@ -52,6 +52,19 @@
             </div>
             <div class="row item-reg">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <label for="kelas" class="control-label">Kelas</label>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+                    <select name="kelas" class="form-control" id="kelas">
+                        <?php foreach($kelas as $kelas){ ?>
+                            <option value="<?php $kelas['id']?>" <?php ($data['id_kelas'] == $kelas['id']) ? 'selected' : ''?>><?php echo $kelas['nama']?></option>
+                        <?php } ?>
+                    </select>
+                    <label class="clues">Pilih sesuai dengan kelas anda</label>
+                </div>
+            </div>
+            <div class="row item-reg">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <label for="mail" class="control-label">Email</label>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">

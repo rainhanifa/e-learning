@@ -28,11 +28,11 @@
                     foreach($dosen as $data){
             ?>
                     <tr>
-                        <td><img src="<?php echo $folder_foto_guru.$data['foto']; ?>" class="img-circle" width="25px"/></td>
+                        <td><img src="<?php echo $folder_foto_guru.$data['foto']; ?>" class="img-circle img-responsive"/></td>
                         <td><?php echo $data['nama']?></td>    
                         <td><?php echo $data['username']?></td>    
                         <td><?php echo $data['nip']?></td>
-                        <td><a href="<?php echo base_url('dosen/detail/').$data['id']?>" class="btn btn-primary">Detail Dosen</a> <a href="<?php echo base_url('dosen/hapus/').$data['id']?>" class="btn btn-warning">Hapus Dosen</a></td>
+                        <td><a href="<?php echo base_url('dosen/detail/').$data['id']?>" class="btn btn-primary">Detail Dosen</a> <a href="<?php echo base_url('dosen/hapus/').$data['id']?>" class="btn btn-danger">Hapus Dosen</a></td>
                     </tr>
         <?php           } ?>
                 </table>          

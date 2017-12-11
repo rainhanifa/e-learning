@@ -429,5 +429,20 @@
             }
 
         }
+        
 
+        public static function write_log($username, $activity){
+            $CI =& get_instance();
+
+            date_default_timezone_set("Asia/Jakarta");
+            $time           = date("Y-m-d H:i:s");
+            
+            $log_data       = array("time" => $time, "username" => $username, "description" => $activity);
+            if($CI->db->insert("activity_log", $log_data)){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
 }

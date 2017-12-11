@@ -9,7 +9,7 @@
     <div class="container">
         
         <div class="row">
-            <span><a href="<?php echo base_url("kelas/tambah")?>" class="btn btn-primary">Tambah Kelas</a></span>
+            <span><a data-toggle="modal" href="#tambah" data-dismiss="#tambah" class="btn btn-primary">Tambah Kelas</a></span>
             <br/><br/>
             <?php
                 if(is_array($kelas)){
@@ -23,7 +23,7 @@
                         <td><?php echo $data['nama']?></td>    
                         <td><?php echo $data['tahun']."/".($data['tahun']+1)?></td>
                         <td><?php echo getTotalSiswa($data['id'])?> mahasiswa</td>
-                        <td><a href="<?php echo base_url('kelas/detail/').$data['id']?>" class="btn btn-primary">Data Siswa</a> <a href="<?php echo base_url('kelas/mapel/').$data['id']?>" class="btn btn-primary">Data Mata Kuliah</a></td>
+                        <td width="50%"><a href="<?php echo base_url('kelas/detail/').$data['id']?>" class="btn btn-primary">Data Mahasiswa</a> <a href="<?php echo base_url('kelas/mapel/').$data['id']?>" class="btn btn-primary">Data Mata Kuliah</a> <a href="<?php echo base_url('kelas/hapus/').$data['id']?>" class="btn btn-danger">Hapus Kelas</a></td>
                     </tr>
         <?php           } ?>
                 </table>          

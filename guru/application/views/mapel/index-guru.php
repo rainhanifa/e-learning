@@ -17,9 +17,10 @@
             ?>
                     <tr>
                         <td><?php echo $mapel['nama_mapel']?></td>    
-                        <td>
+                        <td width="40%">
                                 <a href="<?php echo base_url('materi/bymapel/').$mapel['id_mapel']?>" class="btn btn-primary">Lihat Materi</a>
-                                <a href="<?php echo base_url('rapor/bymapel/').$mapel['id_mapel']?>" class="btn btn-primary">Lihat Nilai</a>
+                                <a href="<?php echo base_url('rapor/bymapel/').$mapel['id_mapel']?>" class="btn btn-primary">Lihat Kelas</a>
+                                <a href="<?php echo base_url('rapor/bymapel/').$mapel['id_mapel']?>" class="btn btn-warning">Lihat Nilai</a>
                         </td>
                     </tr>
         <?php           } ?>

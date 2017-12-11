@@ -10,12 +10,27 @@ function getTotalSiswa($kelas){
 
 function getDosenMapel($mapel){
 	$CI =& get_instance();
-    $where  =   array("mapel_id" => $mapel, "login.status" => 1, "login.level" => 1);
+    $where  =   array("mapel_id" => $mapel, "login.status" => 1, "login.level" => 1,  "t_mapel.status" => 1);
     $dosen  =   $CI->db->select("t_mapel.id, data_guru.id as id_dosen, data_guru.nama as nama_dosen")->from("t_mapel")
     			->join("data_guru", "t_mapel.dosen_id = data_guru.id")
                 ->join("login", "data_guru.id = login.user_id")
     			->where($where)->get()->result_array();
     return $dosen;
+}
+
+function getKelasMapel($mapel){
+    $CI     =& get_instance();
+    $where  = array('t_mapel.mapel_id' => $mapel);
+    $mapel  = $CI->db->select('data_kelas.id as id_kelas, data_kelas.nama as nama_kelas, data_kelas.tahun as tahun_kelas')
+                ->from('data_kelas')
+                ->join('t_jadwal', 't_jadwal.kelas_id = data_kelas.id')
+                ->join('t_mapel', 't_jadwal.t_mapel_id = t_mapel.id')
+                ->join('mata_pelajaran', 't_mapel.mapel_id = mata_pelajaran.id')
+                ->join('data_guru', 't_mapel.dosen_id = data_guru.id')
+                ->where($where)
+                ->get()
+                ->result_array();
+    return $mapel;
 }
 
 function getSubMateri($materi){
@@ -148,5 +163,23 @@ function getMapelNama($id){
     $where  =   array("id" => $id);
     $nama  = $CI->db->get_where('mata_pelajaran', $where)->row()->nama;
     return $nama;   
+}
+
+function get_progress($fields, $group_by, $where){
+    $CI =& get_instance();
+
+    $progress = $CI->db->select($fields)
+                    ->from('progress')
+                    ->join('submateri', 'progress.submateri_id = submateri.id')
+                    ->join('materi', 'submateri.materi_id = materi.id')
+                    ->join('detail_mapel', 'materi.id = detail_mapel.materi_id')
+                    ->join('t_mapel', 'detail_mapel.t_mapel_id = t_mapel.id')
+                    ->join('mata_pelajaran', 't_mapel.mapel_id = mata_pelajaran.id')
+                    ->join('data_siswa', 'progress.siswa_id = data_siswa.id')
+                    ->where($where)
+                    ->group_by($group_by)
+                    ->get()
+                    ->result_array();
+    return $progress;
 }
 ?>

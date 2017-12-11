@@ -124,6 +124,9 @@ class Auth extends CI_Controller {
 			            	// SIMPAN KE DB
 			                if($this->Front_model->insert_guru($pengguna, $password, $namalengkap, $nip, $email, $foto)){
 								//	berhasil
+
+	        					$this->Front_model->write_log($user, "Guru ".$user." mendaftar");
+
 								$this->session->set_flashdata("message","Anda berhasil mendaftar. Silakan login untuk masuk ke akun Anda.");
 								redirect("auth/masuk");
 			                }
@@ -192,6 +195,8 @@ class Auth extends CI_Controller {
 	                                $oldmask = umask(0); //temporarily set umask
 	                                mkdir($nama_folder_tugas_siswa, 0777, true);
 	                                umask($oldmask); // reset umask
+
+	        						$this->Front_model->write_log($user, "Siswa ".$user." mendaftar");
 
 									$this->session->set_flashdata("message","Anda berhasil mendaftar. Silakan login untuk masuk ke akun Anda.");
 									redirect("auth/masuk");

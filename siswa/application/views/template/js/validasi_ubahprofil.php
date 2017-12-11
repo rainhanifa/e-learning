@@ -27,14 +27,6 @@
                                 }
                             }
                         },
-                        kelas: {
-                            message: 'Kelas tidak valid',
-                            validators: {
-                                notEmpty: {
-                                    message: 'Field kelas tidak boleh kosong'
-                                }
-                            }
-                        },
                         absen: {
                             message: 'NIM tidak valid',
                             validators: {
@@ -48,7 +40,7 @@
                                 },
                                 regexp: {
                                     regexp: /^[0-9]+$/,
-                                    message: 'No absen hanya terdiri dari angka'
+                                    message: 'NIM hanya terdiri dari angka'
                                 }
                             }
                         },

@@ -4,8 +4,8 @@
         public function __construct()
         {
                 parent::__construct();
+                $CI =& get_instance();
         }
-
 
         public static function randompassword($password){
             $random     = "x0e7q5t1k3g8s2n4lr9f";
@@ -15,7 +15,8 @@
 
         public static function get_kelas(){
             $CI     =& get_instance();
-            return $CI->db->get("data_kelas")->result_array();;
+            $where  =   array('status' => 1 );
+            return $CI->db->get_where("data_kelas", $where)->result_array();;
         }
 
 
@@ -86,13 +87,14 @@
 
         public static function get_mapel(){
             $CI     =& get_instance();
-            $mapel  = $CI->db->get("mata_pelajaran")->result_array();
+            $where  =  array("status" => 1);
+            $mapel  = $CI->db->get_where("mata_pelajaran", $where)->result_array();
             return $mapel;
         }
 
         public static function get_mapel_kelas($kelas){
             $CI     =& get_instance();
-            $where  = array('t_jadwal.kelas_id' => $kelas);
+            $where  = array('t_jadwal.kelas_id' => $kelas, 'mata_pelajaran.status = 1');
             $mapel  = $CI->db->select('t_jadwal.id as id_jadwal, mata_pelajaran.nama as nama_mapel, data_guru.nama as nama_dosen')
                         ->from('t_jadwal')
                         ->join('t_mapel', 't_jadwal.t_mapel_id = t_mapel.id')
@@ -167,7 +169,7 @@
 
         public static function getMapelDosen($dosen){
             $CI =& get_instance();
-            $where  = array("dosen_id" => $dosen);
+            $where  = array("dosen_id" => $dosen, "t_mapel.status" => 1);
             $mapel  = $CI->db->select("t_mapel.id as id_mapel, nama as nama_mapel")
                             ->from("t_mapel")
                             ->join("mata_pelajaran", "t_mapel.mapel_id = mata_pelajaran.id")
@@ -369,5 +371,105 @@
 
         }
 
+        public static function write_log($activity){
+            $CI =& get_instance();
+
+            $username   =   $CI->session->userdata('username');
+
+            date_default_timezone_set("Asia/Jakarta");
+            $time           = date("Y-m-d H:i:s");
+            
+            $log_data       = array("time" => $time, "username" => $username, "description" => $activity);
+            if($CI->db->insert("activity_log", $log_data)){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        public static function hapus_mapel($mapel){
+            $CI =& get_instance();
+
+            $hapus  =   array('status' => 0);
+            $where  =   array("id" => $mapel);
+
+            $CI->db->where($where);
+
+            if($CI->db->update("mata_pelajaran", $hapus)){
+                $where2     =   array('mapel_id' => $mapel);
+                $CI->db->where($where2);
+                if($CI->db->update("t_mapel", $hapus)){
+                    //write log
+                    $activity   =   "menghapus mata pelajaran ID #".$mapel;
+                    $CI->Guru_model->write_log($activity);
+                    return true;    
+                }
+                
+            }
+            return false;
+            // get detail mapel sampai ke konten materi 
+
+            // hapus detail_mapel dengan t_mapel_id
+            // hapus t_mapel dengan mapel_id
+            // hapus mapel dengan id
+
+            // write log
+            // return
+        }
+
+        public static function hapus_dosen_mapel($dosen, $mapel){
+            $CI     =& get_instance();
+
+            $hapus  =   array('status' => 0);
+            $where  =   array("dosen_id" => $dosen, "mapel_id" => $mapel);
+
+            $CI->db->where($where);
+            if($CI->db->update("t_mapel", $hapus)){
+                //write log
+                $activity   =   "menghapus dosen ID #".$dosen." dari mata pelajaran ID #".$mapel;
+                $CI->Guru_model->write_log($activity);
+                return true;
+            }
+            return false;
+        }
+
+        public static function hapus_kelas($kelas){
+            $CI     =& get_instance();
+
+            $hapus  =   array('status' => 0);
+            $where  =   array("id" => $kelas);
+
+            $CI->db->where($where);
+            if($CI->db->update("data_kelas", $hapus)){
+                //write log
+                $activity   =   "menghapus kelas ID #".$kelas;
+                $CI->Guru_model->write_log($activity);
+                return true;
+            }
+            return false;
+        }
+
+        public static function get_progress_by_dosen($dosen){
+            $CI     =& get_instance();
+            $where      =   array('dosen_id' => $dosen);
+
+            $progress   =   $CI->db->select("data_siswa.id as id_siswa, 
+                                            data_siswa.nama as nama_siswa, data_siswa.foto AS foto_siswa,
+                                            submateri_id as id_submateri")
+                                    ->from('progress')
+                                    ->join('submateri', 'progress.submateri_id = submateri.id')
+                                    ->join('materi', 'submateri.materi_id = materi.id')
+                                    ->join('detail_mapel', 'materi.id = detail_mapel.materi_id')
+                                    ->join('t_mapel', 'detail_mapel.t_mapel_id = t_mapel.id')
+                                    ->join('mata_pelajaran', 't_mapel.mapel_id = mata_pelajaran.id')
+                                    ->join('data_siswa', 'progress.siswa_id = data_siswa.id')
+                                    ->where($where)
+                                    ->group_by('data_siswa.id')
+                                    ->get()
+                                    ->result_array();
+                                    //echo $CI->db->last_query();exit;
+            return $progress;
+        }
     }
 ?>

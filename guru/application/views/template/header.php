@@ -14,7 +14,7 @@
         
         <!-- CSS -->
 
-        <base href="http://<?php echo $_SERVER['HTTP_HOST'];?>/e-learning/siswa">
+        <base href="http://<?php echo $_SERVER['HTTP_HOST'];?>/e-learning/guru">
         <link rel="stylesheet" href="<?php echo base_url('assets/css/')?>bootstrap.css"/>
         <link rel="stylesheet" href="<?php echo base_url('assets/css/')?>style.css"/>
         <link rel="stylesheet" href="<?php echo base_url('assets/css/')?>guru.css"/>
@@ -89,7 +89,7 @@
                                         </li>
                                         <li class="<?php echo $halaman == 'profil' ? 'active' : '' ?>">
                                             <a href="<?php echo base_url('profil');?>">Profil</a>
-                                            <span class="<?php echo $halaman == 'profil' ? 'user' : '' ?>"></span>
+                                            <span class="<?php echo $halaman == 'profil' ? 'profile' : '' ?>"></span>
                                         </li>
                                         <li class="<?php echo $halaman == 'mapel' ? 'active' : '' ?>">
                                             <a href="<?php echo base_url('mapel');?>">Mata Kuliah</a>
@@ -132,10 +132,11 @@
                                                         <a href="<?php echo base_url('mapel') ?>">Mata Kuliah</a>
                                                     </li>
                                                     <li class="divider"></li>
+                                                    <!--
                                                     <li>
-                                                        <a href="<?php echo base_url('jadwal') ?>">Jadwal</a>
+                                                        <a href="<php echo base_url('jadwal') ?>">Jadwal</a>
                                                     </li>
-                                                    <li class="divider"></li>
+                                                    -->
                                                 </ul>
                                             </li>
                                     <?php } ?>

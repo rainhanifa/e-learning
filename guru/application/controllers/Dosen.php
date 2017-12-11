@@ -57,7 +57,7 @@ class Dosen extends CI_Controller {
 
 			//DETAIL DOSEN
 			$data['dosen'] 		= $this->Guru_model->get_detail_dosen($dosen);
-			$data['mapel'] 		= "";//$this->Guru_model->get_mapel_dosen($dosen);
+			$data['mapel'] 		= $this->Guru_model->getMapelDosen($dosen);
 			$data['folder_foto_guru']	= base_url()."../upload/foto/guru/";
 			$this->load->view('template/header');
 			$this->load->view('dosen/detail', $data);

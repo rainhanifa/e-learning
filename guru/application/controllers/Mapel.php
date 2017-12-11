@@ -131,4 +131,19 @@ class Mapel extends CI_Controller {
 		redirect("mapel");
 	}
 
+	public function hapusdosen($id_dosen, $id_mapel){
+		$hapus 	= $this->Guru_model->hapus_dosen_mapel($id_dosen, $id_mapel);
+		if($hapus){
+			$this->session->set_flashdata("error","Berhasil menghapus dosen");
+		}
+		redirect("mapel");
+	}
+
+	public function hapus($id_mapel){
+		$hapus 	= $this->Guru_model->hapus_mapel($id_mapel);
+		if($hapus){
+			$this->session->set_flashdata("error","Berhasil menghapus dosen");
+		}
+		redirect("mapel");
+	}
 }

@@ -200,7 +200,7 @@ input[type=text].form-control{
 .navbar-default .navbar-nav > li.active span.masuk{
     background: url(../images/navbar/Icon-Login.png) no-repeat;
 }
-.navbar-default .navbar-nav > li.active span.komp{
+.navbar-default .navbar-nav > li.active span.mapel{
     background: url(../images/navbar/Icon-Komp.png) no-repeat;
     width: 35px;
 }
@@ -208,7 +208,7 @@ input[type=text].form-control{
     background: url(../images/navbar/Icon-Materi.png) no-repeat;
 }
 .navbar-default .navbar-nav > li.active span.profile{
-    background: url(../../../siswa/public/images/icons/Icon-Profil.png) no-repeat;
+    background: url(../images/icons/Icon-Profil.png) no-repeat;
 }
 .navbar-default .navbar-nav > li.active span.clue{
     background: url(../images/icons/Icon-Petunjuk.png) no-repeat;

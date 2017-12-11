@@ -71,16 +71,29 @@
                         <th class="text-center">No</th>
                         <th class="text-center">Mata Pelajaran</th>
                         <th class="text-center">Kelas</th>
-                        <th class="text-center"></th>
                     </tr>
             <?php
+                    $no = 1;
                     foreach($mapel as $data){
             ?>
                     <tr>
-                        <td></td>
+                        <td><?php echo $no;?></td>
                         <td><?php echo $data['nama_mapel']?></td>
-                        <td><?php echo $data['nama_kelas']?></td>
-                        <td></td>
+                        <td>
+                        <?php
+                            $kelas = getKelasMapel($data['id_mapel']);
+                            if(is_array($kelas)){
+                                echo "<ul>";
+                                foreach($kelas as $kelas){
+                                    ?>
+                                    <li><a href="<?php echo base_url('kelas/detail/').$kelas['id_kelas']; ?>"><?php echo $kelas['nama_kelas']; ?></a></li>
+                                    <?php
+                                }
+
+                                echo "</ul>";
+                            }
+                        ?>
+                        </td>
                     </tr>
         <?php           } ?>
                 </table>          

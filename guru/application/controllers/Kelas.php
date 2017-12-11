@@ -9,7 +9,7 @@ class Kelas extends CI_Controller {
         parent::__construct();
 
         // CHECK LOGIN
-        if($this->session->userdata('level') != 9){
+        if(($this->session->userdata('level') != 1) && ($this->session->userdata('level') != 9)){
         	$this->session->set_flashdata("error","Anda harus login untuk mengakses halaman ini ");
         	redirect("../auth/masuk");
         }
@@ -23,7 +23,7 @@ class Kelas extends CI_Controller {
 	{
 		$data['js'] = '';
 		$data['validasi'] = '';
-		$data['modal'] = '';
+		$data['modal'] = array($this->load->view("template/modal/tambah_kelas", NULL, TRUE));
 
 		//HASIL PROGRESS
 		$data['kelas'] 		= $this->Guru_model->get_kelas();
@@ -51,6 +51,27 @@ class Kelas extends CI_Controller {
 		{
 			redirect("kelas");
 		}
+	}
+
+	public function tambah(){
+		if($_POST){
+
+		var_dump($_POST);
+			$nama	=	$this->input->post('nama');
+			$tahun	=	$this->input->post('tahun');
+
+			$data_kelas	= array('nama' => $nama,
+								'tahun' => $tahun);
+
+			if($this->db->insert("data_kelas", $data_kelas)){
+				$this->session->set_flashdata("message","Berhasil menambahkan kelas");
+			}
+			else
+			{
+				$this->session->set_flashdata("error","Kegagalan sistem.");
+			}
+		}
+		redirect("kelas");
 	}
 
 	public function mapel($kelas = 0)
@@ -91,5 +112,13 @@ class Kelas extends CI_Controller {
 				redirect("kelas/mapel/".$kelas);
 			}
 		}
+	}
+
+	public function hapus($idkelas){
+		$hapus = $this->Guru_model->hapus_kelas($idkelas);
+		if($hapus){
+			$this->session->set_flashdata("error","Berhasil menghapus kelas");
+		}
+		redirect('kelas');
 	}
 }

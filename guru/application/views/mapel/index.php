@@ -30,7 +30,7 @@
                                         <ul>
                             <?php foreach($dosen_mapel as $dosen_mapel){ ?>
                                             <li><?php echo $dosen_mapel['nama_dosen']?>
-                                                <a href="<?php echo base_url("mapel/hapusdosen/")?>"><i class="glyphicon glyphicon-trash"></i></a>
+                                                <a href="<?php echo base_url("mapel/hapusdosen/").$dosen_mapel['id_dosen'].'/'.$data['id']?>"><i class="glyphicon glyphicon-trash"></i></a>
                                             </li>
                             <?php       } ?>
                                         </ul>
@@ -43,7 +43,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <a href="<?php echo base_url('mapel/tambahdosen/').$data['id']?>" class="btn btn-primary">Tambah Dosen</a>
-                                <a href="<?php echo base_url('mapel/hapus/').$data['id']?>" class="btn btn-warning">Hapus Makul</a>
+                                <a href="<?php echo base_url('mapel/hapus/').$data['id']?>" class="btn btn-danger">Hapus Makul</a>
                             </div>
                         </td>
                     </tr>

@@ -22,7 +22,7 @@
                         <td><?php echo $data['nama_kelas']?></td>    
                         <td><?php echo $data['tahun_kelas']."/".($data['tahun_kelas']+1)?></td>
                         <td><?php echo getTotalSiswa($data['id_kelas'])?> mahasiswa</td>
-                        <td><a href="<?php echo base_url('rapor/kelas/').$idmapel.'/'.$data['id_kelas']?>" class="btn btn-primary">Data Nilai</a></td>
+                        <td width="30%"><a href="<?php echo base_url('kelas/detail/').$data['id_kelas']?>" class="btn btn-primary">Data Mahasiswa</a> <a href="<?php echo base_url('rapor/kelas/').$idmapel.'/'.$data['id_kelas']?>" class="btn btn-warning">Data Nilai</a></td>
                     </tr>
         <?php           } ?>
                 </table>          

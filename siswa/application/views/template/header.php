@@ -87,7 +87,7 @@
                                         </li>
                                         <li class="<?php echo $halaman == 'profil' ? 'active' : '' ?>">
                                             <a href="<?php echo base_url('profil');?>">Profil</a>
-                                            <span class="<?php echo $halaman == 'profil' ? 'user' : '' ?>"></span>
+                                            <span class="<?php echo $halaman == 'profil' ? 'profile' : '' ?>"></span>
                                         </li>
                                         <li class="<?php echo $halaman == 'materi' ? 'active' : '' ?>">
                                             <a href="<?php echo base_url('materi');?>">Materi</a>

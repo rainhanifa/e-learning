@@ -12,22 +12,18 @@
             <?php
                 if(is_array($siswa)){
             ?>
-
                 <table class="table table-border text-center">
                     <tr>
                         <th colspan="2" class="text-center">Nama</th>
                         <th class="text-center">NIM</th>
-                        <th class="text-center">Materi</th>
-                        <th class="text-center"></th>
                     </tr>
             <?php
                     foreach($siswa as $data){
             ?>
                     <tr>
-                        <td><img src="<?php echo $folder_foto_siswa.$data['foto']; ?>" class="img-circle" width="25px"/></td> 
+                        <td width="10%"><img src="<?php echo $folder_foto_siswa.$data['foto']; ?>" class="img-circle" width="25px"/></td> 
                         <td><?php echo $data['nama_siswa']?></td>
                         <td><?php echo $data['nim']?></td>
-                        <td></td>
                     </tr>
         <?php           } ?>
                 </table>          
