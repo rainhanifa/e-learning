@@ -103,42 +103,34 @@
                                             <a href="<?php echo base_url('rapor'); ?>">Daftar Nilai</a>
                                             <span class="<?php echo $halaman == 'rapor' ? 'clue' : '' ?>"></span>
                                         </li>
+                                    <?php } ?>
+                                    <?php if($this->session->level == 9){ ?>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Data Master <span class="caret"></span></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li>
+                                                    <a href="<?php echo base_url('dosen') ?>">Dosen</a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li>
+                                                    <a href="<?php echo base_url('kelas') ?>">Kelas</a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li>
+                                                    <a href="<?php echo base_url('mapel') ?>">Mata Kuliah</a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <!--
+                                                <li>
+                                                    <a href="<php echo base_url('jadwal') ?>">Jadwal</a>
+                                                </li>
+                                                -->
+                                            </ul>
+                                        </li>
                                         <li class="<?php echo $halaman == 'catatan' ? 'active' : '' ?>">
                                             <a href="<?php echo base_url('catatan');?>">Catatan</a>
                                             <span class="<?php echo $halaman == 'catatan' ? 'note' : '' ?>"></span>
                                         </li>
-                                    <?php } ?>
-                                    <?php if($this->session->level == 9){ ?>
-                                        <li class="<?php echo $halaman == 'beranda' ? 'active' : '' ?>">
-                                            <a href="<?php echo base_url('beranda');?>">Beranda</a>
-                                            <span class="<?php echo $halaman == 'beranda' ? 'home' : '' ?>"></span>
-                                        </li>
-                                        <li class="<?php echo $halaman == 'profil' ? 'active' : '' ?>">
-                                            <a href="<?php echo base_url('profil');?>">Profil</a>
-                                            <span class="<?php echo $halaman == 'profil' ? 'user' : '' ?>"></span>
-                                        </li>
-                                            <li class="dropdown">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Data Master <span class="caret"></span></a>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li>
-                                                        <a href="<?php echo base_url('dosen') ?>">Dosen</a>
-                                                    </li>
-                                                    <li class="divider"></li>
-                                                    <li>
-                                                        <a href="<?php echo base_url('kelas') ?>">Kelas</a>
-                                                    </li>
-                                                    <li class="divider"></li>
-                                                    <li>
-                                                        <a href="<?php echo base_url('mapel') ?>">Mata Kuliah</a>
-                                                    </li>
-                                                    <li class="divider"></li>
-                                                    <!--
-                                                    <li>
-                                                        <a href="<php echo base_url('jadwal') ?>">Jadwal</a>
-                                                    </li>
-                                                    -->
-                                                </ul>
-                                            </li>
                                     <?php } ?>
                                         <li>
                                             <a href="<?php echo base_url('../auth/keluar')?>">Keluar</a>

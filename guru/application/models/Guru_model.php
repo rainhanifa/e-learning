@@ -302,16 +302,6 @@
             return $mapel;
         }
 
-        public static function deleteKonten($id){
-            $CI =& get_instance();
-            $where  =   array('id' => $id);
-            if($CI->db->delete('kontenmateri', $where)){
-                return "Konten telah dihapus";
-            }else{
-                return "Konten gagal dihapus";
-            }
-        }
-
         public static function get_rapor($mapel, $kelas){
             $CI =& get_instance();
             return array(array("nama" => "A", "nilai" => 90),array("nama" => "B", "nilai" => 70));
@@ -335,6 +325,8 @@
 
             $CI->db->where($where);
             if($CI->db->update('login', $data_pass)){
+                $activity   =   "mengupdate foto untuk guru ID #".$userid;
+                $CI->Guru_model->write_log($activity);
                 return true;
             }
             else{
@@ -349,6 +341,8 @@
 
             $CI->db->where($where);
             if($CI->db->update('data_guru', $data_guru)){
+                $activity   =   "mengupdate foto untuk guru ID #".$userid;
+                $CI->Guru_model->write_log($activity);
                 return true;
             }
             else{
@@ -408,14 +402,6 @@
                 
             }
             return false;
-            // get detail mapel sampai ke konten materi 
-
-            // hapus detail_mapel dengan t_mapel_id
-            // hapus t_mapel dengan mapel_id
-            // hapus mapel dengan id
-
-            // write log
-            // return
         }
 
         public static function hapus_dosen_mapel($dosen, $mapel){
@@ -428,6 +414,21 @@
             if($CI->db->update("t_mapel", $hapus)){
                 //write log
                 $activity   =   "menghapus dosen ID #".$dosen." dari mata pelajaran ID #".$mapel;
+                $CI->Guru_model->write_log($activity);
+                return true;
+            }
+            return false;
+        }
+
+        public static function hapus_dosen($dosen){
+            $CI     =& get_instance();
+
+            $hapus = array("status" => 0);
+            $where = array("user_id" => $dosen, "level" => 1);
+            $CI->db->where($where);
+            if($CI->db->update("login", $hapus)){
+                //write log
+                $activity   =   "menghapus dosen ID #".$dosen;
                 $CI->Guru_model->write_log($activity);
                 return true;
             }
@@ -450,6 +451,20 @@
             return false;
         }
 
+
+        public static function hapus_konten($id){
+            $CI =& get_instance();
+            $where  =   array('id' => $id);
+            if($CI->db->delete('kontenmateri', $where)){
+                $activity   =   "menghapus konten ID #".$id;
+                $CI->Guru_model->write_log($activity);
+                return "Konten telah dihapus";
+            }else{
+                return "Konten gagal dihapus";
+            }
+        }
+
+
         public static function get_progress_by_dosen($dosen){
             $CI     =& get_instance();
             $where      =   array('dosen_id' => $dosen);
@@ -470,6 +485,12 @@
                                     ->result_array();
                                     //echo $CI->db->last_query();exit;
             return $progress;
+        }
+
+        public static function get_logs(){
+            $CI     =& get_instance();
+            $log    =   $CI->db->order_by('time', 'DESC')->get('activity_log')->result_array();
+            return $log;
         }
     }
 ?>

@@ -66,7 +66,7 @@ class Auth extends CI_Controller {
         									"level"  => $login->level);
 	        	$this->session->set_userdata($user_data);
 
-	        	$this->Front_model->write_log($user, $user." login");
+	        	$this->Front_model->write_log($user, "login ke sistem");
 
 	        	if($login->level == 1){
 	        		redirect("guru");
@@ -125,7 +125,7 @@ class Auth extends CI_Controller {
 			                if($this->Front_model->insert_guru($pengguna, $password, $namalengkap, $nip, $email, $foto)){
 								//	berhasil
 
-	        					$this->Front_model->write_log($user, "Guru ".$user." mendaftar");
+	        					$this->Front_model->write_log($user, "mendaftar sebagai guru");
 
 								$this->session->set_flashdata("message","Anda berhasil mendaftar. Silakan login untuk masuk ke akun Anda.");
 								redirect("auth/masuk");
@@ -196,7 +196,7 @@ class Auth extends CI_Controller {
 	                                mkdir($nama_folder_tugas_siswa, 0777, true);
 	                                umask($oldmask); // reset umask
 
-	        						$this->Front_model->write_log($user, "Siswa ".$user." mendaftar");
+	        						$this->Front_model->write_log($user, "mendaftar sebagai mahasiswa kelas ".$siswa_kelas);
 
 									$this->session->set_flashdata("message","Anda berhasil mendaftar. Silakan login untuk masuk ke akun Anda.");
 									redirect("auth/masuk");
@@ -256,9 +256,13 @@ class Auth extends CI_Controller {
 	}
 
 	public function keluar(){
+
+	    $this->Front_model->write_log($this->session->userdata("username"), "logout dari sistem");
+
 		$this->session->sess_destroy();
 		$user_data 	= array("username", "level", "userid", "mapel");
 		$this->session->unset_userdata($user_data);
+
 
 		$this->session->set_flashdata("message","Anda telah keluar dari sistem.");
 		redirect("auth/masuk");

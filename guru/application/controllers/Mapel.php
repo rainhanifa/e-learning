@@ -73,6 +73,9 @@ class Mapel extends CI_Controller {
 
 			$data_mapel	= array("nama" => $nama_mapel);
 			if($this->db->insert("mata_pelajaran", $data_mapel)){
+				$activity   =   "menambahkan mata_kuliah ".$nama_mapel;
+                $this->Guru_model->write_log($activity);
+
 				$this->session->set_flashdata("error","Berhasil menambahkan mata kuliah");
 			}
 			else
@@ -117,6 +120,9 @@ class Mapel extends CI_Controller {
 
 			$data_t_mapel	= array("mapel_id" => $mapel, "dosen_id" => $dosen);
 			if($this->db->insert("t_mapel", $data_t_mapel)){
+				$activity   =   "menambahkan dosen ID #".$dosen." ke mata kuliah ID #".$mapel."";
+                $this->Guru_model->write_log($activity);
+
 				$this->session->set_flashdata("error","Berhasil menambahkan dosen");
 			}
 			else
@@ -142,7 +148,7 @@ class Mapel extends CI_Controller {
 	public function hapus($id_mapel){
 		$hapus 	= $this->Guru_model->hapus_mapel($id_mapel);
 		if($hapus){
-			$this->session->set_flashdata("error","Berhasil menghapus dosen");
+			$this->session->set_flashdata("error","Berhasil menghapus mata kuliah");
 		}
 		redirect("mapel");
 	}

@@ -37,10 +37,8 @@ class Dosen extends CI_Controller {
 	public function hapus($id = 0)
 	{
 		if($id > 0){
-			$hapus = array("status" => 0);
-			$where = array("user_id" => $id, "level" => 1);
-			$this->db->where($where);
-			if($this->db->update("login", $hapus)){
+			$hapus = $this->Guru_model->hapus_dosen($id);
+			if($hapus){
 				$this->session->set_flashdata("error", "Berhasil menghapus dosen");
 			}
 		}

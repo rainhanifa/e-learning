@@ -115,6 +115,7 @@ class Materi extends CI_Controller {
 				else{
 					set_progress($submateri_id,'','tugas','');
 				}
+
 				$this->session->set_flashdata('message','<label class="label label-success clues">Upload berhasil, tunggu proses penilaian.</label>');
 	        }
 	        else{

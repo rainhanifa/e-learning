@@ -98,6 +98,10 @@ class Materi extends CI_Controller {
 					$materi_id 			= $this->db->insert_id();
 					$data_detail		= array("t_mapel_id" => $mapel,
 												"materi_id" => $materi_id);
+
+					$activity   =   "menambahkan materi ".$materi." ke mata kuliah ID #".$mapel."";
+		            $this->Guru_model->write_log($activity);
+
 					$this->db->insert('detail_mapel', $data_detail);
 				}
 				else{
@@ -109,6 +113,10 @@ class Materi extends CI_Controller {
 											"nama" => $submateri);
 
 			if($this->db->insert('submateri', $data_submateri)){
+
+				$activity   =   "menambahkan submateri ".$submateri." ke materi ".$materi;
+                $this->Guru_model->write_log($activity);
+
 				redirect('materi');
 			}
 			else{
@@ -129,6 +137,10 @@ class Materi extends CI_Controller {
 		 
 		 $this->db->where($where);
 		 if($this->db->update('materi', $data)){
+
+			$activity   =   "mengubah materi ID #".$id." dengan nama baru: ".$nama;
+            $this->Guru_model->write_log($activity);
+
 		 	$this->session->set_flashdata('message', 'Berhasil');
 		 }
 		redirect('materi');;
@@ -163,7 +175,7 @@ class Materi extends CI_Controller {
 	}
 
 	public function hapuskonten($id){
-		$hapus  	=	$this->Guru_model->deleteKonten($id);
+		$hapus  	=	$this->Guru_model->hapus_konten($id);
 		redirect('materi');
 	}
 
@@ -226,11 +238,19 @@ class Materi extends CI_Controller {
 				$id_exist 	= $this->db->get_where('kontenmateri', $where2)->row()->id;
 				$this->db->where('id',$id_exist);
 				if($this->db->update('kontenmateri', $data_materi)){
+
+					$activity   =   "mengupdate konten materi ID #".$id_exist." tipe ".$tipe.")";
+	                $this->Guru_model->write_log($activity);
+
 					redirect('materi');
 				}
 			}
 			else{
 				if($this->db->insert('kontenmateri', $data_materi)){
+
+					$activity   =   "menambahkan konten materi ".$tipe." untuk submateri ".$submateri;
+	                $this->Guru_model->write_log($activity);
+
 					redirect('materi');
 				}	
 			}

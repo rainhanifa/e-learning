@@ -394,6 +394,9 @@
 
             $CI->db->where($where);
             if($CI->db->update('login', $data_pass)){
+                $activity   =   "mengubah password";
+                $this->Siswa_model->write_log($activity);
+                
                 return true;
             }
             else{
@@ -408,6 +411,8 @@
 
             $CI->db->where($where);
             if($CI->db->update('data_siswa', $data_guru)){
+                $activity   =   "memperbarui foto";
+                $this->Siswa_model->write_log($activity);
                 return true;
             }
             else{
@@ -422,6 +427,8 @@
 
             $CI->db->where($where);
             if($CI->db->update('data_siswa', $data_guru)){
+                $activity   =   "memperbarui profil";
+                $this->Siswa_model->write_log($activity);
                 return true;
             }
             else{
@@ -429,11 +436,11 @@
             }
 
         }
-        
 
-        public static function write_log($username, $activity){
+        public static function write_log($activity){
             $CI =& get_instance();
 
+            $username   =   $CI->session->userdata('username');
             date_default_timezone_set("Asia/Jakarta");
             $time           = date("Y-m-d H:i:s");
             

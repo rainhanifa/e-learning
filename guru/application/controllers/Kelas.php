@@ -55,8 +55,6 @@ class Kelas extends CI_Controller {
 
 	public function tambah(){
 		if($_POST){
-
-		var_dump($_POST);
 			$nama	=	$this->input->post('nama');
 			$tahun	=	$this->input->post('tahun');
 
@@ -64,6 +62,8 @@ class Kelas extends CI_Controller {
 								'tahun' => $tahun);
 
 			if($this->db->insert("data_kelas", $data_kelas)){
+				$activity   =   "menambahkan kelas ".$nama." (".$tahun.")";
+                $this->Guru_model->write_log($activity);
 				$this->session->set_flashdata("message","Berhasil menambahkan kelas");
 			}
 			else
@@ -102,13 +102,14 @@ class Kelas extends CI_Controller {
 			$kelas 	=	$this->input->post('kelas');
 
 			// GET T_MAPEL
-
 			$data_jadwal	=	array("t_mapel_id" => $mapel,
 										"kelas_id" => $kelas,
 										"tahun" => date('Y'),
 										"jam" => date('H:i'));
 
 			if($this->db->insert('t_jadwal', $data_jadwal)){
+				$activity   =   "menambahkan jadwal mata kuliah ID #".$mapel." untuk kelas id #".$kelas.")";
+                $this->Guru_model->write_log($activity);
 				redirect("kelas/mapel/".$kelas);
 			}
 		}
