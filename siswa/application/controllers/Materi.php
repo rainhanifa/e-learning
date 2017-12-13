@@ -160,17 +160,16 @@ class Materi extends CI_Controller {
         //lokasi file css yang akan di load
         $stylesheet = file_get_contents(FCPATH.'assets/css/bootstrap.css');
         $stylesheet .= file_get_contents(FCPATH.'assets/css/style.css');
-        $stylesheet .= file_get_contents(FCPATH.'assets/css/guru.css');
+        $stylesheet .= file_get_contents(FCPATH.'assets/css/siswa.css');
 
         $pdf = $this->m_pdf->load();
 
-        $data['idkelas']	= $idkelas;
-		$data['idmapel']	= $idmapel;
-		$data['kelas'] = $this->Guru_model->get_siswa_kelas($idkelas);
-		$data['materi'] = $this->Guru_model->getMateriDosenByMapel($this->userid, $idmapel);
 
-		$this->load->view('rapor/printnilai', $data);
-		$html 	 = $this->load->view('rapor/printnilai', $data, TRUE);
+		$data['konten'] = $this->Siswa_model->get_konten_detail($idkonten);
+
+
+		$this->load->view('materi/print_materi', $data);
+		$html 	 = $this->load->view('materi/print_materi', $data, TRUE);
 		
 		$pdf->AddPage('P'); //L to landscape
         $pdf->WriteHTML($stylesheet, 1);

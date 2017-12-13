@@ -76,7 +76,9 @@
                             echo'<a href="'.$filename.'" class="btn btn-default">Download Materi</a>';
                         }
                         else{
-                            echo '<button id="print" class="btn btn-default">Download Materi</button>';
+                ?>
+                            <a href="<?php echo base_url('materi/print_materi/').$konten['id_konten']?>"" id="print" class="btn btn-default">Download Materi</a>
+                <?php
                         }
                 ?>
                 <a href="#" type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-default">Komentar</a>

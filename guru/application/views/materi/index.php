@@ -16,6 +16,7 @@
                     foreach($materi as $data){
         ?>
                     <div class="deskripsi-materi">
+                        <h3>Mata Kuliah : <?php echo $data['nama_mapel']; ?></h3>
                         <h5>Materi : <?php echo $data['nama_materi']; ?></h5>
                         
                         <?php

@@ -182,7 +182,7 @@
 
         public static function getMateriDosen($dosen){
             $CI =& get_instance();
-            $where  = array("dosen_id" => $dosen);
+            $where  = array("dosen_id" => $dosen, "t_mapel.status" => 1);
             $mapel  = $CI->db->select("mata_pelajaran.nama as nama_mapel,
                                     materi.nama as nama_materi, materi.id as id_materi")
                             ->from("t_mapel")
@@ -196,9 +196,9 @@
         }
 
 
-        public static function getMateriDosenbyMapel($dosen, $mapel){
+        public static function getMateriDosenbyMapel($dosen, $tmapel){
             $CI =& get_instance();
-            $where  = array("dosen_id" => $dosen, "mata_pelajaran.id" => $mapel);
+            $where  = array("dosen_id" => $dosen, "t_mapel.id" => $tmapel);
             $mapel  = $CI->db->select("mata_pelajaran.nama as nama_mapel,
                                     materi.nama as nama_materi, materi.id as id_materi")
                             ->from("t_mapel")

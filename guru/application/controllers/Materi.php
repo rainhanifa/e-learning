@@ -184,7 +184,7 @@ class Materi extends CI_Controller {
 			$userid		=	$this->userid;
 			$submateri 	=	$this->input->post('submateri');
 			$tipe 		=	$this->input->post('kategori');
-
+			
 			// JIKA UPLOAD FILE
 			if (!empty($_FILES['filemateri']['name'])) {
 				// CEK FILE EXTENSION
