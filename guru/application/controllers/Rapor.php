@@ -114,4 +114,30 @@ class Rapor extends CI_Controller {
 		$this->session->set_flashdata("Data nilai tidak dapat disimpan");
 		redirect('rapor/berinilai/'.$id_siswa.'/'.$id_submateri);			
 	}
+
+	public function printnilai($idkelas, $idmapel){
+ 		//var_dump($source);exit;
+        $pdfFilePath = "Laporan Nilai.pdf";
+        //lokasi file css yang akan di load
+        $stylesheet = file_get_contents(FCPATH.'assets/css/bootstrap.css');
+        $stylesheet .= file_get_contents(FCPATH.'assets/css/style.css');
+        $stylesheet .= file_get_contents(FCPATH.'assets/css/guru.css');
+
+        $pdf = $this->m_pdf->load();
+
+        $data['idkelas']	= $idkelas;
+		$data['idmapel']	= $idmapel;
+		$data['kelas'] = $this->Guru_model->get_siswa_kelas($idkelas);
+		$data['materi'] = $this->Guru_model->getMateriDosenByMapel($this->userid, $idmapel);
+
+		$this->load->view('rapor/printnilai', $data);
+		$html 	 = $this->load->view('rapor/printnilai', $data, TRUE);
+		
+		$pdf->AddPage('P'); //L to landscape
+        $pdf->WriteHTML($stylesheet, 1);
+        $pdf->WriteHTML($html);
+
+        $pdf->Output($pdfFilePath, "I"); //F to save as file, D to download, I view in browser
+        exit();
+	}
 }

@@ -1,4 +1,5 @@
 <div id="printpdf">
+<!-- begin print area -->
     <section>
         <div class="container">
             <div class="row reg-heading">
@@ -116,7 +117,7 @@
             <div class="col-md-12">
                 <div class="profil-siswa">
                     <div class="form-reg">
-                        <button id="print" class="btn btn-default">Print</button>
+                        <a href="<?php echo base_url('rapor/printnilai/').$idkelas.'/'.$idmapel; ?>" id="print" class="btn btn-default" onclick="">Print</a>
                     </div>
                 </div>
             </div>

@@ -202,7 +202,7 @@ input[type=text].form-control{
 }
 .navbar-default .navbar-nav > li.active span.mapel{
     background: url(../images/navbar/Icon-Komp.png) no-repeat;
-    width: 35px;
+    width: 135px;
 }
 .navbar-default .navbar-nav > li.active span.materi{
     background: url(../images/navbar/Icon-Materi.png) no-repeat;

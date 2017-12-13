@@ -543,3 +543,19 @@
         margin-left: 15px;
     }
 }
+
+/* PRINT 
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printpdf, #printpdf * {
+    visibility: visible;
+  }
+  #printpdf {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+*/

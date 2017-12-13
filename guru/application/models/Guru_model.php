@@ -65,6 +65,7 @@
                         ->from('data_siswa')
                         ->join('login', 'data_siswa.id = login.user_id')
                         ->join('detail_kelas', 'data_siswa.id = detail_kelas.siswa_id')
+                        ->order_by('data_siswa.nama')
                         ->where($where)->get()->result_array();
             return $data;
         }

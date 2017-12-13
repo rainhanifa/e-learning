@@ -115,6 +115,10 @@ class Materi extends CI_Controller {
 				else{
 					set_progress($submateri_id,'','tugas','');
 				}
+				
+                $activity   =   "mengupload tugas ".$$tipekonten."untuk submateri ".$submateri_id.")";
+                $this->Siswa_model->write_log($activity);
+                
 
 				$this->session->set_flashdata('message','<label class="label label-success clues">Upload berhasil, tunggu proses penilaian.</label>');
 	        }
@@ -148,5 +152,31 @@ class Materi extends CI_Controller {
 			echo "OK";
 		}
 		redirect("materi/activity/".$kontenmateri);
+	}
+
+	public function print_materi($idkonten){
+ 		//var_dump($source);exit;
+        $pdfFilePath = "Download Materi ".$idkonten.".pdf";
+        //lokasi file css yang akan di load
+        $stylesheet = file_get_contents(FCPATH.'assets/css/bootstrap.css');
+        $stylesheet .= file_get_contents(FCPATH.'assets/css/style.css');
+        $stylesheet .= file_get_contents(FCPATH.'assets/css/guru.css');
+
+        $pdf = $this->m_pdf->load();
+
+        $data['idkelas']	= $idkelas;
+		$data['idmapel']	= $idmapel;
+		$data['kelas'] = $this->Guru_model->get_siswa_kelas($idkelas);
+		$data['materi'] = $this->Guru_model->getMateriDosenByMapel($this->userid, $idmapel);
+
+		$this->load->view('rapor/printnilai', $data);
+		$html 	 = $this->load->view('rapor/printnilai', $data, TRUE);
+		
+		$pdf->AddPage('P'); //L to landscape
+        $pdf->WriteHTML($stylesheet, 1);
+        $pdf->WriteHTML($html);
+
+        $pdf->Output($pdfFilePath, "I"); //F to save as file, D to download, I view in browser
+        exit();
 	}
 }
