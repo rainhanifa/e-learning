@@ -210,7 +210,11 @@
                                 ->join('submateri', 'submateri.materi_id = materi.id')
                                 ->join('progress', 'progress.submateri_id = submateri.id')
                                 ->where($where2)->get()->num_rows();
-            $percentage = round($total_progress/$total_submateri * 100);
+
+            if($total_submateri > 0)
+                $percentage = round($total_progress/$total_submateri * 100);
+            else
+                $percentage = 0;
             return $percentage;
         }
 
