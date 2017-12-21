@@ -33,7 +33,7 @@ class Materi extends CI_Controller {
 	public function index(){
 		$id 	=	$this->Siswa_model->get_current_materi();
 		if(!$id){
-			// JIKA USER BARU PERTAMA KALI MENGAKSES MATA KULIAH INI
+			// JIKA USER BARU PERTAMA KALI MENGAKSES MATA KULIAH INI (ID PROGRESS TIDAK ADA)
 			$first =	$this->Siswa_model->get_first_materi($this->mapel);
 
 			if($first){
@@ -42,7 +42,7 @@ class Materi extends CI_Controller {
 
 				// SET PROGRESS KE SUB MATERI AWAL
 				set_progress($id_submateri,'','','');	
-			}
+			} 
 			else{
 				redirect("materi/belum_tersedia");
 			}
@@ -51,6 +51,7 @@ class Materi extends CI_Controller {
 			$first =	$this->Siswa_model->get_first_kontenmateri($id);
 			$id 			= $first[0]['id'];
 		}
+		
 		
 		redirect("materi/activity/$id");
 	}
@@ -106,17 +107,18 @@ class Materi extends CI_Controller {
 	        if($this->upload->do_upload('uptugas'))
 	        {
                 $tugas = $folder.'/'.$this->upload->data('file_name');
-				chmod($config['upload_path'].'/'.$isi, 0777); // note that it's usually changed to 0755
-
+				chmod($config['upload_path'].'/'.$this->upload->data('file_name'), 0777); // note that it's usually changed to 0755
 				// SET PROGRESS
 				if($tipekonten == 'class'){
+					// FILL FIELD FOR CLASS
 					set_progress($submateri_id,$tugas,'','');
 				}
 				else{
-					set_progress($submateri_id,'','tugas','');
+					// FILL FIELD FOR LAB
+					set_progress($submateri_id,'',$tugas,'');
 				}
 				
-                $activity   =   "mengupload tugas ".$$tipekonten."untuk submateri ".$submateri_id.")";
+                $activity   =   "mengupload tugas ".$tipekonten."untuk submateri ".$submateri_id.")";
                 $this->Siswa_model->write_log($activity);
                 
 

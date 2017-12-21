@@ -188,7 +188,7 @@ class Materi extends CI_Controller {
 			// JIKA UPLOAD FILE
 			if (!empty($_FILES['filemateri']['name'])) {
 				// CEK FILE EXTENSION
-				$file_ext = pathinfo($file_name,PATHINFO_EXTENSION);
+				$file_ext = pathinfo($_FILES['filemateri']['name'],PATHINFO_EXTENSION);
 				$folder   = '';
 				if($file_ext == 'pdf'){
 					// PDF
@@ -254,6 +254,9 @@ class Materi extends CI_Controller {
 					redirect('materi');
 				}	
 			}
+			var_dump($isi);
+			var_dump($config);
+			exit;
 			redirect('materi/tambahkonten');
 		}
 	}

@@ -47,7 +47,6 @@ function getSubMateriTotal($materi){
     return $submateri;   
 }
 
-
 function getSubMateriNama($id){
     $CI =& get_instance();
     $where  =   array("id" => $id);
@@ -88,13 +87,31 @@ function kontenClass($submateri){
 
 function getTugasSiswa($idkonten){
     $CI =& get_instance();
-    $where  =   array("kontenmateri_id" => $idkonten);
+    $where  =   array("id" => $idkonten);
+
+    $konten     = $CI->db->get_where('kontenmateri', $where)->row();
+    $submateri  = $konten->submateri_id;
+    $tipe       = $konten->tipe;
+
+    if($tipe == 'class')
+        $col    =  'tugas_class';
+    else
+        $col    =  'tugas_lab';
+
+    $tugas = $CI->db->select('progress.siswa_id as id_siswa, progress.'.$col.' as file_tugas, data_siswa.nama as nama_siswa')
+            ->from('progress')
+            ->join('data_siswa', 'progress.siswa_id = data_siswa.id')
+            ->where($col." <> '' ")
+            ->get()->result_array();
+
+    /** PREVIOUSLY GET FROM TABLE TUGAS
     $tugas  = $CI->db->select("tugas.id as id_tugas, data_siswa.nama as nama_siswa, tugas.file as file_tugas")
                     ->from('tugas')
                     ->join('data_siswa', 'tugas.siswa_id = data_siswa.id')
                     ->where($where)
                     ->get()
                 ->result_array();
+    */
     return $tugas;   
 }
 

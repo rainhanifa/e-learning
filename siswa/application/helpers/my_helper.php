@@ -121,8 +121,13 @@ function set_progress($submateri, $class, $lab, $status){
             $CI->db->where($where);
             if($CI->db->update('progress', $data_progress)){
 
-                $activity   =   "mengupload tugas ".$$tipekonten."untuk submateri ".$submateri_id.")";
-                $this->Siswa_model->write_log($activity);
+                $tipekonten = "";
+                if($class)
+                    $tipekonten = 'class';
+                else
+                    $tipekonten = 'lab';
+                $activity   =   "mengupload tugas ".$tipekonten."untuk submateri ".$submateri.")";
+                $CI->Siswa_model->write_log($activity);
                 
                 return true;
             }

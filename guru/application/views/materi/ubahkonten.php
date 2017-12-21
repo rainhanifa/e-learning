@@ -42,8 +42,8 @@
                 </div>
                 <div class="col-lg-11 col-md-10 col-sm-9 col-xs-12">
                     <select name="kategori" class="form-control" id="kategori">
-                        <option value="class" <?php ($konten['tipe'] == 'class') ? 'selected' : '' ?>>Class Activity</option>
-                        <option value="lab" <?php ($konten['tipe'] == 'lab') ? 'selected' : '' ?>>Lab Activity</option>
+                        <option value="class" <?php ($konten['tipe'] == 'class') ? 'selected' : '' ?> autocomplete="off">Class Activity</option>
+                        <option value="lab" <?php ($konten['tipe'] == 'lab') ? 'selected' : '' ?> autocomplete="off">Lab Activity</option>
                     </select>
                     <label class="clues">Pilih kategori sesuai dengan modul yang dibuat</label>
                 </div>

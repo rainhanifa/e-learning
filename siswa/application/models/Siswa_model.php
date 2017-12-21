@@ -36,7 +36,7 @@
             $CI     =& get_instance();
             $where  = array("kelas_id" => $kelas);
 
-            $mapel  =   $CI->db->select('mata_pelajaran.id as id_mapel, mata_pelajaran.nama as nama_mapel,
+            $mapel  =   $CI->db->select('t_mapel.id as id_mapel, mata_pelajaran.nama as nama_mapel,
                                 data_guru.id as id_guru, data_guru.nama as nama_guru')
                                 ->from('t_jadwal')
                                 ->join('t_mapel', 't_mapel.id = t_jadwal.t_mapel_id')
@@ -58,9 +58,9 @@
         }
 
 
-        public static function get_materi_list($mapel){
+        public static function get_materi_list($tmapel){
             $CI     =& get_instance();
-            $where  = array("mata_pelajaran.id" => $mapel);
+            $where  = array("t_mapel.id" => $tmapel);
             $mapel  = $CI->db->select("materi.nama as nama_materi, materi.id as id_materi")
                             ->from("t_mapel")
                             ->join("mata_pelajaran", "t_mapel.mapel_id = mata_pelajaran.id")
@@ -74,7 +74,7 @@
 
         public static function get_current_materi(){
             $CI     =& get_instance();
-            $where  = array("progress.siswa_id" => $CI->userid, "t_mapel.mapel_id" => $CI->mapel);
+            $where  = array("progress.siswa_id" => $CI->userid, "t_mapel.id" => $CI->mapel);
 
             $materi   =  $CI->db->select('progress.submateri_id as id_submateri')
                             ->from('progress')
@@ -84,7 +84,6 @@
                             ->join('t_mapel', 'detail_mapel.t_mapel_id = t_mapel.id')
                             ->where($where)
                             ->order_by('submateri_id', 'DESC')
-                            ->limit(1)
                             ->get();
             if($materi->num_rows() > 0){
                 $current  = $materi->result_array();

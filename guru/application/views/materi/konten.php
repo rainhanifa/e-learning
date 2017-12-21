@@ -19,10 +19,13 @@
                     <?php
 
                         $tipekonten = substr($konten['isi'],0,3);
-                        $filename = "http://localhost/e-learning/upload/materi/".$konten['isi'];
+                        $direktori = base_url('../upload/materi/');
+                        $filename = $direktori.$konten['isi'];
                         if($tipekonten == "pdf"){       
                             ?>
-                            <iframe src="http://localhost/e-learning/public/js/pdfjs/web/viewer.html?file=<?php echo $filename?>#zoom=page-auto"></iframe>
+                            <div class="video-konten embed-responsive embed-responsive-16by9">
+                                <iframe src="<?php echo base_url('../assets/js/pdfjs/web/')?>viewer.html?file=<?php echo $filename?>#zoom=page-auto"></iframe>
+                            </div>
                             <?php
                         }
                         else if($tipekonten == "vid"){
@@ -139,7 +142,7 @@
                             ?>
                             <p>
                                 <label class="label label-info"><?php echo $nofin; ?></label> 
-                                <a href="http://localhost/e_pko/materi/tugas/<?php echo $tugas['file_tugas']; ?>" id="<?php echo $nofin; ?>" onclick="getname(<?php echo $nofin; ?>)"><?php echo $tugas_siswa['nama_siswa']; ?></a>
+                                <a href="<?php echo base_url('../upload/tugas/').$tugas['file_tugas']; ?>" id="<?php echo $nofin; ?>" onclick="getname(<?php echo $nofin; ?>)"><?php echo $tugas['nama_siswa']; ?></a>
                             </p>
                             <?php
                                         $nofin++;

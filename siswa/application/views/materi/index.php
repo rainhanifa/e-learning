@@ -21,10 +21,13 @@
                     <!-- konten -->
                     <?php
                         $tipekonten = substr($konten['isi'],0,3);
-                        $filename = "http://localhost/e-learning/upload/materi/".$konten['isi'];
+                        $direktori = base_url('../upload/materi/');
+                        $filename = $direktori.$konten['isi'];
                         if($tipekonten == "pdf"){       
                             ?>
-                            <iframe src="http://localhost/e-learning/public/js/pdfjs/web/viewer.html?file=<?php echo $filename?>#zoom=page-auto"></iframe>
+                            <div class="video-konten embed-responsive embed-responsive-16by9">
+                                <iframe src="<?php echo base_url('../assets/js/pdfjs/web/')?>viewer.html?file=<?php echo $filename?>#zoom=page-auto"></iframe>
+                            </div>
                             <?php
                         }
                         else if($tipekonten == "vid"){
