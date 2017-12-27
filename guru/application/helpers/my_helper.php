@@ -98,10 +98,11 @@ function getTugasSiswa($idkonten){
     else
         $col    =  'tugas_lab';
 
+
     $tugas = $CI->db->select('progress.siswa_id as id_siswa, progress.'.$col.' as file_tugas, data_siswa.nama as nama_siswa')
             ->from('progress')
             ->join('data_siswa', 'progress.siswa_id = data_siswa.id')
-            ->where($col." <> '' ")
+            ->where($col." <> '' AND progress.submateri_id = $submateri")
             ->get()->result_array();
 
     /** PREVIOUSLY GET FROM TABLE TUGAS
