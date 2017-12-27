@@ -227,7 +227,7 @@
 
         public static function get_first_materi($mapel){
             $CI     =& get_instance();
-            $where  = array("mapel_id" => $mapel);
+            $where  = array("t_mapel.id" => $mapel);
 
             $materi  =  $CI->db->select('submateri.id as id_submateri, kontenmateri.id as id_konten')
                             ->from('mata_pelajaran')

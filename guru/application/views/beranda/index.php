@@ -21,7 +21,6 @@
 
 <section>
     <div class="container">
-        <div class="row reg-heading">
             <!-- <php 
                 $kelas  = backgurucode::kelas($user);
                 if($kelas == 'xirpla'){
@@ -64,7 +63,7 @@
             //$url_siswa = "http://".$_SERVER["HTTP_HOST"]."/e_pko/epsettings/siswa/";
             if($daftarsiswa<>''){
                 if(is_array($daftarsiswa)){
-                    echo '<h1 class="text-center">Data Progress Belajar</h1>';
+                    echo '<div class="row reg-heading"><h1 class="text-center">Data Progress Belajar</h1></div>';
                     foreach($daftarsiswa as $data){
         ?>        
         <div id="box-6" class="box">
@@ -91,7 +90,7 @@
                                     echo "<li>".$makul['nama'];
                                     $keterangan = "";
 
-                                    $submateri = get_progress("materi.nama as nama_materi, submateri.id as id_submateri, submateri.nama as nama_submateri", "submateri.id", "siswa_id =".$data['id_siswa']);
+                                    $submateri = get_progress("materi.nama as nama_materi, submateri.id as id_submateri, submateri.nama as nama_submateri", "submateri.id", "siswa_id =".$data['id_siswa']." AND mata_pelajaran.id = ".$makul['id']);
                                     if($submateri){
                                         echo "<ul>";
                                         foreach ($submateri as $submateri) {
