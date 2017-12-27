@@ -32,7 +32,8 @@
 
         public static function get_kelas(){
             $CI     =& get_instance();
-            return $CI->db->get("data_kelas")->result_array();;
+            $where  = array('status' => 1 );
+            return $CI->db->get_where("data_kelas", $where)->result_array();;
         }
 
         public static function insert_guru($username, $password, $namalengkap, $nip, $email, $foto){

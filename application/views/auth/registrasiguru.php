@@ -37,19 +37,19 @@
                     <label class="clues">Contoh: Ibnu Shodiqin</label>
                 </div>
             </div>
-            <div class="row item-reg">
+            <!-- <div class="row item-reg">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <label for="guru" class="control-label">Dosen Offering</label>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
                     <select name="gurukelas" id="guru_kelas" class="form-control">
-                        <?php foreach($kelas as $kelas) { ?>
-                        <option value="<?php echo $kelas['id']?>"><?php echo $kelas['nama']." (".$kelas['tahun']."/".($kelas['tahun']+1).")"; ?></option>
-                        <?php } ?>
+                        <php foreach($kelas as $kelas) { ?>
+                        <option value="<php echo $kelas['id']?>"><php echo $kelas['nama']." (".$kelas['tahun']."/".($kelas['tahun']+1).")"; ?></option>
+                        <php } ?>
                     </select>
                     <label class="clues">Pilih sesuai dengan kelas tempat anda mengajar</label>
                 </div>
-            </div>
+            </div> -->
             <div class="row item-reg">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <label for="nip" class="control-label">NIP</label>

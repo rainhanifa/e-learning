@@ -61,7 +61,7 @@
         public static function get_materi_list($tmapel){
             $CI     =& get_instance();
             $where  = array("t_mapel.id" => $tmapel);
-            $mapel  = $CI->db->select("materi.nama as nama_materi, materi.id as id_materi")
+            $mapel  = $CI->db->select("t_mapel.id, mata_pelajaran.id as id_mapel, materi.nama as nama_materi, materi.id as id_materi")
                             ->from("t_mapel")
                             ->join("mata_pelajaran", "t_mapel.mapel_id = mata_pelajaran.id")
                             ->join("detail_mapel", "detail_mapel.t_mapel_id = t_mapel.id")

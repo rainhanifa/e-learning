@@ -19,7 +19,7 @@
 
                 <table class="table table-border text-center">
                     <tr>
-                        <th colspan="2" class="text-center">Nama</th>
+                        <th colspan="2" class="text-center">Nama Dosen</th>
                         <th class="text-center">Nama Pengguna</th>
                         <th class="text-center">NIP</th>
                         <th class="text-center">Aksi</th>
@@ -28,7 +28,7 @@
                     foreach($dosen as $data){
             ?>
                     <tr>
-                        <td><img src="<?php echo $folder_foto_guru.$data['foto']; ?>" class="img-circle img-responsive"/></td>
+                        <td width="15%"><img src="<?php echo $folder_foto_guru.$data['foto']; ?>" class="img-circle img-responsive"/></td>
                         <td><?php echo $data['nama']?></td>    
                         <td><?php echo $data['username']?></td>    
                         <td><?php echo $data['nip']?></td>

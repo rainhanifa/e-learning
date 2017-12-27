@@ -57,14 +57,6 @@
                         }
                     }
                 },
-                kelas: {
-                    message: 'Offering tidak valid',
-                    validators: {
-                        notEmpty: {
-                            message: 'Pilih dosen offering'
-                        }
-                    }
-                },
                 nip: {
                     message: 'NIP tidak valid',
                     validators: {

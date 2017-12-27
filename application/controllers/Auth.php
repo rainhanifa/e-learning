@@ -92,7 +92,7 @@ class Auth extends CI_Controller {
 	public function doregistrasiguru(){
 		if($_POST){
 	        $namalengkap    = $this->input->post('nama');
-	        $guru_kelas     = $this->input->post('gurukelas');
+	        //$guru_kelas     = $this->input->post('gurukelas');
 	        $nip            = $this->input->post('nip');
 	        $email          = $this->input->post('mail');
 
@@ -119,13 +119,13 @@ class Auth extends CI_Controller {
 	                chmod($config['upload_path'].$foto, 0777); // note that it's usually changed to 0755
 
 	                // VALIDASI INPUT
-	                if($pengguna<>'' and $namalengkap<>'' and $guru_kelas<>'' and $nip<>'' and $email<>'' and $password<>'' and $repassword<>''){
+	                if($pengguna<>'' and $namalengkap<>'' and $nip<>'' and $email<>'' and $password<>'' and $repassword<>''){
 			            if($password == $repassword){
 			            	// SIMPAN KE DB
 			                if($this->Front_model->insert_guru($pengguna, $password, $namalengkap, $nip, $email, $foto)){
 								//	berhasil
 
-	        					$this->Front_model->write_log($user, "mendaftar sebagai guru");
+	        					$this->Front_model->write_log($pengguna, "mendaftar sebagai guru");
 
 								$this->session->set_flashdata("message","Anda berhasil mendaftar. Silakan login untuk masuk ke akun Anda.");
 								redirect("auth/masuk");
@@ -196,7 +196,7 @@ class Auth extends CI_Controller {
 	                                mkdir($nama_folder_tugas_siswa, 0777, true);
 	                                umask($oldmask); // reset umask
 
-	        						$this->Front_model->write_log($user, "mendaftar sebagai mahasiswa kelas ".$siswa_kelas);
+	        						$this->Front_model->write_log($pengguna, "mendaftar sebagai mahasiswa kelas ".$siswa_kelas);
 
 									$this->session->set_flashdata("message","Anda berhasil mendaftar. Silakan login untuk masuk ke akun Anda.");
 									redirect("auth/masuk");

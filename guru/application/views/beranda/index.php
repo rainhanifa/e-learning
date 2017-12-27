@@ -34,8 +34,7 @@
                     $guru_kelas = '';
                 }
             ?> -->
-            <h1 class="text-center">Data Progress Belajar <!-- Siswa Kelas <php echo $guru_kelas;?> --></h1>
-        </div>
+            
         <!--
         <div class="row form-cari">
             <form name="cari_siswa" id="cari_siswa" method="post" action="index.php?p=carisiswa" role="form" class="form-group">
@@ -59,17 +58,13 @@
             </form>
         </div>
         -->
-    </div>
-</section>
-
-<section>
-    <div class="container">
         <?php
             $url_siswa = base_url()."../upload/foto/siswa/";
 //            $url_siswa = "http://localhost/e_pko/epsettings/siswa/";
             //$url_siswa = "http://".$_SERVER["HTTP_HOST"]."/e_pko/epsettings/siswa/";
             if($daftarsiswa<>''){
                 if(is_array($daftarsiswa)){
+                    echo '<h1 class="text-center">Data Progress Belajar</h1>';
                     foreach($daftarsiswa as $data){
         ?>        
         <div id="box-6" class="box">
