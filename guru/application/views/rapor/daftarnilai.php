@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row reg-heading">
                 <h1 class="text-center">Laporan Hasil Belajar Mahasiswa <?php echo getKelasNama($idkelas); ?></h1>
-                <h2 class="text-center">Mata Kuliah: <?php echo getMapelNama($idmapel); ?></h2>
+                <h2 class="text-center">Mata Kuliah: <?php echo getTMapelNama($idmapel); ?></h2>
             </div>
             </div> 
         </div>

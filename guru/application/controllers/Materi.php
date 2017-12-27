@@ -286,7 +286,7 @@ class Materi extends CI_Controller {
 								"kontenmateri_id" => $kontenmateri,
 								"subyek"	=> $subyek,
 								"deskripsi"	=> $komentar,
-								"tanggal"	=> date("H:i:s Y-m-d")
+								"tanggal"	=> date("Y-m-d H:i:s")
 								);
 		if($this->db->insert('komentar', $data_komentar)){
 			echo "OK";

@@ -183,6 +183,20 @@ function getMapelNama($id){
     return $nama;   
 }
 
+
+function getTMapelNama($idtmapel){
+    $CI =& get_instance();
+    $where  =   array("t_mapel.id" => $idtmapel);
+    $nama  = $CI->db->select("mata_pelajaran.nama")
+                    ->from("mata_pelajaran")
+                    ->join("t_mapel", "t_mapel.mapel_id = mata_pelajaran.id")
+                    ->where($where)
+                    ->get()
+                    ->row()
+                    ->nama;
+    return $nama;   
+}
+
 function get_progress($fields, $group_by, $where){
     $CI =& get_instance();
 

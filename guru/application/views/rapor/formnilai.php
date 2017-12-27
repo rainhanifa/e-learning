@@ -44,6 +44,7 @@
                     $nama_materi        = $materi['nama_materi'];
                     $id_submateri       = $materi['id_submateri'];
                     $nama_submateri     = $materi['nama_submateri'];
+                    $id_tmapel          = $materi['id_tmapel'];
                 }
 
                 if(is_array($nilai)){
@@ -59,7 +60,7 @@
             <input type="hidden" name="id_hasil" value="<?php echo $id_hasil?>">
             <input type="hidden" name="id_siswa" value="<?php echo $id_siswa?>">
             <input type="hidden" name="id_kelas" value="<?php echo $id_kelas?>">
-            <input type="hidden" name="id_mapel" value="<?php echo $id_mapel?>">
+            <input type="hidden" name="id_tmapel" value="<?php echo $id_tmapel?>">
             <input type="hidden" name="id_submateri" value="<?php echo $id_submateri?>">
 
             <input type="hidden" name="kontenmateri_class" value="">

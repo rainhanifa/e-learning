@@ -107,9 +107,9 @@
             return $mapel;
         }
 
-        public static function get_kelas_by_mapel($mapel){
+        public static function get_kelas_by_mapel($tmapel){
             $CI     =& get_instance();
-            $where  = array('t_mapel.mapel_id' => $mapel);
+            $where  = array('t_mapel.id' => $tmapel);
             $mapel  = $CI->db->select('data_kelas.id as id_kelas, data_kelas.nama as nama_kelas, data_kelas.tahun as tahun_kelas')
                         ->from('data_kelas')
                         ->join('t_jadwal', 't_jadwal.kelas_id = data_kelas.id')
@@ -132,7 +132,7 @@
         public static function get_full_detail_submateri($submateri){
             $CI =& get_instance();
             $where  =   array("submateri.id" => $submateri);
-            $detail  = $CI->db->select('mata_pelajaran.id as id_mapel, mata_pelajaran.nama as nama_mapel, materi.id as id_materi, materi.nama as nama_materi, submateri.id as id_submateri, submateri.nama as nama_submateri')
+            $detail  = $CI->db->select('mata_pelajaran.id as id_mapel, mata_pelajaran.nama as nama_mapel, materi.id as id_materi, materi.nama as nama_materi, submateri.id as id_submateri, submateri.nama as nama_submateri, t_mapel.id as id_tmapel')
                             ->from('submateri')
                             ->join('materi', 'materi.id = submateri.materi_id')
                             ->join('detail_mapel', 'detail_mapel.materi_id = materi.id')

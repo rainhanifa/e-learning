@@ -74,7 +74,7 @@ class Rapor extends CI_Controller {
 			$id_hasil 	=	$this->input->post('id_hasil');
 			$id_siswa 	=	$this->input->post('id_siswa');
 			$id_submateri 	=	$this->input->post('id_submateri');
-			$id_mapel 	=	$this->input->post('id_mapel');
+			$id_tmapel 	=	$this->input->post('id_tmapel');
 			$id_kelas 	=	$this->input->post('id_kelas');
 
 			$nilai_class 	=	$this->input->post('nilai_class');
@@ -99,7 +99,7 @@ class Rapor extends CI_Controller {
 				$this->db->where($where);
 
 				if($this->db->update('progress', $data_progress)){
-					redirect('rapor/kelas/'.$id_mapel.'/'.$id_kelas);			
+					redirect('rapor/kelas/'.$id_tmapel.'/'.$id_kelas);			
 				}
 				
 			}
